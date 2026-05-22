@@ -1,0 +1,154 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+locale: "da"
+
+collections:
+  - name: "artikler"
+    label: "Artikler"
+    label_singular: "Artikel"
+    folder: "data/artikler"
+    create: true
+    extension: "json"
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titel", name: "title", widget: "string" }
+      - label: "Kategori"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Risikotræer & biodiversitet", value: "risiko-biodiversitet" }
+          - { label: "Bytræforvaltning — inspiration", value: "bytraeer-inspiration" }
+          - { label: "Beskæring, bark-, rod- og grensår", value: "beskaering" }
+          - { label: "Bytræers rødder", value: "roedder" }
+          - { label: "Stormstabilitet og ældelse", value: "stormstabilitet" }
+          - { label: "Skovrejsning og skovplanter", value: "skovrejsning" }
+      - { label: "PDF-link eller URL", name: "url", widget: "string" }
+      - { label: "Filtype", name: "filetype", widget: "select", options: ["PDF", "Video", "Læs mere"], default: "PDF" }
+      - { label: "Sortering (lavere tal vises først)", name: "sort_order", widget: "number", default: 100, required: false }
+
+  - name: "boeger"
+    label: "Bøger"
+    label_singular: "Bog"
+    folder: "data/boeger"
+    create: true
+    extension: "json"
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titel", name: "title", widget: "string" }
+      - { label: "Emne-tag (f.eks. 'Skovrejsning · 2012')", name: "tag", widget: "string" }
+      - { label: "Beskrivelse", name: "description", widget: "text" }
+      - { label: "Link til bogside", name: "url", widget: "string" }
+      - { label: "Forsidebillede", name: "cover", widget: "image", required: false }
+      - { label: "Sortering (lavere tal vises først)", name: "sort_order", widget: "number", default: 100, required: false }
+
+  - name: "metoder"
+    label: "Metoder"
+    label_singular: "Metode"
+    folder: "data/metoder"
+    create: true
+    extension: "json"
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titel", name: "title", widget: "string" }
+      - label: "Kategori"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Metoder til undersøgelse af stammen", value: "stamme" }
+          - { label: "Non-destruktiv rodkortlægning", value: "rodkortlaegning" }
+          - { label: "Øvrige metoder", value: "oevrige" }
+      - { label: "Link", name: "url", widget: "string" }
+      - { label: "Link-tekst", name: "linktext", widget: "string", default: "Læs mere" }
+      - { label: "Sortering (lavere tal vises først)", name: "sort_order", widget: "number", default: 100, required: false }
+
+  - name: "standarder"
+    label: "Standarder & retningslinjer"
+    label_singular: "Standard"
+    folder: "data/standarder"
+    create: true
+    extension: "json"
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titel", name: "title", widget: "string" }
+      - label: "Kategori"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Internationale retningslinjer for træbeskyttelse ved byggeri", value: "internationale" }
+          - { label: "Brochurer og CV", value: "brochurer" }
+          - { label: "Videnskabelige publikationer", value: "videnskabelige" }
+      - { label: "Link", name: "url", widget: "string" }
+      - { label: "Filtype", name: "filetype", widget: "select", options: ["PDF", "Læs mere"], default: "PDF" }
+      - { label: "Sortering (lavere tal vises først)", name: "sort_order", widget: "number", default: 100, required: false }
+
+  - name: "team"
+    label: "Teammedlemmer"
+    label_singular: "Teammedlem"
+    folder: "data/team"
+    create: true
+    extension: "json"
+    slug: "{{slug}}"
+    fields:
+      - { label: "Navn", name: "name", widget: "string" }
+      - { label: "Rolle", name: "role", widget: "string" }
+      - { label: "Beskrivelse", name: "description", widget: "text" }
+      - { label: "Note (valgfrit)", name: "note", widget: "string", required: false }
+      - { label: "Portræt", name: "portrait", widget: "image", required: false }
+      - { label: "Sortering (lavere tal vises først)", name: "sort_order", widget: "number", default: 100, required: false }
+
+  - name: "projekter"
+    label: "Projekter / Cases"
+    label_singular: "Projekt"
+    folder: "data/projekter"
+    create: true
+    extension: "json"
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titel", name: "title", widget: "string" }
+      - { label: "Projekttype (f.eks. 'Bytræer', 'Skovrejsning')", name: "type", widget: "string" }
+      - { label: "Beskrivelse", name: "description", widget: "text" }
+      - { label: "Billede", name: "image", widget: "image", required: false }
+      - { label: "Sortering (lavere tal vises først)", name: "sort_order", widget: "number", default: 100, required: false }
+
+  - name: "sider"
+    label: "Sideindhold"
+    files:
+      - name: "hero"
+        label: "Forside — Hero"
+        file: "data/sider/hero.json"
+        fields:
+          - { label: "Overskrift linje 1", name: "headline_1", widget: "string" }
+          - { label: "Overskrift linje 2 (kursiv)", name: "headline_2", widget: "string" }
+          - { label: "Tagline", name: "tagline", widget: "text" }
+          - { label: "Intro-tekst (højre kolonne)", name: "intro", widget: "text" }
+          - { label: "Stat 1 — tal", name: "stat1_num", widget: "string" }
+          - { label: "Stat 1 — label", name: "stat1_label", widget: "string" }
+          - { label: "Stat 2 — tal", name: "stat2_num", widget: "string" }
+          - { label: "Stat 2 — label", name: "stat2_label", widget: "string" }
+          - { label: "Stat 3 — tal", name: "stat3_num", widget: "string" }
+          - { label: "Stat 3 — label", name: "stat3_label", widget: "string" }
+          - { label: "Stat 4 — tal", name: "stat4_num", widget: "string" }
+          - { label: "Stat 4 — label", name: "stat4_label", widget: "string" }
+      - name: "tilgang"
+        label: "Tilgang / Om os"
+        file: "data/sider/tilgang.json"
+        fields:
+          - { label: "Lead-tekst", name: "lead", widget: "text" }
+          - { label: "Brødtekst afsnit 1", name: "body_1", widget: "text" }
+          - { label: "Brødtekst afsnit 2", name: "body_2", widget: "text" }
+      - name: "kontakt"
+        label: "Kontakt"
+        file: "data/sider/kontakt.json"
+        fields:
+          - { label: "Overskrift", name: "headline", widget: "string" }
+          - { label: "Brødtekst", name: "body", widget: "text" }
+          - { label: "E-mail", name: "email", widget: "string" }
+          - { label: "Telefon", name: "phone", widget: "string" }
+          - { label: "Kontaktnavn", name: "contact_name", widget: "string" }
+          - { label: "Adresse", name: "address", widget: "string" }
+          - { label: "CVR", name: "cvr", widget: "string" }
