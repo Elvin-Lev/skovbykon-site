@@ -1,0 +1,2253 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkovByKon — Forskningsbaseret rådgivning om træer, skov og natur</title>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Space+Mono:wght@400;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --ink:       #1a1f1a;
+  --forest:    #233d2f;
+  --fern:      #3d6b4f;
+  --lichen:    #7a9b78;
+  --field:     #c8c89a;
+  --parchment: #f0edd8;
+  --paper:     #f9f7ef;
+  --rust:      #8b4a2a;
+  --data:      #3a5f48;
+  --mono:      'Space Mono', monospace;
+  --serif:     'Source Serif 4', Georgia, serif;
+  --body-serif:'Libre Baskerville', Georgia, serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--body-serif);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.75;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Topographic texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cpath d='M0 300 Q150 250 300 300 Q450 350 600 300' stroke='%233d6b4f' stroke-width='0.4' fill='none' opacity='0.12'/%3E%3Cpath d='M0 320 Q150 270 300 320 Q450 370 600 320' stroke='%233d6b4f' stroke-width='0.4' fill='none' opacity='0.09'/%3E%3Cpath d='M0 280 Q150 230 300 280 Q450 330 600 280' stroke='%233d6b4f' stroke-width='0.4' fill='none' opacity='0.09'/%3E%3Cpath d='M0 200 Q150 160 300 200 Q450 240 600 200' stroke='%233d6b4f' stroke-width='0.3' fill='none' opacity='0.07'/%3E%3Cpath d='M0 400 Q150 360 300 400 Q450 440 600 400' stroke='%233d6b4f' stroke-width='0.3' fill='none' opacity='0.07'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 1;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  background: rgba(249, 247, 239, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(61,107,79,0.18);
+  padding: 0.85rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.nav-brand .wordmark {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: var(--forest);
+}
+
+.nav-brand .sub {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--lichen);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.6rem;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--forest);
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.nav-links a:hover { opacity: 1; }
+
+/* Dropdown */
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown > a::after {
+  content: ' ▾';
+  font-size: 0.78rem;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: -0.5rem;
+  background: rgba(249,247,239,0.97);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(61,107,79,0.18);
+  padding: 0.6rem 0;
+  min-width: 200px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(4px);
+  transition: opacity 0.2s, transform 0.2s;
+  list-style: none;
+}
+
+.nav-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 0.45rem 1.2rem;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.dropdown-menu li a:hover {
+  background: rgba(61,107,79,0.06);
+}
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-left {
+  background: var(--forest);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 7rem 4rem 5rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-left::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='700'%3E%3Cellipse cx='200' cy='350' rx='350' ry='200' stroke='%237a9b78' stroke-width='0.6' fill='none' opacity='0.3'/%3E%3Cellipse cx='200' cy='350' rx='290' ry='160' stroke='%237a9b78' stroke-width='0.6' fill='none' opacity='0.25'/%3E%3Cellipse cx='200' cy='350' rx='230' ry='120' stroke='%237a9b78' stroke-width='0.6' fill='none' opacity='0.2'/%3E%3Cellipse cx='200' cy='350' rx='170' ry='85' stroke='%237a9b78' stroke-width='0.6' fill='none' opacity='0.15'/%3E%3Cellipse cx='200' cy='350' rx='110' ry='55' stroke='%237a9b78' stroke-width='0.6' fill='none' opacity='0.12'/%3E%3C/svg%3E");
+  background-size: cover;
+  background-position: center;
+  pointer-events: none;
+}
+
+.hero-kicker {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lichen);
+  margin-bottom: 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-kicker::before {
+  content: '▸';
+  color: var(--field);
+}
+
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-weight: 300;
+  color: var(--parchment);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1 em { font-style: italic; color: var(--field); }
+
+.hero-tagline {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--lichen);
+  letter-spacing: 0.08em;
+  line-height: 1.9;
+  border-left: 2px solid var(--fern);
+  padding-left: 1rem;
+  max-width: 400px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-coords {
+  margin-top: 3.5rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: rgba(122,155,120,0.5);
+  letter-spacing: 0.12em;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-right {
+  background: var(--parchment);
+  padding: 8rem 3.5rem 5rem 3.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  border-left: 1px solid rgba(61,107,79,0.15);
+}
+
+.hero-right::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(61,107,79,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(61,107,79,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+.stat-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.8rem;
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.stat-item { border-top: 1px solid rgba(61,107,79,0.3); padding-top: 1rem; }
+
+.stat-num {
+  font-family: var(--mono);
+  font-size: 1.6rem;
+  color: var(--forest);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+
+.stat-label {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  color: var(--lichen);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.hero-intro {
+  font-size: 0.97rem;
+  color: var(--forest);
+  line-height: 1.8;
+  max-width: 420px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-intro strong { color: var(--forest); font-weight: 700; }
+
+.hero-cta-group {
+  margin-top: 2.5rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.btn-primary {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: var(--forest);
+  color: var(--parchment);
+  padding: 0.85rem 1.8rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover { background: var(--fern); }
+
+.btn-secondary {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--forest);
+  padding: 0.85rem 1.8rem;
+  text-decoration: none;
+  border: 1px solid rgba(61,107,79,0.4);
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.btn-secondary:hover { border-color: var(--forest); }
+
+/* ─── SECTION SHELLS ─── */
+section { position: relative; z-index: 1; }
+
+.container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
+
+.section-label {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--lichen);
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.section-label::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--lichen);
+  display: inline-block;
+}
+
+h2.section-title {
+  font-family: var(--serif);
+  font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+  font-weight: 300;
+  color: var(--forest);
+  line-height: 1.15;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+h2.section-title em { font-style: italic; color: var(--fern); }
+
+/* ─── OM OS ─── */
+.about-section {
+  padding: 7rem 0;
+  background: var(--paper);
+}
+
+.about-inner {
+  display: grid;
+  grid-template-columns: 38% 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.about-lead {
+  font-size: 1.05rem;
+  color: var(--fern);
+  line-height: 1.7;
+  margin-top: 1.5rem;
+  font-style: italic;
+}
+
+.about-body {
+  font-size: 0.93rem;
+  color: var(--ink);
+  line-height: 1.85;
+}
+
+.about-body p { margin-bottom: 1.2rem; }
+
+.pillar-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: 1.5rem;
+  border: 1px solid rgba(61,107,79,0.2);
+}
+
+.pillar {
+  padding: 1.6rem 1.4rem;
+  border-right: 1px solid rgba(61,107,79,0.15);
+}
+
+.pillar:last-child { border-right: none; }
+
+.pillar-num {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--field);
+  letter-spacing: 0.15em;
+  margin-bottom: 0.6rem;
+}
+
+.pillar h3 {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--forest);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.pillar p {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  color: var(--lichen);
+  line-height: 1.7;
+}
+
+/* ─── YDELSER / RÅDGIVNING ─── */
+.services-section {
+  padding: 7rem 0;
+  background: var(--forest);
+  color: var(--parchment);
+  position: relative;
+  overflow: hidden;
+}
+
+.services-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500'%3E%3Cpath d='M0 250 Q200 200 400 250 Q600 300 800 250' stroke='%237a9b78' stroke-width='0.5' fill='none' opacity='0.2'/%3E%3Cpath d='M0 230 Q200 180 400 230 Q600 280 800 230' stroke='%237a9b78' stroke-width='0.4' fill='none' opacity='0.15'/%3E%3Cpath d='M0 270 Q200 220 400 270 Q600 320 800 270' stroke='%237a9b78' stroke-width='0.4' fill='none' opacity='0.15'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.services-section .section-label { color: var(--lichen); }
+.services-section h2.section-title { color: var(--parchment); }
+.services-section h2.section-title em { color: var(--field); }
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  margin-top: 3.5rem;
+  border: 1px solid rgba(122,155,120,0.25);
+  position: relative;
+  z-index: 1;
+}
+
+.service-card {
+  padding: 2.5rem 1.5rem;
+  border-right: 1px solid rgba(122,155,120,0.2);
+  position: relative;
+  transition: background 0.3s;
+  background: rgba(255,255,255,0.035);
+}
+
+.service-card:hover { background: rgba(255,255,255,0.08); }
+.service-card:last-child { border-right: none; }
+
+.service-tag {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--field);
+  margin-bottom: 1rem;
+}
+
+.service-name {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 300;
+  color: var(--parchment);
+  margin-bottom: 1.2rem;
+  line-height: 1.3;
+}
+
+.service-desc {
+  font-size: 0.82rem;
+  color: rgba(240,237,216,0.7);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.service-items {
+  list-style: none;
+}
+
+.service-items li {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: rgba(200,200,154,0.75);
+  padding: 0.35rem 0;
+  border-bottom: 1px solid rgba(122,155,120,0.1);
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  line-height: 1.4;
+}
+
+.service-items li::before {
+  content: '—';
+  color: var(--fern);
+  flex-shrink: 0;
+}
+
+/* ─── KOMPETENCER (detailed services) ─── */
+.competence-section {
+  padding: 7rem 0;
+  background: var(--parchment);
+}
+
+.competence-header {
+  display: grid;
+  grid-template-columns: 38% 1fr;
+  gap: 5rem;
+  margin-bottom: 4rem;
+  align-items: start;
+}
+
+.competence-lead {
+  font-size: 0.93rem;
+  color: var(--fern);
+  line-height: 1.8;
+  margin-top: 1.5rem;
+  font-style: italic;
+}
+
+.competence-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid rgba(61,107,79,0.2);
+}
+
+.competence-table tr {
+  border-bottom: 1px solid rgba(61,107,79,0.12);
+  transition: background 0.2s;
+}
+
+.competence-table tr:last-child { border-bottom: none; }
+.competence-table tr:hover { background: rgba(61,107,79,0.03); }
+
+.competence-table td {
+  padding: 1.6rem 1.8rem;
+  vertical-align: top;
+}
+
+.comp-num {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--field);
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  width: 3rem;
+  padding-top: 1.7rem;
+}
+
+.comp-name {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--forest);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.comp-desc {
+  font-size: 0.88rem;
+  color: var(--ink);
+  opacity: 0.75;
+  line-height: 1.7;
+  max-width: 520px;
+}
+
+.comp-tags {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  align-items: flex-end;
+  min-width: 120px;
+}
+
+.comp-tag {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--lichen);
+  white-space: nowrap;
+}
+
+/* ─── PROJEKTER ─── */
+.projects-section {
+  padding: 7rem 0;
+  background: var(--paper);
+  border-top: 1px solid rgba(61,107,79,0.1);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: 3.5rem;
+  border: 1px solid rgba(61,107,79,0.18);
+}
+
+.project-card {
+  padding: 2.5rem 2.2rem;
+  border-right: 1px solid rgba(61,107,79,0.12);
+  border-bottom: 1px solid rgba(61,107,79,0.12);
+  transition: background 0.2s;
+}
+
+.project-card:hover { background: rgba(61,107,79,0.03); }
+.project-card:nth-child(3n) { border-right: none; }
+.project-card:nth-last-child(-n+3) { border-bottom: none; }
+
+.project-type {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lichen);
+  margin-bottom: 0.8rem;
+}
+
+.project-card h3 {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--forest);
+  margin-bottom: 0.6rem;
+  line-height: 1.3;
+}
+
+.project-card p {
+  font-size: 0.88rem;
+  color: var(--ink);
+  opacity: 0.7;
+  line-height: 1.7;
+}
+
+/* ─── METODER ─── */
+.methods-section {
+  padding: 7rem 0;
+  background: var(--ink);
+  color: var(--parchment);
+  position: relative;
+  overflow: hidden;
+}
+
+.methods-section::before {
+  content: 'METODER';
+  position: absolute;
+  right: -2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--mono);
+  font-size: 8rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.03);
+  letter-spacing: -0.02em;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.methods-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.methods-label {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--lichen);
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.methods-label::before { content: ''; width: 20px; height: 1px; background: var(--lichen); display: inline-block; }
+
+.methods-section h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 300;
+  color: var(--parchment);
+  line-height: 1.15;
+  margin-bottom: 1.2rem;
+}
+
+.methods-section h2 em { font-style: italic; color: var(--field); }
+
+.methods-desc {
+  font-size: 0.93rem;
+  color: rgba(240,237,216,0.7);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.method-pipeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid rgba(122,155,120,0.2);
+}
+
+.method-step {
+  display: flex;
+  align-items: baseline;
+  gap: 1.2rem;
+  padding: 1rem 1.4rem;
+  border-bottom: 1px solid rgba(122,155,120,0.12);
+  transition: background 0.2s;
+  background: rgba(255,255,255,0.03);
+}
+
+.method-step:last-child { border-bottom: none; }
+.method-step:hover { background: rgba(122,155,120,0.1); }
+
+.ms-num {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--field);
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+  width: 2rem;
+}
+
+.ms-name {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  color: var(--lichen);
+  flex: 1;
+  letter-spacing: 0.05em;
+}
+
+.ms-type {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: rgba(122,155,120,0.5);
+  letter-spacing: 0.08em;
+}
+
+/* ─── BIBLIOTEK / LITTERATUR ─── */
+.library-section {
+  padding: 7rem 0;
+  background: var(--parchment);
+  border-top: 1px solid rgba(61,107,79,0.1);
+}
+
+.library-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  margin-top: 3.5rem;
+  border: 1px solid rgba(61,107,79,0.18);
+}
+
+.library-card {
+  padding: 2.5rem 2.2rem;
+  border-bottom: 1px solid rgba(61,107,79,0.12);
+  border-right: 1px solid rgba(61,107,79,0.12);
+  transition: background 0.2s;
+}
+
+.library-card:hover { background: rgba(61,107,79,0.03); }
+.library-card:nth-child(2n) { border-right: none; }
+.library-card:nth-last-child(-n+2) { border-bottom: none; }
+
+.library-icon {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lichen);
+  margin-bottom: 0.8rem;
+}
+
+.library-card h3 {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--forest);
+  margin-bottom: 0.6rem;
+  line-height: 1.3;
+}
+
+.library-card p {
+  font-size: 0.88rem;
+  color: var(--ink);
+  opacity: 0.7;
+  line-height: 1.7;
+}
+
+/* ─── TEAM ─── */
+.team-section {
+  padding: 6rem 0;
+  background: var(--paper);
+  border-top: 1px solid rgba(61,107,79,0.1);
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid rgba(61,107,79,0.15);
+  margin-top: 3rem;
+}
+
+.team-grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.team-member {
+  padding: 2rem 1.8rem;
+  border-right: 1px solid rgba(61,107,79,0.12);
+}
+
+.team-member:last-child { border-right: none; }
+
+.team-role {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--lichen);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.team-name {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--forest);
+  margin-bottom: 0.6rem;
+  line-height: 1.3;
+}
+
+.team-desc {
+  font-size: 0.87rem;
+  color: var(--ink);
+  opacity: 0.7;
+  line-height: 1.6;
+}
+
+.team-note {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--rust);
+  margin-top: 0.6rem;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+/* ─── KURSER ─── */
+.courses-section {
+  padding: 7rem 0;
+  background: var(--forest);
+  color: var(--parchment);
+  position: relative;
+  overflow: hidden;
+}
+
+.courses-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500'%3E%3Cpath d='M0 250 Q200 200 400 250 Q600 300 800 250' stroke='%237a9b78' stroke-width='0.5' fill='none' opacity='0.15'/%3E%3Cpath d='M0 270 Q200 220 400 270 Q600 320 800 270' stroke='%237a9b78' stroke-width='0.4' fill='none' opacity='0.1'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.courses-section .section-label { color: var(--lichen); }
+.courses-section h2.section-title { color: var(--parchment); }
+.courses-section h2.section-title em { color: var(--field); }
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: 3rem;
+  border: 1px solid rgba(122,155,120,0.25);
+  position: relative;
+  z-index: 1;
+}
+
+.course-card {
+  padding: 2.2rem 1.8rem;
+  border-right: 1px solid rgba(122,155,120,0.2);
+  transition: background 0.3s;
+  background: rgba(255,255,255,0.035);
+}
+
+.course-card:hover { background: rgba(255,255,255,0.08); }
+.course-card:last-child { border-right: none; }
+
+.course-num {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--field);
+  letter-spacing: 0.15em;
+  margin-bottom: 0.8rem;
+}
+
+.course-card h3 {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--parchment);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.course-card p {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  color: rgba(200,200,154,0.7);
+  line-height: 1.7;
+}
+
+/* ─── CTA / KONTAKT ─── */
+.cta-section {
+  padding: 8rem 0;
+  background: var(--paper);
+  position: relative;
+}
+
+.cta-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+.cta-left h2 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 300;
+  color: var(--forest);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.cta-left h2 em { font-style: italic; }
+
+.cta-left p {
+  font-size: 0.93rem;
+  color: var(--ink);
+  opacity: 0.7;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.cta-right { padding-top: 1.5rem; }
+
+.contact-block {
+  border: 1px solid rgba(61,107,79,0.2);
+  padding: 2.5rem 2rem;
+  background: var(--parchment);
+}
+
+.contact-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid rgba(61,107,79,0.1);
+}
+
+.contact-row:last-child { border-bottom: none; }
+
+.contact-row-label {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--lichen);
+}
+
+.contact-row-val {
+  font-family: var(--body-serif);
+  font-size: 0.93rem;
+  color: var(--forest);
+}
+
+.contact-row-val a {
+  color: var(--fern);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.contact-row-val a:hover { border-bottom-color: var(--fern); }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--forest);
+  color: rgba(240,237,216,0.55);
+  padding: 1.2rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  border-top: 1px solid rgba(122,155,120,0.25);
+}
+
+/* Spacer so content doesn't hide behind fixed footer */
+.footer-spacer { height: 3.5rem; }
+
+footer .footer-brand {
+  font-family: var(--serif);
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--parchment);
+  opacity: 0.7;
+}
+
+footer .footer-meta {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+}
+
+footer .footer-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+footer .footer-links a {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: rgba(240,237,216,0.5);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+footer .footer-links a:hover { color: var(--parchment); }
+
+/* ─── LIBRARY TABS ─── */
+.library-intro {
+  font-size: 0.93rem;
+  color: var(--fern);
+  line-height: 1.8;
+  font-style: italic;
+  max-width: 560px;
+  margin-bottom: 2rem;
+}
+
+.lib-tabs {
+  display: flex;
+  gap: 0;
+  border: 1px solid rgba(61,107,79,0.2);
+  border-bottom: none;
+  margin-top: 1rem;
+}
+
+.lib-tab {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--lichen);
+  border: none;
+  padding: 1rem 1.8rem;
+  cursor: pointer;
+  border-right: 1px solid rgba(61,107,79,0.15);
+  transition: background 0.2s, color 0.2s;
+}
+
+.lib-tab:last-child { border-right: none; }
+.lib-tab:hover { background: rgba(61,107,79,0.04); color: var(--forest); }
+.lib-tab.active { background: var(--forest); color: var(--parchment); }
+
+.lib-panel {
+  display: none;
+  border: 1px solid rgba(61,107,79,0.2);
+  padding: 2rem 2.2rem;
+  background: var(--paper);
+}
+
+.lib-panel.active { display: block; }
+
+.lib-category { margin-bottom: 2.5rem; }
+.lib-category:last-child { margin-bottom: 0; }
+
+.lib-cat-title {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--forest);
+  margin-bottom: 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(61,107,79,0.15);
+}
+
+.lib-list { display: flex; flex-direction: column; gap: 0; }
+
+.lib-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding: 0.7rem 0.8rem;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(61,107,79,0.07);
+  transition: background 0.15s;
+}
+
+.lib-item:hover { background: rgba(61,107,79,0.04); }
+
+.lib-item-title {
+  font-size: 0.88rem;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.lib-item-type {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--lichen);
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Books grid */
+.lib-books-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid rgba(61,107,79,0.12);
+}
+
+.lib-book {
+  padding: 2rem 1.8rem;
+  border-right: 1px solid rgba(61,107,79,0.12);
+  border-bottom: 1px solid rgba(61,107,79,0.12);
+}
+
+.lib-book:nth-child(3n) { border-right: none; }
+
+.lib-book-tag {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--lichen);
+  margin-bottom: 0.6rem;
+}
+
+.lib-book h3 {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--forest);
+  margin-bottom: 0.6rem;
+  line-height: 1.3;
+}
+
+.lib-book p {
+  font-size: 0.85rem;
+  color: var(--ink);
+  opacity: 0.7;
+  line-height: 1.65;
+  margin-bottom: 1rem;
+}
+
+.lib-book-link {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--fern);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  transition: color 0.2s;
+}
+
+.lib-book-link:hover { color: var(--forest); }
+
+/* ─── IMAGE PLACEHOLDERS ─── */
+.img-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(61,107,79,0.08) 0%, rgba(122,155,120,0.12) 100%);
+  border: 1px dashed rgba(61,107,79,0.25);
+  color: rgba(61,107,79,0.45);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+
+.img-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cpath d='M0 50 Q25 40 50 50 Q75 60 100 50' stroke='%233d6b4f' stroke-width='0.4' fill='none' opacity='0.15'/%3E%3Cpath d='M0 60 Q25 50 50 60 Q75 70 100 60' stroke='%233d6b4f' stroke-width='0.4' fill='none' opacity='0.12'/%3E%3Cpath d='M0 40 Q25 30 50 40 Q75 50 100 40' stroke='%233d6b4f' stroke-width='0.4' fill='none' opacity='0.12'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.img-placeholder span {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.img-placeholder span::before {
+  content: '⊡';
+  font-size: 1.2rem;
+  opacity: 0.6;
+}
+
+/* Hero image placeholder */
+.hero-image-placeholder {
+  width: 100%;
+  height: 220px;
+  margin-top: 2.2rem;
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(135deg, rgba(122,155,120,0.15) 0%, rgba(200,200,154,0.1) 100%);
+  border: 1px dashed rgba(122,155,120,0.4);
+  color: rgba(200,200,154,0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.hero-image-placeholder span {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.hero-image-placeholder span::before {
+  content: '⊡';
+  font-size: 1.2rem;
+  opacity: 0.6;
+}
+
+/* Project card image */
+.project-img {
+  height: 160px;
+  margin: -2.5rem -2.2rem 1.6rem -2.2rem;
+}
+
+/* Team member portrait */
+.team-portrait {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  margin-bottom: 1.2rem;
+}
+
+/* Book cover */
+.book-cover {
+  width: 100%;
+  height: 180px;
+  margin-bottom: 1.2rem;
+}
+
+/* About section image */
+.about-image {
+  width: 100%;
+  height: 280px;
+  margin-bottom: 2rem;
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-left > * { animation: fadeUp 0.7s ease-out both; }
+.hero-kicker  { animation-delay: 0.1s; }
+.hero h1      { animation-delay: 0.25s; }
+.hero-tagline { animation-delay: 0.4s; }
+.hero-coords  { animation-delay: 0.55s; }
+
+.hero-right > * { animation: fadeUp 0.7s ease-out both; }
+.stat-block     { animation-delay: 0.35s; }
+.hero-intro     { animation-delay: 0.5s; }
+.hero-cta-group { animation-delay: 0.65s; }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1200px) {
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .services-grid .service-card { border-bottom: 1px solid rgba(122,155,120,0.15); }
+  .services-grid .service-card:nth-child(2n) { border-right: none; }
+  .services-grid .service-card:nth-last-child(-n+1) { border-bottom: none; }
+}
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-left { min-height: 55vh; }
+  .about-inner, .competence-header, .methods-inner, .cta-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .services-grid, .pillar-row, .team-grid, .team-grid-4, .courses-grid { grid-template-columns: 1fr; }
+  .service-card, .team-member, .course-card { border-right: none; border-bottom: 1px solid rgba(122,155,120,0.15); }
+  .service-card:last-child, .team-member:last-child, .course-card:last-child { border-bottom: none; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .project-card { border-right: none; }
+  .project-card:nth-last-child(-n+1) { border-bottom: none; }
+  .library-grid { grid-template-columns: 1fr; }
+  .library-card { border-right: none; }
+  .library-card:nth-last-child(-n+1) { border-bottom: none; }
+  .comp-tags { display: none; }
+  nav { padding: 0.75rem 1.5rem; }
+  .nav-links { gap: 1rem; }
+  .hero-left, .hero-right { padding: 4rem 2rem 3rem; }
+  .lib-tabs { flex-wrap: wrap; }
+  .lib-books-grid { grid-template-columns: 1fr; }
+  .lib-book { border-right: none; }
+  footer { flex-direction: column; gap: 0.6rem; text-align: center; padding: 0.8rem 1.5rem; }
+  footer .footer-links { flex-wrap: wrap; justify-content: center; }
+  .footer-spacer { height: 5rem; }
+}
+
+@media (max-width: 600px) {
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <span class="wordmark">SkovByKon</span>
+    <span class="sub">Forskningsbaseret rådgivning · Træer · Skov · Natur</span>
+  </div>
+  <ul class="nav-links">
+    <li class="nav-dropdown">
+      <a href="#ydelser">Rådgivning</a>
+      <ul class="dropdown-menu">
+        <li><a href="#klima">Klima &amp; CO₂</a></li>
+        <li><a href="#biodiversitet">Biodiversitet</a></li>
+        <li><a href="#traeforvaltning">Træforvaltning</a></li>
+        <li><a href="#skovrejsning">Skovrejsning</a></li>
+        <li><a href="#bng">BNG kortlægning</a></li>
+      </ul>
+    </li>
+    <li><a href="#projekter">Projekter</a></li>
+    <li class="nav-dropdown">
+      <a href="#bibliotek">Bibliotek</a>
+      <ul class="dropdown-menu">
+        <li><a href="#artikler">Artikler &amp; video</a></li>
+        <li><a href="#metoder">Metoder</a></li>
+        <li><a href="#boeger">Bøger</a></li>
+      </ul>
+    </li>
+    <li><a href="#kurser">Kurser</a></li>
+    <li><a href="#team">Om os</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <span class="hero-kicker">Forskningsbaseret rådgivning · Danmark</span>
+    <h1>Videnskab i felten.<br><em>Jord under neglene.</em></h1>
+    <p class="hero-tagline">
+      Vi kombinerer grundlæggende og anvendt videnskab<br>
+      med praksisorienterede løsninger for træer,<br>
+      skove og natur. Over 30 års felterfaring<br>
+      og forskningsbaseret viden på internationalt niveau.
+    </p>
+    <div class="hero-coords">55.7553° N · 11.8659° Ø · Kirke Hyllinge · CVR 44742918</div>
+  </div>
+  <div class="hero-right">
+    <div class="stat-block">
+      <div class="stat-item">
+        <div class="stat-num">30+</div>
+        <div class="stat-label">Års felterfaring</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">62+</div>
+        <div class="stat-label">Bevoksninger evalueret</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">7</div>
+        <div class="stat-label">Fagbøger udgivet</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">60+</div>
+        <div class="stat-label">Fagartikler &amp; publikationer</div>
+      </div>
+    </div>
+    <p class="hero-intro">
+      SkovByKon rådgiver om bytræforvaltning, skovrejsning, naturnær skovdrift, biodiversitet og CO₂-balancer. Vi formidler ikke skuffeløsninger — vi tager udgangspunkt i de lokale og konkrete forhold, understøttet af forskningsbaseret viden på internationalt niveau.
+    </p>
+    <div class="hero-cta-group">
+      <a href="#ydelser" class="btn-primary">Vores rådgivning</a>
+      <a href="#kontakt" class="btn-secondary">Kontakt os</a>
+    </div>
+  </div>
+</div>
+
+<!-- OM OS / TILGANG -->
+<section id="tilgang" class="about-section">
+  <div class="container">
+    <div class="about-inner">
+      <div>
+        <div class="section-label reveal">Tilgang</div>
+        <h2 class="section-title reveal">Sådan arbejder <em>vi</em></h2>
+        <p class="about-lead reveal">Hver opgave starter i felten — ikke ved skrivebordet. Vi observerer, måler og vurderer på stedet, før vi rådgiver.</p>
+        <div class="img-placeholder about-image reveal"><span>Foto · feltarbejde</span></div>
+      </div>
+      <div class="about-body reveal">
+        <p>
+          SkovByKon arbejder ud fra ét princip: rådgivning skal være forankret i den konkrete virkelighed. Vi kommer ud til jer. Vi ser på træerne, jorden, vandet og landskabet — og først derfra former vi vores anbefalinger. Vi leverer ikke standardløsninger, men tilpasset rådgivning baseret på de faktiske forhold.
+        </p>
+        <p>
+          Vores team rummer konsulenter med Ph.D., doktorgrad og årtiers felterfaring. Vi samarbejder internationalt — bl.a. med tyske GALK — og har derigennem fået en unik indsigt i, hvor dansk træpleje kan løftes. Forskningsgrundlaget er solidt, men det er i felten vi skaber værdi.
+        </p>
+
+        <div class="pillar-row">
+          <div class="pillar">
+            <div class="pillar-num">01</div>
+            <h3>Feltforankret</h3>
+            <p>Vi starter altid med at se og måle — rådgivningen bygger på det vi finder i marken, ikke på antagelser</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-num">02</div>
+            <h3>Forskningsbaseret</h3>
+            <p>Vores metoder og vurderinger er funderet i international forskning og afprøvet i praksis</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-num">03</div>
+            <h3>Konkret og handlingsorienteret</h3>
+            <p>Vi leverer anbefalinger der kan bruges direkte — ikke rapporter der samler støv</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- YDELSER / RÅDGIVNING -->
+<section id="ydelser" class="services-section">
+  <div class="container">
+    <div class="section-label">Rådgivning</div>
+    <h2 class="section-title">Fem <em>kerneområder</em></h2>
+
+    <div class="services-grid">
+      <div class="service-card" id="klima">
+        <div class="service-tag">Område 01</div>
+        <div class="service-name">Klima &amp; CO₂</div>
+        <div class="service-desc">Beregning og dokumentation af CO₂-balancer fra træers og skoves vækst. Klimatilpasningsstrategier for skov og by.</div>
+        <ul class="service-items">
+          <li>CO₂-balanceberegning for skov og træer</li>
+          <li>Klimatilpasning i by og landskab</li>
+          <li>Regnvandsopsamling og trævækst</li>
+          <li>Stormstabilitet og sundhed i skove</li>
+          <li>Dokumentation til bæredygtighedsrapportering</li>
+        </ul>
+      </div>
+
+      <div class="service-card" id="biodiversitet">
+        <div class="service-tag">Område 02</div>
+        <div class="service-name">Biodiversitet</div>
+        <div class="service-desc">Naturpleje med særlig fokus på biodiversitet, natur- og kulturhistorie. Bevaring af levesteder og biologisk mangfoldighed.</div>
+        <ul class="service-items">
+          <li>Biodiversitet i bytræer og parker</li>
+          <li>Revitalisering og bevaring af habitater</li>
+          <li>Naturpleje og lysåbne naturtyper</li>
+          <li>Vildtpleje og bestandsregulering</li>
+          <li>Vandmiljøer — søer, damme, bækløb</li>
+          <li>Skovbryn med tilpassede funktioner</li>
+        </ul>
+      </div>
+
+      <div class="service-card" id="traeforvaltning">
+        <div class="service-tag">Område 03</div>
+        <div class="service-name">Træforvaltning</div>
+        <div class="service-desc">Forvaltning af by-, park-, vej- og havetræer. Risikovurdering, beskyttelsesplaner, og avanceret diagnostik med rådscanning og resistograf.</div>
+        <ul class="service-items">
+          <li>Risikovurdering og rådscanning (Arbotom/Resistograf)</li>
+          <li>Beskyttelsesplaner ved byggeri og events</li>
+          <li>Bevaringsværdige træer — vurdering og pleje</li>
+          <li>Etablering og beskæring af bytræer</li>
+          <li>Værdisætning af træer</li>
+          <li>Rodrum, rodudvikling og bytræ-substrater</li>
+          <li>Syns- og skønsrapporter</li>
+        </ul>
+      </div>
+
+      <div class="service-card" id="skovrejsning">
+        <div class="service-tag">Område 04</div>
+        <div class="service-name">Skovrejsning</div>
+        <div class="service-desc">Design og etablering af nye skove. Blandingsmønstre, kulturmetodikker og landskabsplanlægning med fokus på herlighedsværdier og natur.</div>
+        <ul class="service-items">
+          <li>Kulturmetodikker og blandingsmønstre</li>
+          <li>Landskabs- og naturplanlægning</li>
+          <li>Bynære rekreative skove</li>
+          <li>Naturnær skovdrift</li>
+          <li>Herlighedsværdi-analyse</li>
+          <li>Driftsplanlægning og stormstabilitet</li>
+        </ul>
+      </div>
+
+      <div class="service-card" id="bng">
+        <div class="service-tag">Område 05</div>
+        <div class="service-name">BNG kortlægning &amp; vurdering</div>
+        <div class="service-desc">Biodiversity Net Gain — kortlægning af eksisterende naturværdier og vurdering af nettoeffekt før, under og efter projekter. Dokumenteret biodiversitetsgevinst.</div>
+        <ul class="service-items">
+          <li>Baseline-kortlægning af habitater og naturtyper</li>
+          <li>Kvantificering af biodiversitetsenheder</li>
+          <li>Vurdering af nettoeffekt (gain/loss)</li>
+          <li>Anbefalinger til kompensation og styrkelse</li>
+          <li>Monitering og opfølgende rapportering</li>
+          <li>Dokumentation til myndigheder og bygherrer</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETALJEREDE KOMPETENCER -->
+<section class="competence-section">
+  <div class="container">
+    <div class="competence-header">
+      <div>
+        <div class="section-label reveal">Kompetencer</div>
+        <h2 class="section-title reveal">Hvad vi <em>leverer</em></h2>
+        <p class="competence-lead reveal">Alle ydelser kan leveres som enkeltstående opgaver, samlet rådgivningsforløb eller løbende sparring. Vi tager udgangspunkt i jeres konkrete behov.</p>
+      </div>
+      <div class="reveal">
+        <p style="font-size:0.9rem;color:var(--ink);opacity:0.7;line-height:1.8;margin-top:1.5rem;">
+          Vi er den eneste rådgiver i Danmark der kan gennemføre både rådscanning og resistografmålinger. Med rapportens indhold flyttes risikoansvaret til SkovByKon. Derudover arbejder vi med alt fra træers byggepladsplan til skovrejsning i stor skala.
+        </p>
+      </div>
+    </div>
+
+    <table class="competence-table reveal">
+      <tr>
+        <td class="comp-num">01</td>
+        <td>
+          <div class="comp-name">Risikovurdering og avanceret diagnostik</div>
+          <div class="comp-desc">Risikovurdering af by-, park- og havetræer med Arbotom impulstomografi og resistografmåling. Non-destruktiv rodkortlægning. Diagnose af træers degeneration.</div>
+        </td>
+        <td class="comp-tags"><span class="comp-tag">Arbotom ITS</span><span class="comp-tag">Resistograf</span><span class="comp-tag">MRR</span></td>
+      </tr>
+      <tr>
+        <td class="comp-num">02</td>
+        <td>
+          <div class="comp-name">Beskyttelse af træer ved byggeri og events</div>
+          <div class="comp-desc">Udarbejdelse af træbeskyttelsesplaner: udpegning af bevaringsværdige træer, vurdering af sundhed og restlevetid, prioritering mellem træer og byggeprojekt. Forebyggelse af rod-, bark- og kroneskader.</div>
+        </td>
+        <td class="comp-tags"><span class="comp-tag">Beskyttelsesplan</span><span class="comp-tag">Byggeplads</span></td>
+      </tr>
+      <tr>
+        <td class="comp-num">03</td>
+        <td>
+          <div class="comp-name">Bytræforvaltning og beskæring</div>
+          <div class="comp-desc">Etablering, pleje og beskæring af vej-, torve-, park- og havetræer. Projektering af nye bytræer, rodrum og substrater. Revitalisering af svækkede træer.</div>
+        </td>
+        <td class="comp-tags"><span class="comp-tag">Arboriculture</span><span class="comp-tag">EAC-standard</span></td>
+      </tr>
+      <tr>
+        <td class="comp-num">04</td>
+        <td>
+          <div class="comp-name">Skovrejsning og landskabsplanlægning</div>
+          <div class="comp-desc">Planlægning og etablering af nye skove med fokus på blandingsmønstre, herlighedsværdier, naturtyper og rekreation. Baseret på feltstudier af 62+ bevoksninger.</div>
+        </td>
+        <td class="comp-tags"><span class="comp-tag">Kulturmetodik</span><span class="comp-tag">Landskabsanalyse</span></td>
+      </tr>
+      <tr>
+        <td class="comp-num">05</td>
+        <td>
+          <div class="comp-name">Naturnær skovdrift og biodiversitet</div>
+          <div class="comp-desc">Rådgivning om naturnær skovdrift, naturpleje, lysåbne naturtyper, vandmiljøer, vildtpleje og biodiversitet. Integration af produktion og naturværdier.</div>
+        </td>
+        <td class="comp-tags"><span class="comp-tag">Skovdyrkning</span><span class="comp-tag">Naturpleje</span></td>
+      </tr>
+      <tr>
+        <td class="comp-num">06</td>
+        <td>
+          <div class="comp-name">CO₂-balancer og klimadokumentation</div>
+          <div class="comp-desc">Beregning af CO₂-balancer fra træers og skoves vækst. Klimatilpasningsrådgivning og dokumentation af skov- og naturprojekters klimaeffekt.</div>
+        </td>
+        <td class="comp-tags"><span class="comp-tag">CO₂</span><span class="comp-tag">Klima</span></td>
+      </tr>
+      <tr>
+        <td class="comp-num">07</td>
+        <td>
+          <div class="comp-name">Værdisætning og syns- og skønsrapporter</div>
+          <div class="comp-desc">Værdisætning af træer i by, park, have og det åbne landskab. Udarbejdelse af syns- og skønsrapporter. Bevaringsværdi-vurdering af enkelttræer og bestande.</div>
+        </td>
+        <td class="comp-tags"><span class="comp-tag">Værdisætning</span><span class="comp-tag">Syn &amp; skøn</span></td>
+      </tr>
+      <tr>
+        <td class="comp-num">08</td>
+        <td>
+          <div class="comp-name">Droneundersøgelser</div>
+          <div class="comp-desc">Video- og fotooptagelser fra drone til dokumentation, analyse og overblik over skove, parker og enkelttræer. Kombination med visuelt tilsyn fra luften.</div>
+        </td>
+        <td class="comp-tags"><span class="comp-tag">Drone</span><span class="comp-tag">Luftfoto</span></td>
+      </tr>
+      <tr>
+        <td class="comp-num">09</td>
+        <td>
+          <div class="comp-name">BNG kortlægning og vurdering</div>
+          <div class="comp-desc">Biodiversity Net Gain — baseline-kortlægning af eksisterende naturværdier, kvantificering af biodiversitetsenheder og vurdering af projektets nettoeffekt. Anbefalinger til kompensation, opfølgning og monitering.</div>
+        </td>
+        <td class="comp-tags"><span class="comp-tag">BNG</span><span class="comp-tag">Baseline</span><span class="comp-tag">Monitering</span></td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- PROJEKTER -->
+<section id="projekter" class="projects-section">
+  <div class="container">
+    <div class="section-label reveal">Cases</div>
+    <h2 class="section-title reveal">Udvalgte <em>projekttyper</em></h2>
+    <div class="projects-grid reveal">
+      <div class="project-card">
+        <div class="img-placeholder project-img"><span>Foto</span></div>
+        <div class="project-type">Bytræer</div>
+        <h3>Risikotræer og byggerier</h3>
+        <p>Risikovurdering og beskyttelsesplaner for kommuner og bygherrer. Rådscanning og resistografmåling af risikotræer i byrum, parker og haver.</p>
+      </div>
+      <div class="project-card">
+        <div class="img-placeholder project-img"><span>Foto</span></div>
+        <div class="project-type">Skovrejsning</div>
+        <h3>Nye skove og blandingskulturer</h3>
+        <p>Design af skovrejsningsprojekter med fokus på blandingsmønstre, herlighedsværdier og langsigtet naturudvikling. 62+ bevoksninger evalueret.</p>
+      </div>
+      <div class="project-card">
+        <div class="img-placeholder project-img"><span>Foto</span></div>
+        <div class="project-type">Naturpleje</div>
+        <h3>Biodiversitet og vandmiljøer</h3>
+        <p>Naturpleje med fokus på lysåbne naturtyper, vandmiljøer, skovbryn og vildtpleje. Konkrete tiltag der styrker den biologiske mangfoldighed.</p>
+      </div>
+      <div class="project-card">
+        <div class="img-placeholder project-img"><span>Foto</span></div>
+        <div class="project-type">Kommuner</div>
+        <h3>Forvaltning og parkdrift</h3>
+        <p>Rådgivning til kommunale forvaltninger om træpleje, risikohåndtering, beskæring og planlægning af grønne arealer efter international standard.</p>
+      </div>
+      <div class="project-card">
+        <div class="img-placeholder project-img"><span>Foto</span></div>
+        <div class="project-type">Klima</div>
+        <h3>CO₂-dokumentation</h3>
+        <p>Beregning og dokumentation af CO₂-balancer fra skove og træbestande. Grundlag for klimarapportering og bæredygtighedsdokumentation.</p>
+      </div>
+      <div class="project-card">
+        <div class="img-placeholder project-img"><span>Foto</span></div>
+        <div class="project-type">Byggeri</div>
+        <h3>Træernes byggepladsplan</h3>
+        <p>Udarbejdelse af konkrete beskyttelsesplaner og workshops for bygherrer, kommuner og entreprenører — så værdifulde træer overlever byggeprocessen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METODER / MÅLEMETODER -->
+<section id="metoder" class="methods-section">
+  <div class="container">
+    <div class="methods-inner">
+      <div>
+        <div class="methods-label">Målemetoder &amp; teknologi</div>
+        <h2>Avanceret diagnostik — <em>non-destruktive metoder</em></h2>
+        <p class="methods-desc">
+          SkovByKon er den eneste rådgiver i Danmark der kan udføre både impulstomografi (rådscanning) og resistografmåling. Vores arsenal af non-destruktive metoder giver præcis indsigt i stammens og røddernes tilstand.
+        </p>
+        <p class="methods-desc">
+          Alle metoder er forskningsbaserede og forankret i international praksis. Vi anvender desuden droner til overbliks- og dokumentationsformål.
+        </p>
+      </div>
+      <div class="method-pipeline">
+        <div class="method-step">
+          <span class="ms-num">01</span>
+          <span class="ms-name">Arbotom impulstomografi (ITS)</span>
+          <span class="ms-type">Stammescanning</span>
+        </div>
+        <div class="method-step">
+          <span class="ms-num">02</span>
+          <span class="ms-name">Resistograf boremåling (RESI)</span>
+          <span class="ms-type">Stamme &amp; rødder</span>
+        </div>
+        <div class="method-step">
+          <span class="ms-num">03</span>
+          <span class="ms-name">Magnet Resonans Rodsøgning (MRR)</span>
+          <span class="ms-type">Rodkortlægning</span>
+        </div>
+        <div class="method-step">
+          <span class="ms-num">04</span>
+          <span class="ms-name">Impulstomografisk rodkortlægning (ITR)</span>
+          <span class="ms-type">Rodnetværk</span>
+        </div>
+        <div class="method-step">
+          <span class="ms-num">05</span>
+          <span class="ms-name">Monitering af stamme- og rodvækst</span>
+          <span class="ms-type">Langtidsmåling</span>
+        </div>
+        <div class="method-step">
+          <span class="ms-num">06</span>
+          <span class="ms-name">Årringeanalyse og vitalitetsvurdering</span>
+          <span class="ms-type">Væksthistorik</span>
+        </div>
+        <div class="method-step">
+          <span class="ms-num">07</span>
+          <span class="ms-name">Jordkomprimeringmåling</span>
+          <span class="ms-type">Rodzone</span>
+        </div>
+        <div class="method-step">
+          <span class="ms-num">08</span>
+          <span class="ms-name">Droneflyvning — video &amp; fotoanalyse</span>
+          <span class="ms-type">Overblik</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BIBLIOTEK / LITTERATUR -->
+<section id="bibliotek" class="library-section">
+  <div class="container">
+    <div class="section-label reveal">Bibliotek</div>
+    <h2 class="section-title reveal">Viden og <em>formidling</em></h2>
+    <p class="library-intro reveal">7 fagbøger, 60+ fagartikler og videnskabelige publikationer. Frit tilgængeligt materiale fra vores forskning og feltarbejde — klik på en kategori for at se indholdet.</p>
+
+    <!-- Tab navigation -->
+    <div class="lib-tabs reveal" id="libTabs">
+      <button class="lib-tab active" data-tab="artikler">Artikler</button>
+      <button class="lib-tab" data-tab="boeger">Bøger</button>
+      <button class="lib-tab" data-tab="metoder-tab">Metoder</button>
+      <button class="lib-tab" data-tab="standarder">Standarder &amp; retningslinjer</button>
+    </div>
+
+    <!-- ARTIKLER -->
+    <div class="lib-panel active" id="panel-artikler">
+
+      <div class="lib-category">
+        <div class="lib-cat-title">Risikotræer &amp; biodiversitet</div>
+        <div class="lib-list">
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Undersoegelsesmetoder_Skovbykon.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Metoder til undersøgelse af stamme og rødder</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Undersoegelse_af_gl_bevaringsvaerdigt_trae.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Eksempel: undersøgelse af bevaringsværdigt men potentielt farligt træ</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Traers_ontogenetiske_aeldelse.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Generelle ontogenetiske ældelsesmekanismer</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Revitalisering_af_bytraeer_ved_daarlig_vaekstjord.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Revitalisering af bytræer via jorden</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Biodiversitet_versus_risikotrae_vurdering.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Veterantræer — dødt ved og biodiversitet i bytræer</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/GM_gamle_traer_veterantraeer24.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Hvorfor har gamle træer en værdi som er større end 10.000 nyplantede?</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Ivenach_ege.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Verdens største stilkeg — Ivenach-egene: hvordan bevares gamle træer?</span><span class="lib-item-type">PDF</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="lib-category">
+        <div class="lib-cat-title">Bytræforvaltning — inspiration</div>
+        <div class="lib-list">
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Betydningen_af_bytraeer_og_fagligheden_Amsterdam_Kina.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Holdninger til bytræer og certificering — Amsterdam og Kina</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Gront_Miljo_Berlin.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Inspiration til god bytræforvaltning fra Berlin</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/GM_Stockholm_makadam.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Inspiration til god bytræforvaltning fra Stockholm</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/GM_Nyt_fra_Augsburger_Baumpflegetage.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Nyt fra Augsburger Baumpflegetage 2014</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/rodartikel8_hvordanbedrebytraer.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Hvordan kan vi blive bedre til at forvalte træerne og deres rødder?</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/GM_holland.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Træpleje, LAR, grønne tage — erfaringer fra Holland 2014</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/EAC_DFT_artikel2017.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Arbejdet i EAC og Dansk Træplejeforening</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/GMmoskva2.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">By- og parktræer i Moskva — en rejseberetning</span><span class="lib-item-type">PDF</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="lib-category">
+        <div class="lib-cat-title">Beskæring, bark-, rod- og grensår</div>
+        <div class="lib-list">
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Det_optimale_beskaeringstidspunkt.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Optimalt tidspunkt på året for beskæring af tykke grene</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/2_trins_beskaering_biologi.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Beskæringens biologi ved tykke grene</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/2_trins_beskaering_tykke_grene_metoder.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Beskæring af tykke grene — 2-trins beskæringer</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/saaring1.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Shigos indkapslingsteori og dens begrænsninger</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/saaring2.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Beskæring af grene er en "såring"</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/saaring3.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Betydningen af kallusdannelse omkring sårene</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/GMplaster.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Barksår på stammer og fladekallus</span><span class="lib-item-type">PDF</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="lib-category">
+        <div class="lib-cat-title">Bytræers rødder</div>
+        <div class="lib-list">
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Roedder_og_renovering_af_fortove_og_belaegninger.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Gravning omkring træer og renovering af belægninger</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Roedder_og_asfalt_og_belaegning.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Hvorfor løfter rødder asfalten og hvad kan vi gøre?</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/poplers_roedder_2020.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Poplers rodsystemer — store forskelle mellem slægtsgrupper</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/rodartikel1.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Hvorfor er viden om træers rødder vigtig i bytræforvaltningen?</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/rodartikel2.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Røddernes funktioner og træets forankring</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/rodartikel3.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Genetik og miljø: Hjerterod, Pælerod og Skiverod</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/bytrae_substrater.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Bytræers nødvendige rodrum og bytræ-substrater</span><span class="lib-item-type">PDF</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="lib-category">
+        <div class="lib-cat-title">Stormstabilitet og ældelse</div>
+        <div class="lib-list">
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Traers_stormstabilitet_urbant_miljoe.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Træers stormstabilitet i byens plantegruber</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Maaling_af_Rodkageloesning_Skoven_3-11.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Hvordan måles om træers forankring er løsnet?</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Forankringen_er_loes_Skoven_3-11.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Skovtræers forankring før og efter en storm</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Laer_at_laese_stormstabilitet.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Lær at læse bevoksningens stormstabilitet</span><span class="lib-item-type">PDF</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="lib-category">
+        <div class="lib-cat-title">Skovrejsning og skovplanter</div>
+        <div class="lib-list">
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Fejl_i_skovrejsning_Skoven_8-12.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Hyppig fejl i skovrejsningskulturer: alt for intime blandinger</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Effektiv_skovrejsning_Skoven_8-12.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Effektive og plejelette skovrejsningskulturer</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Kultur_etablering_proveniens_plantestoerrelse_plantekvalitet_plantetid.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Etablering af skovkulturer: plantetid, plantekvalitet, plantestørrelse, proveniens</span><span class="lib-item-type">PDF</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- BØGER -->
+    <div class="lib-panel" id="panel-boeger">
+      <div class="lib-books-grid">
+        <div class="lib-book">
+          <div class="img-placeholder book-cover"><span>Forside</span></div>
+          <div class="lib-book-tag">Skovrejsning · 2012</div>
+          <h3>Håndbog i Skovrejsning</h3>
+          <p>Resultat af 2 års arbejde med feltstudier af 62 bevoksninger. Kulturmetodikker, blandingsmønstre: enkelttrævis, rækkevis, kulissevis, parcelvis og holmevis blanding.</p>
+          <a href="https://www.skovbykon.dk/index.php/bog-shop/h-ndbog-i-skovrejsning-detail" class="lib-book-link" target="_blank">Se bogen →</a>
+        </div>
+        <div class="lib-book">
+          <div class="img-placeholder book-cover"><span>Forside</span></div>
+          <div class="lib-book-tag">Landskab · 2016</div>
+          <h3>Landskabets skjulte muligheder</h3>
+          <p>Håndbog og opslagsværk om landskabs- og naturplanlægning i skov og skovrejsninger. Naturpleje, lysåbne naturtyper, vildtpleje, skovbryn, vandmiljøer, bækløb, søer og damme.</p>
+          <a href="https://www.skovbykon.dk/index.php/bog-shop/landskabets-skjulte-muligheder-detail" class="lib-book-link" target="_blank">Se bogen →</a>
+        </div>
+        <div class="lib-book">
+          <div class="img-placeholder book-cover"><span>Forside</span></div>
+          <div class="lib-book-tag">Cases · 2016</div>
+          <h3>15 Case-ejendomme — Herlighedsværdier</h3>
+          <p>Herlighedsværdi-analyser fra 15 case-ejendomme. Supplement til "Landskabets skjulte muligheder".</p>
+          <a href="https://www.skovbykon.dk/index.php/bog-shop/case-ejendomme-detail" class="lib-book-link" target="_blank">Se bogen →</a>
+        </div>
+        <div class="lib-book">
+          <div class="img-placeholder book-cover"><span>Forside</span></div>
+          <div class="lib-book-tag">Bytræer · 2. udgave</div>
+          <h3>Træer i byen — god forvaltning</h3>
+          <p>Checkliste og guide til god forvaltning af bytræer. Kraftigt udvidet 2. udgave.</p>
+          <a href="https://www.skovbykon.dk/index.php/bog-shop/træer-i-byen-god-forvaltning-detail" class="lib-book-link" target="_blank">Se bogen →</a>
+        </div>
+        <div class="lib-book">
+          <div class="img-placeholder book-cover"><span>Forside</span></div>
+          <div class="lib-book-tag">Skovdrift · 2009</div>
+          <h3>Bæredygtig Skovdrift / Naturnær skovdrift</h3>
+          <p>Debatbog med kapitler om naturnær skovdrift. Indeholder flere grundlæggende faglige gennemgange.</p>
+          <a href="https://www.skovbykon.dk/index.php/bog-shop/nskovdrift-detail" class="lib-book-link" target="_blank">Se bogen →</a>
+        </div>
+        <div class="lib-book">
+          <div class="img-placeholder book-cover"><span>Forside</span></div>
+          <div class="lib-book-tag">Storm</div>
+          <h3>Forebyggelse af stormskader</h3>
+          <p>Vejledning i hvordan stormskader forebygges i skove. Herunder artiklen "Lær at læse bevoksningens stormstabilitet".</p>
+          <a href="https://www.skovbykon.dk/index.php/bog-shop/stormskader-detail" class="lib-book-link" target="_blank">Se bogen →</a>
+        </div>
+        <div class="lib-book">
+          <div class="img-placeholder book-cover"><span>Forside</span></div>
+          <div class="lib-book-tag">Doktorafhandling</div>
+          <h3>Doktorafhandling om stormstabilitet</h3>
+          <p>Christian Nørgård Nielsens doktorafhandling om skovtræers stormstabilitet. Det videnskabelige fundament bag en stor del af vores rådgivning.</p>
+          <a href="https://www.skovbykon.dk/index.php/bog-shop/doktorstab-detail" class="lib-book-link" target="_blank">Se bogen →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- METODER -->
+    <div class="lib-panel" id="panel-metoder-tab">
+      <div class="lib-category">
+        <div class="lib-cat-title">Metoder til undersøgelse af stammen</div>
+        <div class="lib-list">
+          <a href="https://www.skovbykon.dk/index.php/impulstomografi-af-stammen" class="lib-item" target="_blank">
+            <span class="lib-item-title">Impulstomografi af stammens indre (ITS) — rådscanning</span><span class="lib-item-type">Læs mere</span>
+          </a>
+          <a href="https://www.skovbykon.dk/index.php/resistograf-maling" class="lib-item" target="_blank">
+            <span class="lib-item-title">Resistograf måling — stamme og rødder (RESI)</span><span class="lib-item-type">Læs mere</span>
+          </a>
+          <a href="https://www.skovbykon.dk/index.php/hule-stammer" class="lib-item" target="_blank">
+            <span class="lib-item-title">Hule stammer — vurdering og håndtering</span><span class="lib-item-type">Læs mere</span>
+          </a>
+          <a href="https://www.skovbykon.dk/index.php/maaling-af-aarringe-og-traeets-vitalitet" class="lib-item" target="_blank">
+            <span class="lib-item-title">Måling af årringe og træets vitalitet</span><span class="lib-item-type">Læs mere</span>
+          </a>
+          <a href="https://www.skovbykon.dk/index.php/monitering-traeer-rodder" class="lib-item" target="_blank">
+            <span class="lib-item-title">Monitering af stamme- og rodvækst</span><span class="lib-item-type">Læs mere</span>
+          </a>
+        </div>
+      </div>
+      <div class="lib-category">
+        <div class="lib-cat-title">Non-destruktiv rodkortlægning</div>
+        <div class="lib-list">
+          <a href="https://www.skovbykon.dk/index.php/magnet-resonans-rodsogning-mrr" class="lib-item" target="_blank">
+            <span class="lib-item-title">Magnet Resonans Rodsøgning (MRR)</span><span class="lib-item-type">Læs mere</span>
+          </a>
+          <a href="https://www.skovbykon.dk/index.php/impulstomografisk-rodkortlaegning-itr" class="lib-item" target="_blank">
+            <span class="lib-item-title">Impulstomografisk rodkortlægning (ITR)</span><span class="lib-item-type">Læs mere</span>
+          </a>
+          <a href="https://www.skovbykon.dk/index.php/bestemmelse-af-rod-ved-mikroskop-makroskop" class="lib-item" target="_blank">
+            <span class="lib-item-title">Mikroskopisk / Makroskopisk artsbestemmelse af rødder (MMAR)</span><span class="lib-item-type">Læs mere</span>
+          </a>
+        </div>
+      </div>
+      <div class="lib-category">
+        <div class="lib-cat-title">Øvrige metoder</div>
+        <div class="lib-list">
+          <a href="https://www.skovbykon.dk/index.php/jordkomprimering" class="lib-item" target="_blank">
+            <span class="lib-item-title">Jordkomprimering — måling i rodzonen</span><span class="lib-item-type">Læs mere</span>
+          </a>
+          <a href="https://www.skovbykon.dk/index.php/video-foto-fra-droneflyvning" class="lib-item" target="_blank">
+            <span class="lib-item-title">Video/foto fra droneflyvning</span><span class="lib-item-type">Læs mere</span>
+          </a>
+          <a href="https://www.skovbykon.dk/index.php/acceptabel-risiko" class="lib-item" target="_blank">
+            <span class="lib-item-title">Hvor stor risiko skal vi acceptere?</span><span class="lib-item-type">Læs mere</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- STANDARDER -->
+    <div class="lib-panel" id="panel-standarder">
+      <div class="lib-category">
+        <div class="lib-cat-title">Internationale retningslinjer for træbeskyttelse ved byggeri</div>
+        <div class="lib-list">
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Standard-for-skyddande-av-traed-2018-02-07.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Sverige — Standard for skyddande av träd</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/polsk standard_ID_Ochrona drzew_wpi_EN.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Polen — Ochrona drzew (EN)</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Holland_bog_Beschermen van bomen_Voorschrifte.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Holland — Beschermen van bomen</span><span class="lib-item-type">PDF</span>
+          </a>
+        </div>
+      </div>
+      <div class="lib-category">
+        <div class="lib-cat-title">Brochurer og CV</div>
+        <div class="lib-list">
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Farlige_traeer_flyer.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Brochure: Undersøgelse af risikotræer og bevaringsværdige træer</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/CNN_CV_dk9.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Kort CV om SkovByKon og CNN</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Certificering_ETT_GM_6_21.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Certificering som European Tree Technician (ETT)</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/index.php/eac-standarder-til-traepleje" class="lib-item" target="_blank">
+            <span class="lib-item-title">EAC standarder til træpleje</span><span class="lib-item-type">Læs mere</span>
+          </a>
+        </div>
+      </div>
+      <div class="lib-category">
+        <div class="lib-cat-title">Videnskabelige publikationer</div>
+        <div class="lib-list">
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Scientific_CV_CNN.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Videnskabeligt CV — Christian Nørgård Nielsen</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/publikationsliste2012.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Komplet publikationsliste</span><span class="lib-item-type">PDF</span>
+          </a>
+          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Fungi_summary2.pdf" class="lib-item" target="_blank">
+            <span class="lib-item-title">Farlige svampe — oversigt</span><span class="lib-item-type">PDF</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- KURSER -->
+<section id="kurser" class="courses-section">
+  <div class="container">
+    <div class="section-label">Efteruddannelse</div>
+    <h2 class="section-title">Kurser og <em>workshops</em></h2>
+    <div class="courses-grid reveal">
+      <div class="course-card">
+        <div class="course-num">KURSUS 01</div>
+        <h3>Byggeri, anlæg og beskyttelse af træer</h3>
+        <p>Workshop om træernes byggepladsplan. For kommuner, bygherrer og entreprenører. Praktisk gennemgang af beskyttelsesforanstaltninger.</p>
+      </div>
+      <div class="course-card">
+        <div class="course-num">KURSUS 02</div>
+        <h3>Revitalisering og biodiversitet</h3>
+        <p>Revitalisering af svækkede træer og bevaring af biodiversitet. Praksisnært kursus med feltøvelser og case-gennemgang.</p>
+      </div>
+      <div class="course-card">
+        <div class="course-num">KURSUS 03</div>
+        <h3>Risikotræer, tveger og beskæring</h3>
+        <p>Vurdering af tveger og risikotræer. Opbygningsbeskæring, korrekt beskæringssnit og håndtering af tykke grene. Feltbaseret undervisning.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM / OM OS -->
+<section id="team" class="team-section">
+  <div class="container">
+    <div class="section-label reveal">Teamet</div>
+    <h2 class="section-title reveal">Hvem vi <em>er</em></h2>
+    <div class="team-grid team-grid-4 reveal">
+      <div class="team-member">
+        <div class="img-placeholder team-portrait"><span>Portræt</span></div>
+        <div class="team-role">Direktør</div>
+        <div class="team-name">Anders Tærø Nielsen</div>
+        <div class="team-desc">Cand. silv., Ph.D. Tegnende direktør og partner i SkovByKon fra 2024. Leder den daglige rådgivning og feltarbejde.</div>
+        <div class="team-note">↳ atn@skovbykon.dk · 61 79 62 63</div>
+      </div>
+      <div class="team-member">
+        <div class="img-placeholder team-portrait"><span>Portræt</span></div>
+        <div class="team-role">Partner</div>
+        <div class="team-name">Christian Mørk Hansen</div>
+        <div class="team-desc">Partner i SkovByKon fra 2024. Bidrager til den stærke ekspansion i opgaver og det igangværende generationsskifte.</div>
+      </div>
+      <div class="team-member">
+        <div class="img-placeholder team-portrait"><span>Portræt</span></div>
+        <div class="team-role">Partner</div>
+        <div class="team-name">Jens Elvin Lindgaard</div>
+        <div class="team-desc">Partner i SkovByKon. Arbejder med biodiversitetsrådgivning, naturdata og strategisk kommunikation.</div>
+      </div>
+      <div class="team-member">
+        <div class="img-placeholder team-portrait"><span>Portræt</span></div>
+        <div class="team-role">Seniorrådgiver emeritus</div>
+        <div class="team-name">Christian Nørgård Nielsen</div>
+        <div class="team-desc">Stifter af SkovByKon. Doktorgrad og årtiers erfaring fra Københavns Universitet. Primært fokus på forskning og formidling.</div>
+        <div class="team-note">↳ 10+ års undervisning i Arboriculture på KU</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / KONTAKT -->
+<section id="kontakt" class="cta-section">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="cta-left reveal">
+        <div class="section-label">Kontakt</div>
+        <h2>Start med en samtale —<br><em>lad os mødes i felten</em></h2>
+        <p>Vi tager udgangspunkt i de lokale og konkrete forhold — ikke skuffeløsninger. Ring eller skriv, så finder vi ud af hvad der giver mening for jeres situation.</p>
+        <a href="mailto:atn@skovbykon.dk" class="btn-primary">Send en mail</a>
+      </div>
+      <div class="cta-right reveal">
+        <div class="contact-block">
+          <div class="contact-row">
+            <span class="contact-row-label">Virksomhed</span>
+            <span class="contact-row-val">SkovByKon</span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-row-label">Kontakt</span>
+            <span class="contact-row-val">Anders Tærø Nielsen · <a href="tel:+4561796263">61 79 62 63</a></span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-row-label">E-mail</span>
+            <span class="contact-row-val"><a href="mailto:atn@skovbykon.dk">atn@skovbykon.dk</a></span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-row-label">Hjemmeside</span>
+            <span class="contact-row-val"><a href="https://www.skovbykon.dk">www.skovbykon.dk</a></span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-row-label">Adresse</span>
+            <span class="contact-row-val">Nordmarksvej 46, 4070 Kirke Hyllinge</span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-row-label">CVR</span>
+            <span class="contact-row-val">44742918</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER SPACER -->
+<div class="footer-spacer"></div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-brand">SkovByKon © 2026</span>
+  <ul class="footer-links">
+    <li><a href="#ydelser">Rådgivning</a></li>
+    <li><a href="#projekter">Projekter</a></li>
+    <li><a href="#bibliotek">Bibliotek</a></li>
+    <li><a href="#kurser">Kurser</a></li>
+    <li><a href="https://www.skovbykon.dk/index.php/etik">Etisk kodex</a></li>
+    <li><a href="https://www.skovbykon.dk/index.php/priser">Prisliste</a></li>
+    <li><a href="https://www.skovbykon.dk/index.php/forretningsbetingelser">Forretningsbetingelser</a></li>
+  </ul>
+  <span class="footer-meta">55.7553° N · 11.8659° Ø · DK</span>
+</footer>
+
+<script>
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => io.observe(el));
+
+// Library tabs
+document.querySelectorAll('.lib-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.lib-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.lib-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+  });
+});
+</script>
+<script>
+  // Netlify Identity redirect after login
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) { window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; }); }
+    });
+  }
+</script>
+</body>
+</html>
