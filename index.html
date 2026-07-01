@@ -622,15 +622,6 @@ h2.section-title em { font-style: italic; color: var(--clay); }
   line-height: 1.3;
 }
 
-.comp-area {
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--clay);
-  letter-spacing: 0.05em;
-  margin-right: 0.5rem;
-}
-
 .comp-desc {
   font-size: 0.88rem;
   color: var(--ink);
@@ -1419,7 +1410,6 @@ img.team-portrait {
   .library-card:nth-last-child(-n+1) { border-bottom: none; }
   .comp-tags { display: none; }
   nav { padding: 0.75rem 1.5rem; }
-  .nav-links { gap: 1rem; }
   .hero-left, .hero-right { padding: 4rem 2rem 3rem; }
   .lib-tabs { flex-wrap: wrap; }
   .lib-books-grid { grid-template-columns: 1fr; }
@@ -1429,8 +1419,122 @@ img.team-portrait {
   .footer-spacer { height: 4.2rem; }
 }
 
+/* ─── MOBILE NAV (hamburger) ─── */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 200;
+}
+
+.nav-toggle span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: var(--forest);
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+nav.open .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+nav.open .nav-toggle span:nth-child(2) { opacity: 0; }
+nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 820px) {
+  .nav-brand .sub { display: none; }
+
+  .nav-toggle { display: flex; }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: min(80vw, 320px);
+    background: var(--parchment);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 5.5rem 2rem 2rem;
+    box-shadow: -8px 0 30px rgba(26,31,26,0.15);
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    overflow-y: auto;
+    border-left: 1px solid rgba(76,112,88,0.2);
+  }
+
+  nav.open .nav-links { transform: translateX(0); }
+
+  .nav-links > li {
+    width: 100%;
+    border-bottom: 1px solid rgba(76,112,88,0.12);
+  }
+
+  .nav-links > li > a {
+    display: block;
+    padding: 1rem 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+  }
+
+  /* Show dropdown sub-items inline on mobile */
+  .nav-dropdown .dropdown-menu {
+    position: static;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    background: transparent;
+    border: none;
+    backdrop-filter: none;
+    padding: 0 0 0.6rem 0.8rem;
+    min-width: 0;
+  }
+
+  .nav-dropdown > a::after { content: ''; }
+
+  .dropdown-menu li a {
+    padding: 0.45rem 0;
+    font-size: 0.78rem;
+    color: var(--fern);
+  }
+
+  /* Dim background when menu open */
+  .nav-scrim {
+    position: fixed;
+    inset: 0;
+    background: rgba(26,31,26,0.4);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    z-index: 150;
+  }
+  nav.open ~ .nav-scrim { opacity: 1; pointer-events: auto; }
+
+  /* Footer static on mobile so it doesn't cover content */
+  footer {
+    position: static;
+    padding: 1.5rem;
+  }
+  .footer-spacer { display: none; }
+}
+
 @media (max-width: 600px) {
-  .nav-links { display: none; }
+  .hero h1 { font-size: clamp(2.2rem, 9vw, 3rem); }
+  .hero-tagline br { display: none; }
+  .hero-left, .hero-right { padding: 3.5rem 1.5rem 2.5rem; }
+  .container { padding: 0 1.5rem; }
+  .stat-block { gap: 1.2rem; }
+  .lib-tab { flex: 1 1 auto; text-align: center; padding: 0.8rem 1rem; font-size: 0.7rem; }
+  .lib-item { flex-direction: column; gap: 0.2rem; align-items: flex-start; }
+  .methods-section::before { display: none; }
+  h2.section-title { font-size: clamp(1.7rem, 6vw, 2.2rem); }
 }
 </style>
 </head>
@@ -1454,6 +1558,9 @@ img.team-portrait {
       <span class="sub">Forskningsbaseret rådgivning · Træer · Skov · Natur</span>
     </span>
   </a>
+  <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
   <ul class="nav-links">
     <li class="nav-dropdown">
       <a href="#ydelser">Rådgivning</a>
@@ -1479,6 +1586,7 @@ img.team-portrait {
     <li><a href="#kontakt">Kontakt</a></li>
   </ul>
 </nav>
+<div class="nav-scrim"></div>
 
 <!-- HERO -->
 <div class="hero" id="top">
@@ -1579,7 +1687,7 @@ img.team-portrait {
       <div class="service-card" id="biodiversitet">
         <div class="service-tag">#2</div>
         <div class="service-name">Biodiversitet</div>
-        <div class="service-desc">Vi styrker den biologiske mangfoldighed med tiltag der virker i marken – fra bytræer og parker til lysåbne naturtyper og vandmiljøer.</div>
+        <div class="service-desc">Vi styrker den biologiske mangfoldighed med tiltag der virker i marken – fra bytræer og parker til mosaikker af lysåben natur, skove og naturlig hydrologi.</div>
       </div>
 
       <div class="service-card" id="traeforvaltning">
@@ -1623,7 +1731,7 @@ img.team-portrait {
       <tr>
         <td class="comp-num">01</td>
         <td>
-          <div class="comp-name"><span class="comp-area">#3</span>Risikovurdering og avanceret diagnostik</div>
+          <div class="comp-name">Risikovurdering og avanceret diagnostik</div>
           <div class="comp-desc">Risikovurdering af by-, park- og havetræer med Arbotom impulstomografi og resistografmåling. Non-destruktiv rodkortlægning. Diagnose af træers degeneration.</div>
         </td>
         <td class="comp-tags"><span class="comp-tag">Arbotom ITS</span><span class="comp-tag">Resistograf</span><span class="comp-tag">MRR</span></td>
@@ -1631,7 +1739,7 @@ img.team-portrait {
       <tr>
         <td class="comp-num">02</td>
         <td>
-          <div class="comp-name"><span class="comp-area">#3</span>Beskyttelse af træer ved byggeri og events</div>
+          <div class="comp-name">Beskyttelse af træer ved byggeri og events</div>
           <div class="comp-desc">Udarbejdelse af træbeskyttelsesplaner: udpegning af bevaringsværdige træer, vurdering af sundhed og restlevetid, prioritering mellem træer og byggeprojekt. Forebyggelse af rod-, bark- og kroneskader.</div>
         </td>
         <td class="comp-tags"><span class="comp-tag">Beskyttelsesplan</span><span class="comp-tag">Byggeplads</span></td>
@@ -1639,7 +1747,7 @@ img.team-portrait {
       <tr>
         <td class="comp-num">03</td>
         <td>
-          <div class="comp-name"><span class="comp-area">#3</span>Bytræforvaltning og beskæring</div>
+          <div class="comp-name">Bytræforvaltning og beskæring</div>
           <div class="comp-desc">Etablering, pleje og beskæring af vej-, torve-, park- og havetræer. Projektering af nye bytræer, rodrum og substrater. Revitalisering af svækkede træer.</div>
         </td>
         <td class="comp-tags"><span class="comp-tag">Arboriculture</span><span class="comp-tag">EAC-standard</span></td>
@@ -1647,7 +1755,7 @@ img.team-portrait {
       <tr>
         <td class="comp-num">04</td>
         <td>
-          <div class="comp-name"><span class="comp-area">#4</span>Skovrejsning og landskabsplanlægning</div>
+          <div class="comp-name">Skovrejsning og landskabsplanlægning</div>
           <div class="comp-desc">Planlægning og etablering af nye skove med fokus på blandingsmønstre, herlighedsværdier, naturtyper og rekreation. Baseret på feltstudier af 62+ bevoksninger.</div>
         </td>
         <td class="comp-tags"><span class="comp-tag">Kulturmetodik</span><span class="comp-tag">Landskabsanalyse</span></td>
@@ -1655,7 +1763,7 @@ img.team-portrait {
       <tr>
         <td class="comp-num">05</td>
         <td>
-          <div class="comp-name"><span class="comp-area">#2</span>Naturnær skovdrift og biodiversitet</div>
+          <div class="comp-name">Naturnær skovdrift og biodiversitet</div>
           <div class="comp-desc">Rådgivning om naturnær skovdrift, naturpleje, lysåbne naturtyper, vandmiljøer, vildtpleje og biodiversitet. Integration af produktion og naturværdier.</div>
         </td>
         <td class="comp-tags"><span class="comp-tag">Skovdyrkning</span><span class="comp-tag">Naturpleje</span></td>
@@ -1663,7 +1771,7 @@ img.team-portrait {
       <tr>
         <td class="comp-num">06</td>
         <td>
-          <div class="comp-name"><span class="comp-area">#1</span>CO₂-balancer og klimadokumentation</div>
+          <div class="comp-name">CO₂-balancer og klimadokumentation</div>
           <div class="comp-desc">Beregning af CO₂-balancer fra træers og skoves vækst. Klimatilpasningsrådgivning og dokumentation af skov- og naturprojekters klimaeffekt.</div>
         </td>
         <td class="comp-tags"><span class="comp-tag">CO₂</span><span class="comp-tag">Klima</span></td>
@@ -1671,7 +1779,7 @@ img.team-portrait {
       <tr>
         <td class="comp-num">07</td>
         <td>
-          <div class="comp-name"><span class="comp-area">#3</span>Værdisætning og syns- og skønsrapporter</div>
+          <div class="comp-name">Værdisætning og syns- og skønsrapporter</div>
           <div class="comp-desc">Værdisætning af træer i by, park, have og det åbne landskab. Udarbejdelse af syns- og skønsrapporter. Bevaringsværdi-vurdering af enkelttræer og bestande.</div>
         </td>
         <td class="comp-tags"><span class="comp-tag">Værdisætning</span><span class="comp-tag">Syn &amp; skøn</span></td>
@@ -1679,7 +1787,7 @@ img.team-portrait {
       <tr>
         <td class="comp-num">08</td>
         <td>
-          <div class="comp-name"><span class="comp-area">#3·4</span>Droneundersøgelser</div>
+          <div class="comp-name">Droneundersøgelser</div>
           <div class="comp-desc">Video- og fotooptagelser fra drone til dokumentation, analyse og overblik over skove, parker og enkelttræer. Kombination med visuelt tilsyn fra luften.</div>
         </td>
         <td class="comp-tags"><span class="comp-tag">Drone</span><span class="comp-tag">Luftfoto</span></td>
@@ -1687,7 +1795,7 @@ img.team-portrait {
       <tr>
         <td class="comp-num">09</td>
         <td>
-          <div class="comp-name"><span class="comp-area">#5</span>BNG kortlægning og vurdering</div>
+          <div class="comp-name">BNG kortlægning og vurdering</div>
           <div class="comp-desc">Biodiversity Net Gain – baseline-kortlægning af eksisterende naturværdier, kvantificering af biodiversitetsenheder og vurdering af projektets nettoeffekt. Anbefalinger til kompensation, opfølgning og monitering.</div>
         </td>
         <td class="comp-tags"><span class="comp-tag">BNG</span><span class="comp-tag">Baseline</span><span class="comp-tag">Monitering</span></td>
@@ -2279,6 +2387,30 @@ document.querySelectorAll('.lib-tab').forEach(tab => {
     tab.classList.add('active');
     document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
   });
+});
+
+// Mobile hamburger menu
+const nav = document.querySelector('nav');
+const toggle = document.querySelector('.nav-toggle');
+const scrim = document.querySelector('.nav-scrim');
+
+function closeMenu() {
+  nav.classList.remove('open');
+  toggle.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+
+toggle.addEventListener('click', () => {
+  const isOpen = nav.classList.toggle('open');
+  toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+
+scrim.addEventListener('click', closeMenu);
+
+// Close menu when a link is tapped
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', closeMenu);
 });
 </script>
 </body>
