@@ -493,11 +493,13 @@ h2.section-title em { font-style: italic; color: var(--clay); }
 }
 
 .service-card {
-  padding: 2.5rem 1.5rem;
+  padding: 2.5rem 1.6rem;
   border-right: 1px solid rgba(138,168,134,0.2);
   position: relative;
   transition: background 0.3s;
   background: rgba(255,255,255,0.035);
+  display: flex;
+  flex-direction: column;
 }
 
 .service-card:hover { background: rgba(255,255,255,0.08); }
@@ -505,27 +507,37 @@ h2.section-title em { font-style: italic; color: var(--clay); }
 
 .service-tag {
   font-family: var(--mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   color: var(--clay-soft);
-  margin-bottom: 1rem;
+  margin-bottom: 1.4rem;
+  line-height: 1;
 }
 
 .service-name {
   font-family: var(--serif);
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 300;
   color: var(--parchment);
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.9rem;
   line-height: 1.3;
 }
 
 .service-desc {
-  font-size: 0.82rem;
-  color: rgba(240,237,216,0.7);
+  font-size: 0.86rem;
+  color: rgba(240,237,216,0.72);
+  line-height: 1.75;
+  margin-bottom: 0;
+}
+
+.services-intro {
+  font-size: 0.92rem;
+  color: rgba(240,237,216,0.6);
   line-height: 1.7;
-  margin-bottom: 1.5rem;
+  max-width: 560px;
+  margin-top: 1rem;
+  font-style: italic;
 }
 
 .service-items {
@@ -608,6 +620,15 @@ h2.section-title em { font-style: italic; color: var(--clay); }
   color: var(--forest);
   margin-bottom: 0.5rem;
   line-height: 1.3;
+}
+
+.comp-area {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--clay);
+  letter-spacing: 0.05em;
+  margin-right: 0.5rem;
 }
 
 .comp-desc {
@@ -1546,76 +1567,37 @@ img.team-portrait {
   <div class="container">
     <div class="section-label">Rådgivning</div>
     <h2 class="section-title">Fem <em>kerneområder</em></h2>
+    <p class="services-intro">Det vi bidrager med, kort fortalt. De konkrete opgaver under hvert område finder du under Kompetencer.</p>
 
     <div class="services-grid">
       <div class="service-card" id="klima">
-        <div class="service-tag">Område 01</div>
+        <div class="service-tag">#1</div>
         <div class="service-name">Klima &amp; CO₂</div>
-        <div class="service-desc">Beregning og dokumentation af CO₂-balancer fra træers og skoves vækst. Klimatilpasningsstrategier for skov og by.</div>
-        <ul class="service-items">
-          <li>CO₂-balanceberegning for skov og træer</li>
-          <li>Klimatilpasning i by og landskab</li>
-          <li>Regnvandsopsamling og trævækst</li>
-          <li>Stormstabilitet og sundhed i skove</li>
-          <li>Dokumentation til bæredygtighedsrapportering</li>
-        </ul>
+        <div class="service-desc">Vi gør skoves og træers klimaeffekt målbar og dokumenterbar – et solidt grundlag for klimaregnskab og bæredygtighedsrapportering.</div>
       </div>
 
       <div class="service-card" id="biodiversitet">
-        <div class="service-tag">Område 02</div>
+        <div class="service-tag">#2</div>
         <div class="service-name">Biodiversitet</div>
-        <div class="service-desc">Naturpleje med særlig fokus på biodiversitet, natur- og kulturhistorie. Bevaring af levesteder og biologisk mangfoldighed.</div>
-        <ul class="service-items">
-          <li>Biodiversitet i bytræer og parker</li>
-          <li>Revitalisering og bevaring af habitater</li>
-          <li>Naturpleje og lysåbne naturtyper</li>
-          <li>Vildtpleje og bestandsregulering</li>
-          <li>Vandmiljøer – søer, damme, vandløb</li>
-          <li>Skovbryn med tilpassede funktioner</li>
-        </ul>
+        <div class="service-desc">Vi styrker den biologiske mangfoldighed med tiltag der virker i marken – fra bytræer og parker til lysåbne naturtyper og vandmiljøer.</div>
       </div>
 
       <div class="service-card" id="traeforvaltning">
-        <div class="service-tag">Område 03</div>
+        <div class="service-tag">#3</div>
         <div class="service-name">Træforvaltning</div>
-        <div class="service-desc">Forvaltning af by-, park-, vej- og havetræer. Risikovurdering, beskyttelsesplaner, og avanceret diagnostik med rådscanning og resistograf.</div>
-        <ul class="service-items">
-          <li>Risikovurdering og rådscanning (Arbotom/Resistograf)</li>
-          <li>Beskyttelsesplaner ved byggeri og events</li>
-          <li>Bevaringsværdige træer – vurdering og pleje</li>
-          <li>Etablering og beskæring af bytræer</li>
-          <li>Værdisætning af træer</li>
-          <li>Rodrum, rodudvikling og bytræ-substrater</li>
-          <li>Syns- og skønsrapporter</li>
-        </ul>
+        <div class="service-desc">Vi holder jeres træer sunde, sikre og langtidsholdbare. Med vores diagnostik flytter risikoansvaret til SkovByKon.</div>
       </div>
 
       <div class="service-card" id="skovrejsning">
-        <div class="service-tag">Område 04</div>
+        <div class="service-tag">#4</div>
         <div class="service-name">Skovrejsning</div>
-        <div class="service-desc">Design og etablering af nye skove. Blandingsmønstre, kulturmetodikker og landskabsplanlægning med fokus på herlighedsværdier og natur.</div>
-        <ul class="service-items">
-          <li>Kulturmetodikker og blandingsmønstre</li>
-          <li>Landskabs- og naturplanlægning</li>
-          <li>Bynære rekreative skove</li>
-          <li>Naturnær skovdrift</li>
-          <li>Herlighedsværdi-analyse</li>
-          <li>Driftsplanlægning og stormstabilitet</li>
-        </ul>
+        <div class="service-desc">Vi designer nye skove der holder i generationer – med blandinger der giver natur, herlighedsværdi og robusthed på én gang.</div>
       </div>
 
       <div class="service-card" id="bng">
-        <div class="service-tag">Område 05</div>
+        <div class="service-tag">#5</div>
         <div class="service-name">BNG kortlægning &amp; vurdering</div>
-        <div class="service-desc">Biodiversity Net Gain – kortlægning af eksisterende naturværdier og vurdering af nettoeffekt før, under og efter projekter. Dokumenteret biodiversitetsgevinst.</div>
-        <ul class="service-items">
-          <li>Baseline-kortlægning af habitater og naturtyper</li>
-          <li>Kvantificering af biodiversitetsenheder</li>
-          <li>Vurdering af nettoeffekt (gain/loss)</li>
-          <li>Anbefalinger til kompensation og styrkelse</li>
-          <li>Monitering og opfølgende rapportering</li>
-          <li>Dokumentation til myndigheder og bygherrer</li>
-        </ul>
+        <div class="service-desc">Vi dokumenterer projekters nettoeffekt på naturen, så biodiversitetskravene er på plads, før spaden sættes i jorden.</div>
       </div>
     </div>
   </div>
@@ -1627,12 +1609,12 @@ img.team-portrait {
     <div class="competence-header">
       <div>
         <div class="section-label reveal">Kompetencer</div>
-        <h2 class="section-title reveal">Hvad vi <em>leverer</em></h2>
-        <p class="competence-lead reveal">Alle ydelser kan leveres som enkeltstående opgaver, samlet rådgivningsforløb eller løbende sparring. Vi tager udgangspunkt i jeres konkrete behov.</p>
+        <h2 class="section-title reveal">De konkrete <em>opgaver</em></h2>
+        <p class="competence-lead reveal">Her er det detaljerede arbejde bag de fem kerneområder. Hver opgave kan leveres enkeltstående, som samlet rådgivningsforløb eller løbende sparring.</p>
       </div>
       <div class="reveal">
         <p style="font-size:0.9rem;color:var(--ink);opacity:0.7;line-height:1.8;margin-top:1.5rem;">
-          Vi er den eneste rådgiver i Danmark der kan gennemføre både rådscanning og resistografmålinger. Med rapportens indhold flyttes risikoansvaret til SkovByKon. Derudover arbejder vi med alt fra træers byggepladsplan til skovrejsning i stor skala.
+          Vi er den eneste rådgiver i Danmark der kan gennemføre både rådscanning og resistografmålinger. Med rapportens indhold flytter risikoansvaret til SkovByKon. Vi arbejder med alt fra det enkelte risikotræ til skovrejsning og naturgenopretning i stor skala.
         </p>
       </div>
     </div>
@@ -1641,7 +1623,7 @@ img.team-portrait {
       <tr>
         <td class="comp-num">01</td>
         <td>
-          <div class="comp-name">Risikovurdering og avanceret diagnostik</div>
+          <div class="comp-name"><span class="comp-area">#3</span>Risikovurdering og avanceret diagnostik</div>
           <div class="comp-desc">Risikovurdering af by-, park- og havetræer med Arbotom impulstomografi og resistografmåling. Non-destruktiv rodkortlægning. Diagnose af træers degeneration.</div>
         </td>
         <td class="comp-tags"><span class="comp-tag">Arbotom ITS</span><span class="comp-tag">Resistograf</span><span class="comp-tag">MRR</span></td>
@@ -1649,7 +1631,7 @@ img.team-portrait {
       <tr>
         <td class="comp-num">02</td>
         <td>
-          <div class="comp-name">Beskyttelse af træer ved byggeri og events</div>
+          <div class="comp-name"><span class="comp-area">#3</span>Beskyttelse af træer ved byggeri og events</div>
           <div class="comp-desc">Udarbejdelse af træbeskyttelsesplaner: udpegning af bevaringsværdige træer, vurdering af sundhed og restlevetid, prioritering mellem træer og byggeprojekt. Forebyggelse af rod-, bark- og kroneskader.</div>
         </td>
         <td class="comp-tags"><span class="comp-tag">Beskyttelsesplan</span><span class="comp-tag">Byggeplads</span></td>
@@ -1657,7 +1639,7 @@ img.team-portrait {
       <tr>
         <td class="comp-num">03</td>
         <td>
-          <div class="comp-name">Bytræforvaltning og beskæring</div>
+          <div class="comp-name"><span class="comp-area">#3</span>Bytræforvaltning og beskæring</div>
           <div class="comp-desc">Etablering, pleje og beskæring af vej-, torve-, park- og havetræer. Projektering af nye bytræer, rodrum og substrater. Revitalisering af svækkede træer.</div>
         </td>
         <td class="comp-tags"><span class="comp-tag">Arboriculture</span><span class="comp-tag">EAC-standard</span></td>
@@ -1665,7 +1647,7 @@ img.team-portrait {
       <tr>
         <td class="comp-num">04</td>
         <td>
-          <div class="comp-name">Skovrejsning og landskabsplanlægning</div>
+          <div class="comp-name"><span class="comp-area">#4</span>Skovrejsning og landskabsplanlægning</div>
           <div class="comp-desc">Planlægning og etablering af nye skove med fokus på blandingsmønstre, herlighedsværdier, naturtyper og rekreation. Baseret på feltstudier af 62+ bevoksninger.</div>
         </td>
         <td class="comp-tags"><span class="comp-tag">Kulturmetodik</span><span class="comp-tag">Landskabsanalyse</span></td>
@@ -1673,7 +1655,7 @@ img.team-portrait {
       <tr>
         <td class="comp-num">05</td>
         <td>
-          <div class="comp-name">Naturnær skovdrift og biodiversitet</div>
+          <div class="comp-name"><span class="comp-area">#2</span>Naturnær skovdrift og biodiversitet</div>
           <div class="comp-desc">Rådgivning om naturnær skovdrift, naturpleje, lysåbne naturtyper, vandmiljøer, vildtpleje og biodiversitet. Integration af produktion og naturværdier.</div>
         </td>
         <td class="comp-tags"><span class="comp-tag">Skovdyrkning</span><span class="comp-tag">Naturpleje</span></td>
@@ -1681,7 +1663,7 @@ img.team-portrait {
       <tr>
         <td class="comp-num">06</td>
         <td>
-          <div class="comp-name">CO₂-balancer og klimadokumentation</div>
+          <div class="comp-name"><span class="comp-area">#1</span>CO₂-balancer og klimadokumentation</div>
           <div class="comp-desc">Beregning af CO₂-balancer fra træers og skoves vækst. Klimatilpasningsrådgivning og dokumentation af skov- og naturprojekters klimaeffekt.</div>
         </td>
         <td class="comp-tags"><span class="comp-tag">CO₂</span><span class="comp-tag">Klima</span></td>
@@ -1689,7 +1671,7 @@ img.team-portrait {
       <tr>
         <td class="comp-num">07</td>
         <td>
-          <div class="comp-name">Værdisætning og syns- og skønsrapporter</div>
+          <div class="comp-name"><span class="comp-area">#3</span>Værdisætning og syns- og skønsrapporter</div>
           <div class="comp-desc">Værdisætning af træer i by, park, have og det åbne landskab. Udarbejdelse af syns- og skønsrapporter. Bevaringsværdi-vurdering af enkelttræer og bestande.</div>
         </td>
         <td class="comp-tags"><span class="comp-tag">Værdisætning</span><span class="comp-tag">Syn &amp; skøn</span></td>
@@ -1697,7 +1679,7 @@ img.team-portrait {
       <tr>
         <td class="comp-num">08</td>
         <td>
-          <div class="comp-name">Droneundersøgelser</div>
+          <div class="comp-name"><span class="comp-area">#3·4</span>Droneundersøgelser</div>
           <div class="comp-desc">Video- og fotooptagelser fra drone til dokumentation, analyse og overblik over skove, parker og enkelttræer. Kombination med visuelt tilsyn fra luften.</div>
         </td>
         <td class="comp-tags"><span class="comp-tag">Drone</span><span class="comp-tag">Luftfoto</span></td>
@@ -1705,7 +1687,7 @@ img.team-portrait {
       <tr>
         <td class="comp-num">09</td>
         <td>
-          <div class="comp-name">BNG kortlægning og vurdering</div>
+          <div class="comp-name"><span class="comp-area">#5</span>BNG kortlægning og vurdering</div>
           <div class="comp-desc">Biodiversity Net Gain – baseline-kortlægning af eksisterende naturværdier, kvantificering af biodiversitetsenheder og vurdering af projektets nettoeffekt. Anbefalinger til kompensation, opfølgning og monitering.</div>
         </td>
         <td class="comp-tags"><span class="comp-tag">BNG</span><span class="comp-tag">Baseline</span><span class="comp-tag">Monitering</span></td>
