@@ -666,24 +666,41 @@ h2.section-title em { font-style: italic; color: var(--clay); }
   border-top: 1px solid rgba(76,112,88,0.1);
 }
 
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
+/* ─── PROJECT CAROUSEL ─── */
+.carousel {
   margin-top: 3.5rem;
   border: 1px solid rgba(76,112,88,0.18);
+  background: var(--parchment);
 }
 
-.project-card {
-  padding: 2.5rem 2.2rem;
-  border-right: 1px solid rgba(76,112,88,0.12);
-  border-bottom: 1px solid rgba(76,112,88,0.12);
-  transition: background 0.2s;
+.carousel-viewport {
+  overflow: hidden;
+  width: 100%;
 }
 
-.project-card:hover { background: rgba(76,112,88,0.03); }
-.project-card:nth-child(3n) { border-right: none; }
-.project-card:nth-last-child(-n+3) { border-bottom: none; }
+.carousel-track {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.carousel-slide {
+  flex: 0 0 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  min-height: 420px;
+}
+
+.carousel-photo {
+  min-height: 100%;
+}
+
+.carousel-text {
+  padding: 3rem 3.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 .project-type {
   font-family: var(--mono);
@@ -691,24 +708,72 @@ h2.section-title em { font-style: italic; color: var(--clay); }
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--lichen);
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
 }
 
-.project-card h3 {
+.carousel-text h3 {
   font-family: var(--serif);
-  font-size: 1.05rem;
-  font-weight: 400;
+  font-size: 1.5rem;
+  font-weight: 300;
   color: var(--forest);
-  margin-bottom: 0.6rem;
-  line-height: 1.3;
+  margin-bottom: 1.1rem;
+  line-height: 1.25;
 }
 
-.project-card p {
-  font-size: 0.88rem;
+.carousel-text p {
+  font-size: 0.92rem;
   color: var(--ink);
-  opacity: 0.7;
-  line-height: 1.7;
+  opacity: 0.75;
+  line-height: 1.8;
 }
+
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1.2rem 1.5rem;
+  border-top: 1px solid rgba(76,112,88,0.15);
+  background: var(--paper);
+}
+
+.carousel-arrow {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  line-height: 1;
+  background: transparent;
+  border: 1px solid rgba(76,112,88,0.3);
+  color: var(--forest);
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s;
+  flex-shrink: 0;
+}
+
+.carousel-arrow:hover { background: var(--forest); color: var(--parchment); border-color: var(--forest); }
+
+.carousel-dots {
+  display: flex;
+  gap: 0.55rem;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(76,112,88,0.25);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.carousel-dot.active { background: var(--clay); transform: scale(1.3); }
 
 .banner-cta {
   margin-top: 3rem;
@@ -939,19 +1004,20 @@ h2.section-title em { font-style: italic; color: var(--clay); }
 
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0;
   border: 1px solid rgba(76,112,88,0.15);
   margin-top: 3rem;
 }
 
 .team-grid-4 {
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .team-member {
   padding: 2rem 1.8rem;
   border-right: 1px solid rgba(76,112,88,0.12);
+  min-width: 0;
 }
 
 .team-member:last-child { border-right: none; }
@@ -1499,6 +1565,9 @@ img.team-portrait {
   .projects-grid { grid-template-columns: 1fr; }
   .project-card { border-right: none; }
   .project-card:nth-last-child(-n+1) { border-bottom: none; }
+  .carousel-slide { grid-template-columns: 1fr; min-height: 0; }
+  .carousel-photo { height: 220px; }
+  .carousel-text { padding: 2rem 1.6rem; }
   .library-grid { grid-template-columns: 1fr; }
   .library-card { border-right: none; }
   .library-card:nth-last-child(-n+1) { border-bottom: none; }
@@ -1909,42 +1978,72 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
   <div class="container">
     <div class="section-label reveal">Cases</div>
     <h2 class="section-title reveal">Udvalgte <em>projekttyper</em></h2>
-    <div class="projects-grid reveal">
-      <div class="project-card">
-        <div class="img-placeholder project-img"><span>Foto</span></div>
-        <div class="project-type">Bytræer · Københavns Kommune</div>
-        <h3>Risikotræer og byggerier</h3>
-        <p>Risikovurdering og beskyttelsesplaner for kommuner og bygherrer. Rådscanning og resistografmåling af risikotræer i byrum, parker og haver.</p>
+
+    <div class="carousel reveal" id="projectCarousel">
+      <div class="carousel-viewport">
+        <div class="carousel-track">
+
+          <div class="carousel-slide">
+            <div class="img-placeholder carousel-photo"><span>Foto</span></div>
+            <div class="carousel-text">
+              <div class="project-type">Bytræer · Københavns Kommune</div>
+              <h3>Risikotræer og byggerier</h3>
+              <p>Risikovurdering og beskyttelsesplaner for kommuner og bygherrer i byrum, parker og haver. Vi kombinerer visuel inspektion med rådscanning og resistografmåling, så beslutninger om fældning, beskæring eller bevaring hviler på et solidt fagligt grundlag frem for en forsigtighedsprincip-vurdering. For Københavns Kommune har opgaven omfattet gennemgang af udsatte bestande langs veje og i parkanlæg, med prioriterede handlingsplaner der balancerer sikkerhed, økonomi og bevaring af værdifulde, ældre træer. Rapporterne bruges direkte i kommunens drifts- og vedligeholdelsesplanlægning.</p>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="img-placeholder carousel-photo"><span>Foto</span></div>
+            <div class="carousel-text">
+              <div class="project-type">Skovforvaltning · Skotland</div>
+              <h3>Nye skove og blandingskulturer</h3>
+              <p>Design af skovforvaltningsprojekter med fokus på blandingsmønstre, herlighedsværdier og langsigtet naturudvikling. Arbejdet i Skotland har taget udgangspunkt i lokale jordbunds- og klimaforhold og er udmøntet i kulturmodeller, der kombinerer produktionstræer med lysåbne partier og naturlig foryngelse. Målet er skove der både er driftsøkonomisk robuste og rige på biologisk mangfoldighed – med opmærksomhed på stormstabilitet, vildtpleje og rekreativ værdi gennem hele omdriften.</p>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="img-placeholder carousel-photo"><span>Foto</span></div>
+            <div class="carousel-text">
+              <div class="project-type">Naturpleje</div>
+              <h3>Biodiversitet og vandmiljøer</h3>
+              <p>Naturpleje med fokus på lysåbne naturtyper, vandmiljøer, skovbryn og vildtpleje. Konkrete tiltag der styrker den biologiske mangfoldighed – fra genopretning af vandhuller og bækforløb til pleje af overdrev og skovbryn med varierede lysforhold. Indsatserne planlægges ud fra feltbiologiske registreringer, så arbejdet retter sig mod de arter og naturtyper, der reelt findes eller kan genetableres på den enkelte lokalitet.</p>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="img-placeholder carousel-photo"><span>Foto</span></div>
+            <div class="carousel-text">
+              <div class="project-type">Kommuner · Rødovre Kommune</div>
+              <h3>Forvaltning og parkdrift</h3>
+              <p>Rådgivning til kommunale forvaltninger om træpleje, risikohåndtering og planlægning af grønne arealer. Et centralt eksempel er træerne foran Rådhusets park i Rødovre, tegnet af Arne Jacobsen – et anlæg hvor arkitektonisk værdi og træernes sundhedstilstand skal forvaltes side om side. Rådgivningen omfatter både den enkelte plejeindsats og de langsigtede driftsplaner, der sikrer at parkens karakter bevares for kommende generationer.</p>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="img-placeholder carousel-photo"><span>Foto</span></div>
+            <div class="carousel-text">
+              <div class="project-type">Klima · Energistyrelsen</div>
+              <h3>CO₂-dokumentation</h3>
+              <p>Global afrapportering af CO₂-balancer for Energistyrelsen, inkl. publikation. Opgaven har krævet en metodisk tilgang til at omsætte skov- og trævækst til dokumenterbare klimatal, der kan indgå i national og international rapportering. Arbejdet bygger bro mellem feltdata og de standarder, som klimaregnskaber i dag skal leve op til – og giver et konkret eksempel på, hvordan skovfaglig viden bliver en del af klimadagsordenen.</p>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="img-placeholder carousel-photo"><span>Foto</span></div>
+            <div class="carousel-text">
+              <div class="project-type">Byggeri</div>
+              <h3>Træernes byggepladsplan</h3>
+              <p>Udarbejdelse af konkrete beskyttelsesplaner for bygherrer og entreprenører, bl.a. på Elektravej og Nørre Risvej. Planerne fastlægger konkret hegning, kørselsforbud i rodzoner og tilsyn gennem hele byggeperioden, så værdifulde træer ikke skades af komprimering, rodskade eller stammeskader under anlægsarbejdet. Erfaringen viser, at en klar plan fra start sparer både konflikter og genplantningsomkostninger senere i forløbet.</p>
+            </div>
+          </div>
+
+        </div>
       </div>
-      <div class="project-card">
-        <div class="img-placeholder project-img"><span>Foto</span></div>
-        <div class="project-type">Skovforvaltning · Skotland</div>
-        <h3>Nye skove og blandingskulturer</h3>
-        <p>Design af skovforvaltningsprojekter med fokus på blandingsmønstre, herlighedsværdier og langsigtet naturudvikling.</p>
-      </div>
-      <div class="project-card">
-        <div class="img-placeholder project-img"><span>Foto</span></div>
-        <div class="project-type">Naturpleje</div>
-        <h3>Biodiversitet og vandmiljøer</h3>
-        <p>Naturpleje med fokus på lysåbne naturtyper, vandmiljøer, skovbryn og vildtpleje. Konkrete tiltag der styrker den biologiske mangfoldighed.</p>
-      </div>
-      <div class="project-card">
-        <div class="img-placeholder project-img"><span>Foto</span></div>
-        <div class="project-type">Kommuner · Rødovre Kommune</div>
-        <h3>Forvaltning og parkdrift</h3>
-        <p>Rådgivning til kommunale forvaltninger om træpleje, risikohåndtering og planlægning af grønne arealer – bl.a. træerne foran Rådhusets park, tegnet af Arne Jacobsen.</p>
-      </div>
-      <div class="project-card">
-        <div class="img-placeholder project-img"><span>Foto</span></div>
-        <div class="project-type">Klima · Energistyrelsen</div>
-        <h3>CO₂-dokumentation</h3>
-        <p>Global afrapportering af CO₂-balancer for Energistyrelsen, inkl. publikation. Grundlag for klimarapportering og bæredygtighedsdokumentation.</p>
-      </div>
-      <div class="project-card">
-        <div class="img-placeholder project-img"><span>Foto</span></div>
-        <div class="project-type">Byggeri</div>
-        <h3>Træernes byggepladsplan</h3>
-        <p>Udarbejdelse af konkrete beskyttelsesplaner for bygherrer og entreprenører, bl.a. på Elektravej og Nørre Risvej – så værdifulde træer overlever byggeprocessen.</p>
+
+      <div class="carousel-controls">
+        <button class="carousel-arrow carousel-prev" aria-label="Forrige case" type="button">‹</button>
+        <div class="carousel-dots" role="tablist" aria-label="Vælg case"></div>
+        <button class="carousel-arrow carousel-next" aria-label="Næste case" type="button">›</button>
       </div>
     </div>
 
@@ -1956,6 +2055,7 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
     </div>
   </div>
 </section>
+
 
 <!-- METODER / MÅLEMETODER -->
 <section id="metoder" class="methods-section">
@@ -2443,14 +2543,6 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
             <span class="contact-row-val">SkovByKon</span>
           </div>
           <div class="contact-row">
-            <span class="contact-row-label">Hjemmeside</span>
-            <span class="contact-row-val"><a href="https://www.skovbykon.dk">www.skovbykon.dk</a></span>
-          </div>
-          <div class="contact-row">
-            <span class="contact-row-label">Adresse</span>
-            <span class="contact-row-val">Nordmarksvej 46, 4070 Kirke Hyllinge</span>
-          </div>
-          <div class="contact-row">
             <span class="contact-row-label">CVR</span>
             <span class="contact-row-val">44742918</span>
           </div>
@@ -2486,7 +2578,6 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
     <li><a href="https://www.skovbykon.dk/index.php/priser">Prisliste</a></li>
     <li><a href="https://www.skovbykon.dk/index.php/forretningsbetingelser">Forretningsbetingelser</a></li>
   </ul>
-  <span class="footer-meta">55.7553° N · 11.8659° Ø · DK</span>
 </footer>
 
 <script>
@@ -2535,6 +2626,65 @@ scrim.addEventListener('click', closeMenu);
 document.querySelectorAll('.nav-links a').forEach(link => {
   link.addEventListener('click', closeMenu);
 });
+
+// Project carousel
+(function() {
+  const carousel = document.getElementById('projectCarousel');
+  if (!carousel) return;
+
+  const track = carousel.querySelector('.carousel-track');
+  const slides = Array.from(carousel.querySelectorAll('.carousel-slide'));
+  const dotsWrap = carousel.querySelector('.carousel-dots');
+  const prevBtn = carousel.querySelector('.carousel-prev');
+  const nextBtn = carousel.querySelector('.carousel-next');
+  const intervalMs = 6500;
+  let index = 0;
+  let timer = null;
+
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('role', 'tab');
+    dot.setAttribute('aria-label', 'Case ' + (i + 1));
+    dot.addEventListener('click', () => goTo(i, true));
+    dotsWrap.appendChild(dot);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function render() {
+    track.style.transform = 'translateX(-' + (index * 100) + '%)';
+    dots.forEach((d, i) => d.classList.toggle('active', i === index));
+  }
+
+  function goTo(i, userInitiated) {
+    index = (i + slides.length) % slides.length;
+    render();
+    if (userInitiated) restart();
+  }
+
+  function next() { goTo(index + 1); }
+  function prev() { goTo(index - 1, true); }
+
+  function restart() {
+    clearInterval(timer);
+    timer = setInterval(next, intervalMs);
+  }
+
+  nextBtn.addEventListener('click', () => goTo(index + 1, true));
+  prevBtn.addEventListener('click', prev);
+
+  carousel.addEventListener('mouseenter', () => clearInterval(timer));
+  carousel.addEventListener('mouseleave', restart);
+
+  carousel.setAttribute('tabindex', '0');
+  carousel.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') goTo(index + 1, true);
+    if (e.key === 'ArrowLeft') goTo(index - 1, true);
+  });
+
+  render();
+  restart();
+})();
 </script>
 </body>
 </html>
