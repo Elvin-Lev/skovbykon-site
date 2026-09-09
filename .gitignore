@@ -1,0 +1,10 @@
+hent-filer.cmd
+hent-filer.ps1
+hent-filer-log.txt
+hent-pdf.cmd
+hent-pdf.ps1
+hent-pdf-log.txt
+pdf-liste.txt
+Claude outputs/
+Thumbs.db
+.DS_Store
