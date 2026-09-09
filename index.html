@@ -417,6 +417,8 @@ h2.section-title em { font-style: italic; color: var(--clay); }
   align-items: start;
 }
 
+.about-inner > * { min-width: 0; }
+
 .about-lead {
   font-size: 1.05rem;
   color: var(--fern);
@@ -446,6 +448,7 @@ h2.section-title em { font-style: italic; color: var(--clay); }
 .pillar {
   padding: 1.6rem 1.4rem;
   border-right: 1px solid rgba(76,112,88,0.15);
+  min-width: 0;
 }
 
 .pillar:last-child { border-right: none; }
@@ -1207,6 +1210,21 @@ h2.section-title em { font-style: italic; color: var(--clay); }
   color: var(--forest);
 }
 
+.contact-tel {
+  display: block;
+  margin-top: 0.15rem;
+  white-space: nowrap;
+}
+
+.projects-lead {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--fern);
+  margin: -0.4rem 0 2.2rem;
+  line-height: 1.9;
+}
+
 .contact-row-val a {
   color: var(--fern);
   text-decoration: none;
@@ -1286,6 +1304,10 @@ footer .footer-links a:hover { color: var(--parchment); }
   max-width: 560px;
   margin-bottom: 2rem;
 }
+
+.lib-more { margin-top: 1.8rem; font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; }
+.lib-more a { color: var(--fern); text-decoration: none; border-bottom: 1px solid rgba(76,112,88,0.4); padding-bottom: 2px; }
+.lib-more a:hover { color: var(--clay); border-bottom-color: var(--clay); }
 
 .lib-tabs {
   display: flex;
@@ -1762,7 +1784,6 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
       skove og natur. Over 30 års felterfaring<br>
       og forskningsbaseret viden på internationalt niveau.
     </p>
-    <div class="hero-coords">55.7553° N · 11.8659° Ø · Kirke Hyllinge · CVR 44742918</div>
   </div>
   <div class="hero-right">
     <div class="stat-block">
@@ -1771,7 +1792,7 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
         <div class="stat-label">Års felterfaring</div>
       </div>
       <div class="stat-item">
-        <div class="stat-num">62+</div>
+        <div class="stat-num">+100</div>
         <div class="stat-label">Projekter gennemført</div>
       </div>
       <div class="stat-item">
@@ -1784,13 +1805,12 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
       </div>
     </div>
     <p class="hero-intro">
-      SkovByKon rådgiver om bytræforvaltning, skovrejsning, skovdrift, biodiversitet og CO₂-balancer. Vi tager udgangspunkt i de lokale og konkrete forhold, understøttet af forskningsbaseret viden på internationalt niveau.
+      SkovByKon rådgiver om bytræforvaltning, skovrejsning, skovforvaltning, biodiversitet og CO₂-balancer. Vi tager udgangspunkt i de lokale og konkrete forhold, understøttet af forskningsbaseret viden på internationalt niveau.
     </p>
     <div class="hero-cta-group">
       <a href="#ydelser" class="btn-primary">Vores rådgivning</a>
       <a href="#kontakt" class="btn-secondary">Kontakt os</a>
     </div>
-    <p class="hero-refs">Blandt vores samarbejder: Energistyrelsen · Klimarådet · Rødovre Kommune · Ballerup Kommune</p>
   </div>
 </div>
 
@@ -1932,8 +1952,8 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
       <tr>
         <td class="comp-num">05</td>
         <td>
-          <div class="comp-name">Naturnær skovdrift og biodiversitet</div>
-          <div class="comp-desc">Rådgivning om skovdrift, naturpleje, lysåbne naturtyper, vandmiljøer, vildtpleje og biodiversitet. Integration af produktion og naturværdier.</div>
+          <div class="comp-name">Skovnatur og biodiversitet</div>
+          <div class="comp-desc">Rådgivning om skovforvaltning, naturpleje, lysåbne naturtyper, vandmiljøer, vildtpleje og biodiversitet. Integration af produktion og naturværdier.</div>
         </td>
         <td class="comp-tags"><span class="comp-tag">Skovdyrkning</span><span class="comp-tag">Naturpleje</span></td>
       </tr>
@@ -1978,6 +1998,7 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
   <div class="container">
     <div class="section-label reveal">Cases</div>
     <h2 class="section-title reveal">Udvalgte <em>projekter</em></h2>
+    <p class="projects-lead reveal">Eksempler på samarbejder: Energistyrelsen · Klimarådet · Rødovre Kommune · Ballerup Kommune</p>
 
     <div class="carousel reveal" id="projectCarousel">
       <div class="carousel-viewport">
@@ -2138,25 +2159,25 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
       <div class="lib-category">
         <div class="lib-cat-title">Risikotræer &amp; biodiversitet</div>
         <div class="lib-list">
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Undersoegelsesmetoder_Skovbykon.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/Undersoegelsesmetoder_Skovbykon.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Metoder til undersøgelse af stamme og rødder</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Undersoegelse_af_gl_bevaringsvaerdigt_trae.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/Undersoegelse_af_gl_bevaringsvaerdigt_trae.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Eksempel: undersøgelse af bevaringsværdigt men potentielt farligt træ</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Traers_ontogenetiske_aeldelse.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/Traers_ontogenetiske_aeldelse.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Generelle ontogenetiske ældelsesmekanismer</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Revitalisering_af_bytraeer_ved_daarlig_vaekstjord.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/Revitalisering_af_bytraeer_ved_daarlig_vaekstjord.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Revitalisering af bytræer via jorden</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Biodiversitet_versus_risikotrae_vurdering.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/Biodiversitet_versus_risikotrae_vurdering.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Veterantræer – dødt ved og biodiversitet i bytræer</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/GM_gamle_traer_veterantraeer24.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/GM_gamle_traer_veterantraeer24.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Hvorfor har gamle træer en værdi som er større end 10.000 nyplantede?</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Ivenach_ege.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/Ivenach_ege.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Verdens største stilkeg – Ivenach-egene: hvordan bevares gamle træer?</span><span class="lib-item-type">PDF</span>
           </a>
         </div>
@@ -2165,28 +2186,28 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
       <div class="lib-category">
         <div class="lib-cat-title">Bytræforvaltning – inspiration</div>
         <div class="lib-list">
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Betydningen_af_bytraeer_og_fagligheden_Amsterdam_Kina.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/Betydningen_af_bytraeer_og_fagligheden_Amsterdam_Kina.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Holdninger til bytræer og certificering – Amsterdam og Kina</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Gront_Miljo_Berlin.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/Gront_Miljo_Berlin.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Inspiration til god bytræforvaltning fra Berlin</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/GM_Stockholm_makadam.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/GM_Stockholm_makadam.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Inspiration til god bytræforvaltning fra Stockholm</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/GM_Nyt_fra_Augsburger_Baumpflegetage.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/GM_Nyt_fra_Augsburger_Baumpflegetage.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Nyt fra Augsburger Baumpflegetage 2014</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/rodartikel8_hvordanbedrebytraer.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/rodartikel8_hvordanbedrebytraer.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Hvordan kan vi blive bedre til at forvalte træerne og deres rødder?</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/GM_holland.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/GM_holland.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Træpleje, LAR, grønne tage – erfaringer fra Holland 2014</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/EAC_DFT_artikel2017.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/EAC_DFT_artikel2017.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Arbejdet i EAC og Dansk Træplejeforening</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/GMmoskva2.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/GMmoskva2.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">By- og parktræer i Moskva – en rejseberetning</span><span class="lib-item-type">PDF</span>
           </a>
         </div>
@@ -2195,25 +2216,25 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
       <div class="lib-category">
         <div class="lib-cat-title">Beskæring, bark-, rod- og grensår</div>
         <div class="lib-list">
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Det_optimale_beskaeringstidspunkt.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/Det_optimale_beskaeringstidspunkt.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Optimalt tidspunkt på året for beskæring af tykke grene</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/2_trins_beskaering_biologi.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/2_trins_beskaering_biologi.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Beskæringens biologi ved tykke grene</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/2_trins_beskaering_tykke_grene_metoder.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/2_trins_beskaering_tykke_grene_metoder.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Beskæring af tykke grene – 2-trins beskæringer</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/saaring1.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/saaring1.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Shigos indkapslingsteori og dens begrænsninger</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/saaring2.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/saaring2.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Beskæring af grene er en "såring"</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/saaring3.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/saaring3.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Betydningen af kallusdannelse omkring sårene</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/GMplaster.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/GMplaster.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Barksår på stammer og fladekallus</span><span class="lib-item-type">PDF</span>
           </a>
         </div>
@@ -2222,25 +2243,25 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
       <div class="lib-category">
         <div class="lib-cat-title">Bytræers rødder</div>
         <div class="lib-list">
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Roedder_og_renovering_af_fortove_og_belaegninger.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/Roedder_og_renovering_af_fortove_og_belaegninger.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Gravning omkring træer og renovering af belægninger</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Roedder_og_asfalt_og_belaegning.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/Roedder_og_asfalt_og_belaegning.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Hvorfor løfter rødder asfalten og hvad kan vi gøre?</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/poplers_roedder_2020.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/poplers_roedder_2020.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Poplers rodsystemer – store forskelle mellem slægtsgrupper</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/rodartikel1.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/rodartikel1.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Hvorfor er viden om træers rødder vigtig i bytræforvaltningen?</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/rodartikel2.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/rodartikel2.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Røddernes funktioner og træets forankring</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/rodartikel3.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/rodartikel3.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Genetik og miljø: Hjerterod, Pælerod og Skiverod</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/bytrae_substrater.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/bytrae_substrater.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Bytræers nødvendige rodrum og bytræ-substrater</span><span class="lib-item-type">PDF</span>
           </a>
         </div>
@@ -2249,16 +2270,16 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
       <div class="lib-category">
         <div class="lib-cat-title">Stormstabilitet og ældelse</div>
         <div class="lib-list">
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Traers_stormstabilitet_urbant_miljoe.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/Traers_stormstabilitet_urbant_miljoe.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Træers stormstabilitet i byens plantegruber</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Maaling_af_Rodkageloesning_Skoven_3-11.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/Maaling_af_Rodkageloesning_Skoven_3-11.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Hvordan måles om træers forankring er løsnet?</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Forankringen_er_loes_Skoven_3-11.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/Forankringen_er_loes_Skoven_3-11.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Skovtræers forankring før og efter en storm</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Laer_at_laese_stormstabilitet.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/Laer_at_laese_stormstabilitet.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Lær at læse bevoksningens stormstabilitet</span><span class="lib-item-type">PDF</span>
           </a>
         </div>
@@ -2267,13 +2288,13 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
       <div class="lib-category">
         <div class="lib-cat-title">Skovrejsning og skovplanter</div>
         <div class="lib-list">
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Fejl_i_skovrejsning_Skoven_8-12.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/Fejl_i_skovrejsning_Skoven_8-12.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Hyppig fejl i skovrejsningskulturer: alt for intime blandinger</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Effektiv_skovrejsning_Skoven_8-12.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/Effektiv_skovrejsning_Skoven_8-12.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Effektive og plejelette skovrejsningskulturer</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Kultur_etablering_proveniens_plantestoerrelse_plantekvalitet_plantetid.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/Kultur_etablering_proveniens_plantestoerrelse_plantekvalitet_plantetid.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Etablering af skovkulturer: plantetid, plantekvalitet, plantestørrelse, proveniens</span><span class="lib-item-type">PDF</span>
           </a>
         </div>
@@ -2288,51 +2309,52 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
           <div class="lib-book-tag">Skovrejsning · 2012</div>
           <h3>Håndbog i Skovrejsning</h3>
           <p>Resultat af 2 års arbejde med feltstudier af 62 bevoksninger. Kulturmetodikker, blandingsmønstre: enkelttrævis, rækkevis, kulissevis, parcelvis og holmevis blanding.</p>
-          <a href="https://www.skovbykon.dk/index.php/bog-shop/h-ndbog-i-skovrejsning-detail" class="lib-book-link" target="_blank">Se bogen →</a>
+          <a href="/boeger.html#haandbog-skovrejsning" class="lib-book-link">Se bogen →</a>
         </div>
         <div class="lib-book">
           <div class="img-placeholder book-cover"><span>Forside</span></div>
           <div class="lib-book-tag">Landskab · 2016</div>
           <h3>Landskabets skjulte muligheder</h3>
           <p>Håndbog og opslagsværk om landskabs- og naturplanlægning i skov og skovrejsninger. Naturpleje, lysåbne naturtyper, vildtpleje, skovbryn, vandmiljøer, bækløb, søer og damme.</p>
-          <a href="https://www.skovbykon.dk/index.php/bog-shop/landskabets-skjulte-muligheder-detail" class="lib-book-link" target="_blank">Se bogen →</a>
+          <a href="/boeger.html#landskabets-skjulte-muligheder" class="lib-book-link">Se bogen →</a>
         </div>
         <div class="lib-book">
           <div class="img-placeholder book-cover"><span>Forside</span></div>
           <div class="lib-book-tag">Cases · 2016</div>
           <h3>15 Case-ejendomme – Herlighedsværdier</h3>
           <p>Herlighedsværdi-analyser fra 15 case-ejendomme. Supplement til "Landskabets skjulte muligheder".</p>
-          <a href="https://www.skovbykon.dk/index.php/bog-shop/case-ejendomme-detail" class="lib-book-link" target="_blank">Se bogen →</a>
+          <a href="/boeger.html#case-ejendomme" class="lib-book-link">Se bogen →</a>
         </div>
         <div class="lib-book">
           <div class="img-placeholder book-cover"><span>Forside</span></div>
           <div class="lib-book-tag">Bytræer · 2. udgave</div>
           <h3>Træer i byen – god forvaltning</h3>
           <p>Checkliste og guide til god forvaltning af bytræer. Kraftigt udvidet 2. udgave.</p>
-          <a href="https://www.skovbykon.dk/index.php/bog-shop/træer-i-byen-god-forvaltning-detail" class="lib-book-link" target="_blank">Se bogen →</a>
+          <a href="/boeger.html#traeer-i-byen" class="lib-book-link">Se bogen →</a>
         </div>
         <div class="lib-book">
           <div class="img-placeholder book-cover"><span>Forside</span></div>
-          <div class="lib-book-tag">Skovdrift · 2009</div>
+          <div class="lib-book-tag">Skovforvaltning · 2009</div>
           <h3>Bæredygtig Skovdrift / Naturnær skovdrift</h3>
-          <p>Debatbog med kapitler om skovdrift og driftsformer. Indeholder flere grundlæggende faglige gennemgange.</p>
-          <a href="https://www.skovbykon.dk/index.php/bog-shop/nskovdrift-detail" class="lib-book-link" target="_blank">Se bogen →</a>
+          <p>Debatbog med kapitler om skovforvaltning og driftsformer. Indeholder flere grundlæggende faglige gennemgange.</p>
+          <a href="/boeger.html#naturnaer-skovdrift" class="lib-book-link">Se bogen →</a>
         </div>
         <div class="lib-book">
           <div class="img-placeholder book-cover"><span>Forside</span></div>
           <div class="lib-book-tag">Storm</div>
           <h3>Forebyggelse af stormskader</h3>
           <p>Vejledning i hvordan stormskader forebygges i skove. Herunder artiklen "Lær at læse bevoksningens stormstabilitet".</p>
-          <a href="https://www.skovbykon.dk/index.php/bog-shop/stormskader-detail" class="lib-book-link" target="_blank">Se bogen →</a>
+          <a href="/boeger.html#stormskader" class="lib-book-link">Se bogen →</a>
         </div>
         <div class="lib-book">
           <div class="img-placeholder book-cover"><span>Forside</span></div>
           <div class="lib-book-tag">Doktorafhandling</div>
           <h3>Doktorafhandling om stormstabilitet</h3>
           <p>Christian Nørgård Nielsens doktorafhandling om skovtræers stormstabilitet. Det videnskabelige fundament bag en stor del af vores rådgivning.</p>
-          <a href="https://www.skovbykon.dk/index.php/bog-shop/doktorstab-detail" class="lib-book-link" target="_blank">Se bogen →</a>
+          <a href="/boeger.html#doktorafhandling" class="lib-book-link">Se bogen →</a>
         </div>
       </div>
+      <p class="lib-more"><a href="/boeger.html">Se alle bøger og bestilling →</a></p>
     </div>
 
     <!-- METODER -->
@@ -2340,19 +2362,19 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
       <div class="lib-category">
         <div class="lib-cat-title">Metoder til undersøgelse af stammen</div>
         <div class="lib-list">
-          <a href="https://www.skovbykon.dk/index.php/impulstomografi-af-stammen" class="lib-item" target="_blank">
+          <a href="/metoder/arbotom-impulstomografi.html" class="lib-item">
             <span class="lib-item-title">Impulstomografi af stammens indre (ITS) – rådscanning</span><span class="lib-item-type">Læs mere</span>
           </a>
-          <a href="https://www.skovbykon.dk/index.php/resistograf-maling" class="lib-item" target="_blank">
+          <a href="/metoder/resistograf.html" class="lib-item">
             <span class="lib-item-title">Resistograf måling – stamme og rødder (RESI)</span><span class="lib-item-type">Læs mere</span>
           </a>
-          <a href="https://www.skovbykon.dk/index.php/hule-stammer" class="lib-item" target="_blank">
+          <a href="/metoder/hule-stammer.html" class="lib-item">
             <span class="lib-item-title">Hule stammer – vurdering og håndtering</span><span class="lib-item-type">Læs mere</span>
           </a>
-          <a href="https://www.skovbykon.dk/index.php/maaling-af-aarringe-og-traeets-vitalitet" class="lib-item" target="_blank">
+          <a href="/metoder/aarringe-vitalitet.html" class="lib-item">
             <span class="lib-item-title">Måling af årringe og træets vitalitet</span><span class="lib-item-type">Læs mere</span>
           </a>
-          <a href="https://www.skovbykon.dk/index.php/monitering-traeer-rodder" class="lib-item" target="_blank">
+          <a href="/metoder/monitering.html" class="lib-item">
             <span class="lib-item-title">Monitering af stamme- og rodvækst</span><span class="lib-item-type">Læs mere</span>
           </a>
         </div>
@@ -2360,13 +2382,13 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
       <div class="lib-category">
         <div class="lib-cat-title">Non-destruktiv rodkortlægning</div>
         <div class="lib-list">
-          <a href="https://www.skovbykon.dk/index.php/magnet-resonans-rodsogning-mrr" class="lib-item" target="_blank">
+          <a href="/metoder/rodkortlaegning.html#magnetisk-resonans-rodsoegning-mrr" class="lib-item">
             <span class="lib-item-title">Magnet Resonans Rodsøgning (MRR)</span><span class="lib-item-type">Læs mere</span>
           </a>
-          <a href="https://www.skovbykon.dk/index.php/impulstomografisk-rodkortlaegning-itr" class="lib-item" target="_blank">
+          <a href="/metoder/rodkortlaegning.html#impuls-tomografisk-rodsoegning-itr" class="lib-item">
             <span class="lib-item-title">Impulstomografisk rodkortlægning (ITR)</span><span class="lib-item-type">Læs mere</span>
           </a>
-          <a href="https://www.skovbykon.dk/index.php/bestemmelse-af-rod-ved-mikroskop-makroskop" class="lib-item" target="_blank">
+          <a href="/metoder/artsbestemmelse-roedder.html" class="lib-item">
             <span class="lib-item-title">Mikroskopisk / Makroskopisk artsbestemmelse af rødder (MMAR)</span><span class="lib-item-type">Læs mere</span>
           </a>
         </div>
@@ -2374,13 +2396,13 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
       <div class="lib-category">
         <div class="lib-cat-title">Øvrige metoder</div>
         <div class="lib-list">
-          <a href="https://www.skovbykon.dk/index.php/jordkomprimering" class="lib-item" target="_blank">
+          <a href="/metoder/jordkomprimering.html" class="lib-item">
             <span class="lib-item-title">Jordkomprimering – måling i rodzonen</span><span class="lib-item-type">Læs mere</span>
           </a>
-          <a href="https://www.skovbykon.dk/index.php/video-foto-fra-droneflyvning" class="lib-item" target="_blank">
+          <a href="/metoder/drone.html" class="lib-item">
             <span class="lib-item-title">Video/foto fra droneflyvning</span><span class="lib-item-type">Læs mere</span>
           </a>
-          <a href="https://www.skovbykon.dk/index.php/acceptabel-risiko" class="lib-item" target="_blank">
+          <a href="/metoder/acceptabel-risiko.html" class="lib-item">
             <span class="lib-item-title">Hvor stor risiko skal vi acceptere?</span><span class="lib-item-type">Læs mere</span>
           </a>
         </div>
@@ -2392,13 +2414,13 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
       <div class="lib-category">
         <div class="lib-cat-title">Internationale retningslinjer for træbeskyttelse ved byggeri</div>
         <div class="lib-list">
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Standard-for-skyddande-av-traed-2018-02-07.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/Standard-for-skyddande-av-traed-2018-02-07.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Sverige – Standard for skyddande av träd</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/polsk standard_ID_Ochrona drzew_wpi_EN.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/polsk_standard_ID_Ochrona_drzew_wpi_EN.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Polen – Ochrona drzew (EN)</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Holland_bog_Beschermen van bomen_Voorschrifte.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/Holland_bog_Beschermen_van_bomen_Voorschrifte.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Holland – Beschermen van bomen</span><span class="lib-item-type">PDF</span>
           </a>
         </div>
@@ -2406,16 +2428,16 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
       <div class="lib-category">
         <div class="lib-cat-title">Brochurer og CV</div>
         <div class="lib-list">
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Farlige_traeer_flyer.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/Farlige_traeer_flyer.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Brochure: Undersøgelse af risikotræer og bevaringsværdige træer</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/CNN_CV_dk9.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/CNN_CV_dk9.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Kort CV om SkovByKon og CNN</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Certificering_ETT_GM_6_21.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/Certificering_ETT_GM_6_21.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Certificering som European Tree Technician (ETT)</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/index.php/eac-standarder-til-traepleje" class="lib-item" target="_blank">
+          <a href="/metoder/eac-standarder.html" class="lib-item">
             <span class="lib-item-title">EAC standarder til træpleje</span><span class="lib-item-type">Læs mere</span>
           </a>
         </div>
@@ -2423,13 +2445,13 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
       <div class="lib-category">
         <div class="lib-cat-title">Videnskabelige publikationer</div>
         <div class="lib-list">
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Scientific_CV_CNN.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/Scientific_CV_CNN.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Videnskabeligt CV – Christian Nørgård Nielsen</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/publikationsliste2012.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/publikationsliste2012.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Komplet publikationsliste</span><span class="lib-item-type">PDF</span>
           </a>
-          <a href="https://www.skovbykon.dk/images/stories/PDF_skovbykon/Fungi_summary2.pdf" class="lib-item" target="_blank">
+          <a href="/pdf/Fungi_summary2.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Farlige svampe – oversigt</span><span class="lib-item-type">PDF</span>
           </a>
         </div>
@@ -2518,7 +2540,7 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
             <div class="contact-region">Sjælland &amp; Fyn</div>
             <div class="contact-row">
               <span class="contact-row-label">Kontakt</span>
-              <span class="contact-row-val">Anders Tærø Nielsen · <a href="tel:+4561796263">61 79 62 63</a></span>
+              <span class="contact-row-val">Anders Tærø Nielsen<span class="contact-tel"><a href="tel:+4561796263">61 79 62 63</a></span></span>
             </div>
             <div class="contact-row">
               <span class="contact-row-label">E-mail</span>
@@ -2529,11 +2551,11 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
             <div class="contact-region">Jylland</div>
             <div class="contact-row">
               <span class="contact-row-label">Kontakt</span>
-              <span class="contact-row-val">Jens Elvin Lindgaard · <a href="tel:+4523954210">23 95 42 10</a></span>
+              <span class="contact-row-val">Jens Elvin Lindgaard<span class="contact-tel"><a href="tel:+4523954210">23 95 42 10</a></span></span>
             </div>
             <div class="contact-row">
               <span class="contact-row-label">E-mail</span>
-              <span class="contact-row-val"><a href="mailto:JEL@skovbykon.dk">JEL@skovbykon.dk</a></span>
+              <span class="contact-row-val"><a href="mailto:jel@skovbykon.dk">jel@skovbykon.dk</a></span>
             </div>
           </div>
         </div>
@@ -2567,16 +2589,16 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
       </g>
       <circle cx="48" cy="50" r="2.4" fill="#d4866a"/>
     </svg>
-    SkovByKon © 2026
+    SkovByKon © 2026 · CVR 44742918
   </span>
   <ul class="footer-links">
     <li><a href="#ydelser">Rådgivning</a></li>
     <li><a href="#projekter">Projekter</a></li>
     <li><a href="#bibliotek">Bibliotek</a></li>
     <li><a href="#kurser">Kurser</a></li>
-    <li><a href="https://www.skovbykon.dk/index.php/etik">Etisk kodex</a></li>
-    <li><a href="https://www.skovbykon.dk/index.php/priser">Prisliste</a></li>
-    <li><a href="https://www.skovbykon.dk/index.php/forretningsbetingelser">Forretningsbetingelser</a></li>
+    <li><a href="/betingelser.html#etik">Etisk kodex</a></li>
+    <li><a href="/betingelser.html#priser">Prisliste</a></li>
+    <li><a href="/betingelser.html#forretningsbetingelser">Forretningsbetingelser</a></li>
   </ul>
 </footer>
 
@@ -2594,14 +2616,46 @@ const io = new IntersectionObserver((entries) => {
 reveals.forEach(el => io.observe(el));
 
 // Library tabs
+function activateLibTab(key) {
+  const tab = document.querySelector('.lib-tab[data-tab="' + key + '"]');
+  const panel = document.getElementById('panel-' + key);
+  if (!tab || !panel) return false;
+  document.querySelectorAll('.lib-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.lib-panel').forEach(p => p.classList.remove('active'));
+  tab.classList.add('active');
+  panel.classList.add('active');
+  return true;
+}
+
 document.querySelectorAll('.lib-tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.lib-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.lib-panel').forEach(p => p.classList.remove('active'));
-    tab.classList.add('active');
-    document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+  tab.addEventListener('click', () => activateLibTab(tab.dataset.tab));
+});
+
+// Dybe links til bibliotekets faneblade: #artikler, #boeger, #standarder
+const libHashMap = { artikler: 'artikler', boeger: 'boeger', standarder: 'standarder' };
+
+function openLibFromHash(hash, smooth) {
+  const key = libHashMap[(hash || '').replace('#', '')];
+  if (!key) return false;
+  activateLibTab(key);
+  const section = document.getElementById('bibliotek');
+  if (section) section.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' });
+  return true;
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    const hash = link.getAttribute('href');
+    if (libHashMap[hash.replace('#', '')]) {
+      e.preventDefault();
+      openLibFromHash(hash, true);
+      if (history.replaceState) history.replaceState(null, '', hash);
+    }
   });
 });
+
+window.addEventListener('hashchange', () => openLibFromHash(location.hash, true));
+if (location.hash) openLibFromHash(location.hash, false);
 
 // Mobile hamburger menu
 const nav = document.querySelector('nav');
