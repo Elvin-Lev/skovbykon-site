@@ -1745,6 +1745,7 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
 .shop-list { padding: 3.4rem 0 1rem; }
 .book-item { display:grid; grid-template-columns: 190px 1fr; gap:2.4rem; padding: 2.6rem 0; border-top:1px solid rgba(76,112,88,0.16); scroll-margin-top:90px; }
 .book-item:first-child { border-top:none; padding-top:0.6rem; }
+.book-cover-img { display:block; width:100%; height:auto; border:1px solid rgba(76,112,88,0.22); background:#fff; }
 .book-cover-ph { aspect-ratio: 3/4; background: rgba(76,112,88,0.08); border:1px solid rgba(76,112,88,0.2); display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:0.66rem; letter-spacing:0.16em; text-transform:uppercase; color:rgba(76,112,88,0.55); }
 .book-tag { font-family:var(--mono); font-size:0.66rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--fern); margin-bottom:0.5rem; }
 .book-item h2 { font-family:var(--serif); font-weight:400; font-size:clamp(1.35rem,2.4vw,1.75rem); color:var(--forest); line-height:1.2; margin:0 0 0.9rem; }
@@ -1759,7 +1760,7 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
 @media (max-width: 720px) {
   .shop-hero { padding: 7rem 0 2.2rem; }
   .book-item { grid-template-columns: 1fr; gap:1.2rem; }
-  .book-cover-ph { max-width:150px; }
+  .book-cover-ph, .book-cover-img { max-width:150px; }
 }
 </style>
 
@@ -1828,7 +1829,7 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
 <section class="shop-list">
   <div class="container">
   <article class="book-item" id="haandbog-skovrejsning">
-    <div class="book-cover-ph">Forside</div>
+    <img class="book-cover-img" src="/img/boeger/haandbog-skovrejsning.jpg" alt="Omslag: Håndbog i Skovrejsning" loading="lazy">
     <div>
       <div class="book-tag">Skovrejsning</div>
       <h2>Håndbog i Skovrejsning</h2>
@@ -1843,7 +1844,7 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
     </div>
   </article>
   <article class="book-item" id="landskabets-skjulte-muligheder">
-    <div class="book-cover-ph">Forside</div>
+    <img class="book-cover-img" src="/img/boeger/landskabets-skjulte-muligheder.jpg" alt="Omslag: Landskabets skjulte muligheder" loading="lazy">
     <div>
       <div class="book-tag">Landskab</div>
       <h2>Landskabets skjulte muligheder</h2>
@@ -1860,7 +1861,7 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
     </div>
   </article>
   <article class="book-item" id="case-ejendomme">
-    <div class="book-cover-ph">Forside</div>
+    <img class="book-cover-img" src="/img/boeger/case-ejendomme.jpg" alt="Omslag: 15 Case-ejendomme – Herlighedsværdier" loading="lazy">
     <div>
       <div class="book-tag">Cases</div>
       <h2>15 Case-ejendomme – Herlighedsværdier</h2>
@@ -1875,7 +1876,7 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
     </div>
   </article>
   <article class="book-item" id="traeer-i-byen">
-    <div class="book-cover-ph">Forside</div>
+    <img class="book-cover-img" src="/img/boeger/traeer-i-byen.jpg" alt="Omslag: Træer i byen – god forvaltning" loading="lazy">
     <div>
       <div class="book-tag">Bytræer · 2. udgave</div>
       <h2>Træer i byen – god forvaltning</h2>
@@ -1890,7 +1891,7 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
     </div>
   </article>
   <article class="book-item" id="naturnaer-skovdrift">
-    <div class="book-cover-ph">Forside</div>
+    <img class="book-cover-img" src="/img/boeger/naturnaer-skovdrift.jpg" alt="Omslag: Bæredygtig skovdrift / Naturnær skovdrift" loading="lazy">
     <div>
       <div class="book-tag">Skovforvaltning · 2009</div>
       <h2>Bæredygtig skovdrift / Naturnær skovdrift</h2>
@@ -1903,7 +1904,7 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
     </div>
   </article>
   <article class="book-item" id="stormskader">
-    <div class="book-cover-ph">Forside</div>
+    <img class="book-cover-img" src="/img/boeger/stormskader.jpg" alt="Omslag: Forebyggelse af stormskader" loading="lazy">
     <div>
       <div class="book-tag">Storm</div>
       <h2>Forebyggelse af stormskader</h2>
@@ -1916,7 +1917,7 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
     </div>
   </article>
   <article class="book-item" id="doktorafhandling">
-    <div class="book-cover-ph">Forside</div>
+    <img class="book-cover-img" src="/img/boeger/doktorafhandling.jpg" alt="Omslag: Doktorafhandling om stormstabilitet" loading="lazy">
     <div>
       <div class="book-tag">Doktorafhandling · 1990</div>
       <h2>Doktorafhandling om stormstabilitet</h2>
