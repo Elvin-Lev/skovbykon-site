@@ -1109,6 +1109,17 @@ img.about-image { object-fit: cover; }
 }
 
 .method-step:last-child { border-bottom: none; }
+.method-step { text-decoration: none; color: inherit; }
+.method-step::after {
+  content: '\2192';
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: rgba(138,168,134,0.45);
+  flex-shrink: 0;
+  transition: transform 0.2s, color 0.2s;
+}
+.method-step:hover::after { color: var(--lichen); transform: translateX(3px); }
+.method-step:hover .ms-name { color: #fff; }
 .method-step:hover { background: rgba(138,168,134,0.1); }
 
 .ms-num {
@@ -1544,6 +1555,16 @@ footer .footer-links a:hover { color: var(--parchment); }
   margin-bottom: 1rem;
   padding-bottom: 0.6rem;
   border-bottom: 1px solid rgba(76,112,88,0.15);
+}
+
+.lib-cat-note {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: rgba(44,48,38,0.72);
+  margin: -0.3rem 0 1.1rem;
+  padding-left: 0.9rem;
+  border-left: 2px solid rgba(76,112,88,0.25);
+  max-width: 52em;
 }
 
 .lib-list { display: flex; flex-direction: column; gap: 0; }
@@ -2240,15 +2261,6 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
           </div>
 
           <div class="carousel-slide">
-            <img class="carousel-photo photo-fill" src="/img/fotos/biodiversitet-naturpleje.jpg" alt="Skovbryn ved sø i Silkeborg-skovene" loading="lazy">
-            <div class="carousel-text">
-              <div class="project-type">Biodiversitet</div>
-              <h3>Biodiversitet og naturpleje</h3>
-              <p>Naturpleje med fokus på lysåbne naturtyper, skovbryn og vildtpleje. Konkrete tiltag der styrker den biologiske mangfoldighed – fra pleje af overdrev til skovbryn med varierede lysforhold og dødt ved som levested. Indsatserne planlægges ud fra feltbiologiske registreringer, så arbejdet retter sig mod de arter og naturtyper, der reelt findes eller kan genetableres på den enkelte lokalitet.</p>
-            </div>
-          </div>
-
-          <div class="carousel-slide">
             <img class="carousel-photo photo-fill" src="/img/fotos/piletrae-roedovre.jpg" alt="Piletræet i Rødovre Rådhuspark under undersøgelse" loading="lazy">
             <div class="carousel-text">
               <div class="project-type">Forvaltning og parkdrift · Rødovre Kommune</div>
@@ -2329,46 +2341,46 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
         </p>
       </div>
       <div class="method-pipeline">
-        <div class="method-step">
+        <a class="method-step" href="/metoder/arbotom-impulstomografi.html">
           <span class="ms-num">01</span>
           <span class="ms-name">Arbotom impulstomografi (ITS)</span>
           <span class="ms-type">Stammescanning</span>
-        </div>
-        <div class="method-step">
+        </a>
+        <a class="method-step" href="/metoder/resistograf.html">
           <span class="ms-num">02</span>
           <span class="ms-name">Resistograf boremåling (RESI)</span>
           <span class="ms-type">Stamme &amp; rødder</span>
-        </div>
-        <div class="method-step">
+        </a>
+        <a class="method-step" href="/metoder/rodkortlaegning.html#magnetisk-resonans-rodsoegning-mrr">
           <span class="ms-num">03</span>
           <span class="ms-name">Magnet Resonans Rodsøgning (MRR)</span>
           <span class="ms-type">Rodkortlægning</span>
-        </div>
-        <div class="method-step">
+        </a>
+        <a class="method-step" href="/metoder/rodkortlaegning.html#impuls-tomografisk-rodsoegning-itr">
           <span class="ms-num">04</span>
           <span class="ms-name">Impulstomografisk rodkortlægning (ITR)</span>
           <span class="ms-type">Rodnetværk</span>
-        </div>
-        <div class="method-step">
+        </a>
+        <a class="method-step" href="/metoder/monitering.html">
           <span class="ms-num">05</span>
           <span class="ms-name">Monitering af stamme- og rodvækst</span>
           <span class="ms-type">Langtidsmåling</span>
-        </div>
-        <div class="method-step">
+        </a>
+        <a class="method-step" href="/metoder/aarringe-vitalitet.html">
           <span class="ms-num">06</span>
           <span class="ms-name">Årringeanalyse og vitalitetsvurdering</span>
           <span class="ms-type">Væksthistorik</span>
-        </div>
-        <div class="method-step">
+        </a>
+        <a class="method-step" href="/metoder/jordkomprimering.html">
           <span class="ms-num">07</span>
           <span class="ms-name">Jordkomprimeringmåling</span>
           <span class="ms-type">Rodzone</span>
-        </div>
-        <div class="method-step">
+        </a>
+        <a class="method-step" href="/metoder/drone.html">
           <span class="ms-num">08</span>
           <span class="ms-name">Droneflyvning – video &amp; fotoanalyse</span>
           <span class="ms-type">Overblik</span>
-        </div>
+        </a>
       </div>
     </div>
   </div>
@@ -2802,6 +2814,18 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
           </a>
           <a href="/pdf/Fungi_summary2.pdf" class="lib-item" target="_blank">
             <span class="lib-item-title">Farlige svampe – oversigt</span><span class="lib-item-type">PDF</span>
+          </a>
+        </div>
+      </div>
+      <div class="lib-category">
+        <div class="lib-cat-title">Udgivelser fra vores netværk</div>
+        <p class="lib-cat-note">Jens Elvin Lindgaard er medforfatter på de to udgivelser herunder. Begge er udarbejdet og udgivet i hans tid hos Habitats ApS, og referencen tilhører Habitats. SkovByKon har en bred kreds af samarbejdspartnere, der kan aktiveres i den enkelte opgave – Habitats er en af dem.</p>
+        <div class="lib-list">
+          <a href="https://pub.norden.org/temanord2022-543/" class="lib-item" target="_blank" rel="noopener">
+            <span class="lib-item-title">Multifunctional Ecosystem Restoration in the Nordic countries – Nordisk Ministerråd, TemaNord 2022:543</span><span class="lib-item-type">Rapport</span>
+          </a>
+          <a href="https://www.habitats.dk/publikation_biodiversitet-og-byudvikling-2" class="lib-item" target="_blank" rel="noopener">
+            <span class="lib-item-title">Biodiversitet i byggeri og byudvikling – Habitats ApS og ConTech Lab, støttet af Realdania</span><span class="lib-item-type">Publikation</span>
           </a>
         </div>
       </div>
