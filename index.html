@@ -545,7 +545,7 @@ h2.section-title em { font-style: italic; color: var(--clay); }
   display: grid;
   grid-template-columns: 38% 1fr;
   gap: 5rem;
-  align-items: start;
+  align-items: stretch;
 }
 
 .about-inner > * { min-width: 0; }
@@ -836,6 +836,17 @@ h2.section-title em { font-style: italic; color: var(--clay); }
   min-height: 100%;
 }
 
+.photo-fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+img.carousel-photo { min-height: 0; height: 100%; }
+img.about-image { object-fit: cover; }
+
 .carousel-text {
   padding: 3rem 3.2rem;
   display: flex;
@@ -942,6 +953,45 @@ h2.section-title em { font-style: italic; color: var(--clay); }
   margin-bottom: 0.7rem;
   position: relative;
   z-index: 1;
+}
+
+.banner-flow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.8rem;
+  margin: 2rem 0 1.8rem;
+  position: relative;
+  z-index: 1;
+}
+
+.flow-step { min-width: 0; }
+
+.flow-step img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(138,168,134,0.3);
+  background: rgba(240,237,216,0.06);
+  margin-bottom: 0.9rem;
+}
+
+.flow-step h4 {
+  font-family: var(--serif);
+  font-size: 1.02rem;
+  font-weight: 400;
+  color: var(--parchment);
+  margin: 0 0 0.35rem;
+}
+
+.flow-step p {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: rgba(240,237,216,0.62);
+  margin: 0;
+}
+
+@media (max-width: 760px) {
+  .banner-flow { grid-template-columns: 1fr; gap: 2rem; }
 }
 
 .banner-cta h3 {
@@ -1688,7 +1738,18 @@ img.team-portrait {
 .about-image {
   width: 100%;
   height: 280px;
-  margin-bottom: 2rem;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.about-inner > div:first-child {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+}
+
+@media (max-width: 900px) {
+  .about-image { margin-top: 2rem; margin-bottom: 0; }
 }
 
 /* ─── ANIMATIONS ─── */
@@ -1745,7 +1806,7 @@ img.team-portrait {
   .library-card:nth-last-child(-n+1) { border-bottom: none; }
   .comp-tags { display: none; }
   nav { padding: 0.75rem 1.5rem; }
-  .hero-left, .hero-right { padding: 4rem 2rem 3rem; }
+  .hero-left, .hero-right { padding: 6.5rem 2rem 3rem; }
   .lib-tabs { flex-wrap: wrap; }
   .lib-books-grid { grid-template-columns: 1fr; }
   .lib-book { border-right: none; }
@@ -1863,7 +1924,7 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
 @media (max-width: 600px) {
   .hero h1 { font-size: clamp(2.2rem, 9vw, 3rem); }
   .hero-tagline br { display: none; }
-  .hero-left, .hero-right { padding: 3.5rem 1.5rem 2.5rem; }
+  .hero-left, .hero-right { padding: 6.5rem 1.5rem 2.5rem; }
   .container { padding: 0 1.5rem; }
   .stat-block { gap: 1.2rem; }
   .lib-tab { flex: 1 1 auto; text-align: center; padding: 0.8rem 1rem; font-size: 0.7rem; }
@@ -1973,7 +2034,7 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
         <div class="section-label reveal">Tilgang</div>
         <h2 class="section-title reveal">Sådan arbejder <em>vi</em></h2>
         <p class="about-lead reveal">Hver opgave starter i mødet med kunden, og vi bevæger os hurtigst muligt i felten.</p>
-        <div class="img-placeholder about-image reveal"><span>Foto · feltarbejde</span></div>
+        <img class="about-image photo-fill reveal" src="/img/fotos/saadan-arbejder-vi.jpg" alt="Feltarbejde: registrering af træer i skovbryn" loading="lazy">
       </div>
       <div class="about-body reveal">
         <p>
@@ -2104,7 +2165,7 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
         <td class="comp-num">05</td>
         <td>
           <div class="comp-name">Skovnatur og biodiversitet</div>
-          <div class="comp-desc">Rådgivning om skovforvaltning, naturpleje, lysåbne naturtyper, vandmiljøer, vildtpleje og biodiversitet. Integration af produktion og naturværdier.</div>
+          <div class="comp-desc">Rådgivning om skovforvaltning, naturpleje, lysåbne naturtyper, vildtpleje og biodiversitet. Integration af produktion og naturværdier.</div>
         </td>
         <td class="comp-tags"><span class="comp-tag">Skovdyrkning</span><span class="comp-tag">Naturpleje</span></td>
       </tr>
@@ -2161,7 +2222,7 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
         <div class="carousel-track">
 
           <div class="carousel-slide">
-            <div class="img-placeholder carousel-photo"><span>Foto</span></div>
+            <img class="carousel-photo photo-fill" src="/img/fotos/risikotraeer-byrum.jpg" alt="Risikotræ i gadeprofil på Stefansgade, Nørrebro" loading="lazy">
             <div class="carousel-text">
               <div class="project-type">Risikotræer · Københavns Kommune</div>
               <h3>Risikotræer i byrum og parker</h3>
@@ -2179,16 +2240,16 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
           </div>
 
           <div class="carousel-slide">
-            <div class="img-placeholder carousel-photo"><span>Foto</span></div>
+            <img class="carousel-photo photo-fill" src="/img/fotos/biodiversitet-naturpleje.jpg" alt="Skovbryn ved sø i Silkeborg-skovene" loading="lazy">
             <div class="carousel-text">
               <div class="project-type">Biodiversitet</div>
-              <h3>Biodiversitet og vandmiljøer</h3>
-              <p>Naturpleje med fokus på lysåbne naturtyper, vandmiljøer, skovbryn og vildtpleje. Konkrete tiltag der styrker den biologiske mangfoldighed – fra genopretning af vandhuller og bækforløb til pleje af overdrev og skovbryn med varierede lysforhold. Indsatserne planlægges ud fra feltbiologiske registreringer, så arbejdet retter sig mod de arter og naturtyper, der reelt findes eller kan genetableres på den enkelte lokalitet.</p>
+              <h3>Biodiversitet og naturpleje</h3>
+              <p>Naturpleje med fokus på lysåbne naturtyper, skovbryn og vildtpleje. Konkrete tiltag der styrker den biologiske mangfoldighed – fra pleje af overdrev til skovbryn med varierede lysforhold og dødt ved som levested. Indsatserne planlægges ud fra feltbiologiske registreringer, så arbejdet retter sig mod de arter og naturtyper, der reelt findes eller kan genetableres på den enkelte lokalitet.</p>
             </div>
           </div>
 
           <div class="carousel-slide">
-            <div class="img-placeholder carousel-photo"><span>Foto</span></div>
+            <img class="carousel-photo photo-fill" src="/img/fotos/piletrae-roedovre.jpg" alt="Piletræet i Rødovre Rådhuspark under undersøgelse" loading="lazy">
             <div class="carousel-text">
               <div class="project-type">Forvaltning og parkdrift · Rødovre Kommune</div>
               <h3>Bevaring af karakterfuldt piletræ i Rødovre Rådhuspark</h3>
@@ -2206,7 +2267,7 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
           </div>
 
           <div class="carousel-slide">
-            <div class="img-placeholder carousel-photo"><span>Foto</span></div>
+            <img class="carousel-photo photo-fill" src="/img/fotos/sikring-traeer-byggeri.jpg" alt="Hegning af træ og rodzone på byggeplads" loading="lazy">
             <div class="carousel-text">
               <div class="project-type">Byggepladsplan for træer · Risikotræer</div>
               <h3>Sikring af træer ved byggeri</h3>
@@ -2227,7 +2288,26 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
     <div class="banner-cta reveal">
       <div class="banner-tag">Digitalt værktøj</div>
       <h3>App-baseret arealforvaltningsprogram</h3>
-      <p>Udviklet af Anders Tærø Nielsen og Peter Skourup.</p>
+      <p>Udviklet af Anders Tærø Nielsen og Peter Skourup. Fra dataindsamling til beslutningsstøtte holder Arboretum processen klar og sammenhængende.</p>
+
+      <div class="banner-flow">
+        <div class="flow-step">
+          <img src="/img/arboretum/arboretum-status.png" alt="Arboretum: import af dronebilleder og opmålinger" loading="lazy">
+          <h4>Status på skoven</h4>
+          <p>Importér dronebilleder eller manuelle opmålinger.</p>
+        </div>
+        <div class="flow-step">
+          <img src="/img/arboretum/arboretum-model.png" alt="Arboretum: vækst- og økonomimodellering af driftsscenarier" loading="lazy">
+          <h4>Modellér fremtiden</h4>
+          <p>Kør vækst og økonomi for at sammenligne driftsscenarier.</p>
+        </div>
+        <div class="flow-step">
+          <img src="/img/arboretum/arboretum-handl.png" alt="Arboretum: kort- og langsigtede planer med opgaver og budgetter" loading="lazy">
+          <h4>Handl med sikkerhed</h4>
+          <p>Lever klare kort- og langsigtede planer med opgaver og budgetter.</p>
+        </div>
+      </div>
+
       <a href="https://www.arboretum.dk" target="_blank" class="banner-link">www.arboretum.dk →</a>
     </div>
   </div>
@@ -2866,10 +2946,6 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
     SkovByKon © 2026 · CVR 44742918
   </span>
   <ul class="footer-links">
-    <li><a href="#ydelser">Rådgivning</a></li>
-    <li><a href="#projekter">Projekter</a></li>
-    <li><a href="#bibliotek">Bibliotek</a></li>
-    <li><a href="#kurser">Kurser</a></li>
     <li><a href="/betingelser.html#etik">Etisk kodex</a></li>
     <li><a href="/betingelser.html#priser">Prisliste</a></li>
     <li><a href="/betingelser.html#forretningsbetingelser">Forretningsbetingelser</a></li>
