@@ -621,6 +621,12 @@ h2.section-title em { font-style: italic; color: var(--clay); }
 }
 
 /* ─── YDELSER / RÅDGIVNING ─── */
+.service-links { margin-top: 2.2rem; border-top: 1px solid rgba(76,112,88,0.18); padding-top: 1.4rem; }
+.sl-label { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--lichen); margin-bottom: 0.9rem; }
+.service-links ul { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 0.5rem 2rem; margin: 0; padding: 0; }
+.service-links a { font-size: 0.9rem; color: var(--forest); text-decoration: none; border-bottom: 1px solid rgba(76,112,88,0.25); padding-bottom: 0.15rem; }
+.service-links a:hover { color: var(--clay); border-bottom-color: var(--clay); }
+
 .services-section {
   padding: 7rem 0;
   background: var(--forest);
@@ -2134,6 +2140,17 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
         <div class="service-name">BNG kortlægning &amp; vurdering</div>
         <div class="service-desc">Vi dokumenterer projekters nettoeffekt på naturen, så biodiversitetskravene er på plads, før spaden sættes i jorden.</div>
       </div>
+    </div>
+
+    <div class="service-links reveal">
+      <div class="sl-label">Uddybende sider</div>
+      <ul>
+        <li><a href="/ydelser/risikotraeer.html">Risikotræer: tilsyn og ansvar</a></li>
+        <li><a href="/ydelser/traeer-ved-byggeri.html">Beskyttelse af træer ved byggeri og anlæg</a></li>
+        <li><a href="/ydelser/bevaringsvaerdige-traeer.html">Bevaringsværdige træer</a></li>
+        <li><a href="/ydelser/revitalisering.html">Revitalisering af svækkede træer</a></li>
+        <li><a href="/ydelser/nye-bytraeer.html">Projektering af nye bytræer</a></li>
+      </ul>
     </div>
   </div>
 </section>

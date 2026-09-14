@@ -1,0 +1,101 @@
+# 301-omdirigeringer fra det gamle Joomla-site til det nye.
+# Kilde: URL'er udtrukket af den cachede Joomla-forside og undersider
+# i FTP-backuppen (public_html/cache/t3_pages), 09-09-2026.
+# Netlify tager den FØRSTE regel der matcher — catch-all står derfor nederst.
+
+# ── Målemetoder ──────────────────────────────────────────────
+/index.php/impulstomografi-af-stammen            /metoder/arbotom-impulstomografi.html   301
+/index.php/arbotom-ultralyd-scanning             /metoder/arbotom-impulstomografi.html   301
+/index.php/38-bytraeer/50-arbotom                /metoder/arbotom-impulstomografi.html   301
+/index.php/resim                                 /metoder/resistograf.html               301
+/index.php/resistograf-maling                    /metoder/resistograf.html               301
+/index.php/hule-stammer                          /metoder/hule-stammer.html              301
+/index.php/monitering-af-stamme-og-rodvaekst     /metoder/monitering.html                301
+/index.php/monitering-traeer-rodder              /metoder/monitering.html                301
+/index.php/impulstomografisk-rodkortlaegning-itr /metoder/rodkortlaegning.html           301
+/index.php/magnet-resonans-rodsogning-mrr        /metoder/rodkortlaegning.html           301
+/index.php/bestemmelse-af-rod-ved-mikroskop-makroskop  /metoder/artsbestemmelse-roedder.html  301
+/index.php/acceptabel-risiko                     /metoder/acceptabel-risiko.html         301
+/index.php/eac-standarder-til-traepleje          /metoder/eac-standarder.html            301
+/index.php/video-foto-fra-droneflyvning          /metoder/drone.html                     301
+/index.php/video-er                              /metoder/drone.html                     301
+/index.php/rodder-belaegninger-og-gravearbejder  /metoder/jordkomprimering.html          301
+/index.php/malemetoder                           /#metoder                               301
+/index.php/diagnose-af-traeers-degeneration      /#metoder                               301
+
+# ── Bøger og shop ────────────────────────────────────────────
+/index.php/salg-af-boger                         /boeger.html                            301
+/index.php/bog-shop                              /boeger.html                            301
+/index.php/indkobskurv                           /boeger.html                            301
+/index.php/bog-shop/traeer-i-byen-god-forvaltning-detail    /boeger.html#traeer-i-byen   301
+/index.php/bog-shop/tr%C3%A6er-i-byen-god-forvaltning-detail  /boeger.html#traeer-i-byen 301
+/index.php/bog-shop/nskovdrift-detail            /boeger.html#naturnaer-skovdrift        301
+/index.php/bog-shop/doktorstab-detail            /boeger.html#doktorafhandling           301
+/index.php/bog-shop/h-ndbog-i-skovrejsning-detail  /boeger.html#haandbog-skovrejsning    301
+/index.php/salg-af-qhandbog-i-skovrejsningq      /boeger.html#haandbog-skovrejsning      301
+/index.php/bog-shop/landskabets-skjulte-muligheder-detail  /boeger.html#landskabets-skjulte-muligheder  301
+/index.php/bog-shop/stormskader-detail           /boeger.html#stormskader                301
+/index.php/bog-shop/case-ejendomme-detail        /boeger.html#case-ejendomme             301
+/index.php/bog-shop/lille-moniteringspakke-detail  /boeger.html#moniteringspakke         301
+/index.php/landskabets-skjulte-muligheder        /boeger.html#landskabets-skjulte-muligheder  301
+/index.php/landskabets-skjulte-muligheder/*      /boeger.html#landskabets-skjulte-muligheder  301
+/index.php/salg-af-qhandbog-i-skovrejsningq/*    /boeger.html#haandbog-skovrejsning      301
+/index.php/bog-shop/*                            /boeger.html                            301
+
+# ── Priser, betingelser, firma ───────────────────────────────
+/index.php/priser                                /betingelser.html#priser                301
+/index.php/forretningsbetingelser                /betingelser.html#forretningsbetingelser  301
+/index.php/etik                                  /betingelser.html#etik                  301
+/index.php/firma-oplysninger                     /#kontakt                               301
+/index.php/kontakt-info                          /#kontakt                               301
+/index.php/kontakt-flr                           /#kontakt                               301
+/index.php/om-os2                                /#team                                  301
+/index.php/component/contact/*                   /#kontakt                               301
+
+# ── Ydelser (ingen 1:1-side endnu — peger på nærmeste afsnit) ─
+/index.php/by-vej-og-parktraeer                  /#ydelser                               301
+/index.php/byggeri-anlaeg                        /ydelser/traeer-ved-byggeri.html         301
+/index.php/skov-og-park                          /#ydelser                               301
+/index.php/skovrejsning                          /#ydelser                               301
+/index.php/bevaringsvaerdige-traeer              /ydelser/bevaringsvaerdige-traeer.html   301
+/index.php/projektering-af-nye-bytraeer          /ydelser/nye-bytraeer.html               301
+/index.php/revitalisering-af-svaekkede-traeer    /ydelser/revitalisering.html             301
+/index.php/revitalisering-af-traeer-bevarelse-af-biodiversitet /ydelser/revitalisering.html             301
+/index.php/bytraeer-ansvar-og-tilsyn             /ydelser/risikotraeer.html               301
+/index.php/tveger-og-risikotraeer                /ydelser/risikotraeer.html               301
+/index.php/biodiversitet-og-byens-traeer         /#ydelser                               301
+/index.php/drift-af-byskove                      /#ydelser                               301
+/index.php/forvaltning-af-parkens-traeer         /#ydelser                               301
+/index.php/byskove-rekreation                    /#ydelser                               301
+/index.php/forebyggelse-af-stormskader           /#ydelser                               301
+/index.php/stormskader                           /#ydelser                               301
+/index.php/regnvandopsamling-klima-og-traevaekst /#ydelser                               301
+/index.php/planlaegning-og-landskabsanalyse      /#ydelser                               301
+/index.php/naturnaer-skovdrift                   /#ydelser                               301
+/index.php/beskaering-af-traeer                  /#ydelser                               301
+/index.php/beskaering-af-tykke-grene             /#ydelser                               301
+/index.php/opbygningsbeskaering-og-korrekt-beskaeringssnit  /#ydelser                    301
+/index.php/beskaering-forskning-kurser           /#kurser                                301
+
+# ── Kurser ───────────────────────────────────────────────────
+/index.php/kurserforedrag                        /#kurser                                301
+/index.php/tilmelding-til-kursus                 /#kurser                                301
+/index.php/tidligere-kursus                      /#kurser                                301
+/index.php/kursus-temadag-beskyttelse-af-traeer-pa-byggepladser  /#kurser                301
+/index.php/eu-projekt-ett                        /#kurser                                301
+
+# ── Bibliotek ────────────────────────────────────────────────
+/index.php/artikler                              /#artikler                              301
+/index.php/artikler-og-video-er                  /#artikler                              301
+/index.php/37-skovbykon-div                      /#bibliotek                             301
+/index.php/38-bytraeer                           /#bibliotek                             301
+/index.php/39-skov                               /#bibliotek                             301
+
+# ── Gamle PDF-stier ──────────────────────────────────────────
+/images/stories/PDF_skovbykon/*                  /#bibliotek                             301
+/images/stories/materiale_samling/*              /#bibliotek                             301
+/images/NST_cases/*                              /boeger.html#case-ejendomme             301
+
+# ── Catch-all: alt andet fra det gamle site ──────────────────
+/index.php/*                                     /                                       301
+/index.php                                       /                                       301
