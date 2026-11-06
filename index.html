@@ -533,6 +533,11 @@ details.kc p{margin:0 6px 16px 100px}
 .pmore[hidden]{display:inline-block;visibility:hidden}
 @media (max-width:900px){.ptxt{-webkit-line-clamp:6;line-clamp:6;min-height:calc(1.65em * 6)}}
 
+/* Blodbøg: målingen og ringene må ikke overlappe – ringene placeres til højre for tekstboksen */
+@media (min-width:1001px){
+  .hx{--R:clamp(9rem,17vw,15rem);--sw:min(30rem,34%);--cx:calc(40px + var(--sw) + 40px + var(--R) * 1.45);--tx:calc(var(--cx) - 52%)}
+  .hx .side{width:var(--sw)}
+}
 
 </style>
 </head>
