@@ -1749,6 +1749,19 @@ nav.open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45d
   .methods-section::before { display: none; }
   h2.section-title { font-size: clamp(1.7rem, 6vw, 2.2rem); }
 }
+
+/* Timepris-trappe */
+.stairs{margin:1rem 0 1.2rem;max-width:34rem}
+.stairs ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;align-items:end}
+.stairs li{display:flex;flex-direction:column}
+.st-bar{height:var(--h);background:var(--forest);display:flex;align-items:flex-start;justify-content:center;padding:14px 4px 0;color:var(--parchment)}
+.stairs li:nth-child(2) .st-bar{background:var(--fern)}
+.stairs li:nth-child(3) .st-bar{background:#8aa886;color:#2c3026}
+.st-price{font-family:var(--serif);font-size:clamp(1.15rem,3.2vw,1.6rem);line-height:1.1;text-align:center}
+.st-price small{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;margin-top:6px;opacity:.85}
+.st-lbl{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--fern);text-align:center;padding-top:10px;border-top:1px solid var(--forest)}
+.stairs figcaption{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(44,48,38,.5);text-align:center;margin-top:10px}
+.stairs-note{font-style:italic;color:var(--fern);font-size:.95rem}
 </style>
 </head>
 <body>
@@ -1927,40 +1940,40 @@ table.price-table tr:nth-child(even) td { background: rgba(76,112,88,0.035); }
   <div class="container">
     <div class="legal-body">
       <h2>Prisliste</h2>
-      <p>Generelt gælder en konsulent-timetakst på 1.395 kr/time, men der er enhedspriser på nogle af vores ydelser – se tabellen nedenfor.</p>
-      <p>Ved aftalt weekendarbejde tillægges et 100 % weekend-tillæg. Hasteopgaver, som medfører overarbejde, udføres med et tillægsgebyr på 75 % til de anførte priser og ydelser. Også dette skal aftales specifikt.</p>
-      <p>Bemærk, at der er indført et fast opstart-gebyr på 6.900 kr. Opstart-gebyret erstatter indledende drøftelser og kommunikation, køretid, kilometer, brobizz, hotel m.m. (som tidligere blev faktureret i detaljer) og dækker således omkostningerne, indtil vi står på projektarealet første dag. Det er indført for at mindske bureaukratiet i arbejdet.</p>
+      <p class="price-note" style="margin-top:0">Alle priser er ekskl. moms</p>
 
+      <h3>Timepris-trappe</h3>
+      <figure class="stairs" aria-label="Timepris efter opgavens længde">
+        <ol><li style="--h:200px"><span class="st-bar"><span class="st-price">1.450<small> kr/time</small></span></span><span class="st-lbl">Under 1 uge</span></li><li style="--h:166px"><span class="st-bar"><span class="st-price">1.200<small> kr/time</small></span></span><span class="st-lbl">1–3 uger</span></li><li style="--h:138px"><span class="st-bar"><span class="st-price">1.000<small> kr/time</small></span></span><span class="st-lbl">Over 3 uger</span></li></ol>
+        <figcaption>Opgavens længde</figcaption>
+      </figure>
+      <p class="stairs-note">Ved specielle projekter såsom forskningsprojekter, udvikling og velgørende samarbejder, er vi altid åbne for forhandling af pris.</p>
+
+      <h3>Enhedspriser</h3>
       <div class="price-table-wrap">
         <table class="price-table">
           <thead>
             <tr><th>Ydelse</th><th>Pris (kr)</th></tr>
           </thead>
           <tbody>
-            <tr><td>Udarbejdelse af tilbud eller prisoverslag (betales kun, hvis tilbuddet afvises)</td><td>1.395 + løbende tid ved fotovurdering o.l.</td></tr>
-            <tr><td>Opstart-gebyr på rådgivningsprojekter (se også forretningsbetingelserne)</td><td>6.900 – varierer efter landsdel ved kørsel</td></tr>
-            <tr><td>Ultralyd-scanning med Arbotom – mundtlig rapportering</td><td>6.500</td></tr>
-            <tr><td>Ultralyd-scanning med Arbotom m. kort rapport</td><td>9.500</td></tr>
+            <tr><td>Opstart-gebyr på rådgivningsprojekter (se også <a href="#forretningsbetingelser">forretningsbetingelserne</a>)</td><td>6.900</td></tr>
+            <tr><td>SkovByKons GIS-pakke til kortlægning af træer – basis</td><td>3.500</td></tr>
+            <tr><td>SkovByKons GIS-pakke til kortlægning af træer – udvidet version</td><td>6.500</td></tr>
+            <tr><td>Ultralyd-scanning med Arbotom for råd</td><td>9.500</td></tr>
             <tr><td>Resistografmåling i forhold til råd</td><td>8.500</td></tr>
-            <tr><td>Resistografmåling med analyse af årringe (alder og sundhed)</td><td>15.000</td></tr>
-            <tr><td>Analyse af jordprofil (tekstur, struktur, rodprofil)</td><td>1.500–2.000 (bor vs. gravning)</td></tr>
-            <tr><td>Supplering af jordprofil med pH-måling i vand og KCl (vedr. rodsundhed)</td><td>1.000</td></tr>
-            <tr><td>Foto/video-undersøgelse af åbne hulheder, beskæringssår og tveger med drone – pga. fare for skade på drone</td><td>3.000</td></tr>
+            <tr><td>Resistografmåling med analyse af årringe (alder og sundhed)</td><td>11.500</td></tr>
+            <tr><td>Analyse af jordprofil (tekstur, struktur, rodprofil), gravet profil</td><td>2.000</td></tr>
+            <tr><td>Analyse af jordprofil (tekstur, struktur, rodprofil), jordspyd</td><td>750</td></tr>
             <tr><td>Video-kortlægning af omfanget af døde grene i kronen via droneflyvning</td><td>500</td></tr>
-            <tr><td>Rodkortlægning med MRR (afhænger af forholdene)</td><td>30.000–45.000</td></tr>
-            <tr><td>Rodkortlægning med ITR (afhænger af forholdene)</td><td>30.000–45.000</td></tr>
+            <tr><td>Rodkortlægning med ITR (afhænger af forholdene)</td><td>15.000</td></tr>
             <tr><td>Prøvegravning vedr. kritisk graveafstand og -dybde til træer</td><td>efter tilbud</td></tr>
-            <tr><td>Artsbestemmelse af rodmateriale</td><td>afhænger af art m.m.</td></tr>
             <tr><td>Aftenforedrag (afhænger af målgruppe, fagligt niveau etc.)</td><td>3.000–6.000</td></tr>
             <tr><td>Heldagskursus (f.eks. 9–15) – afhænger af indhold, afgiv forespørgsel</td><td>25.000–35.000</td></tr>
             <tr><td>Halvdagskursus (f.eks. 9–12) – afhænger af indhold, afgiv forespørgsel</td><td>17.000–23.000</td></tr>
-            <tr><td>Telefonkonsultation op til 0,5 time / 1 time / 1,5 time</td><td>2.500 / 3.000 / 3.500</td></tr>
-            <tr><td>Søgning med metaldetektor/pinpointer (f.eks. skelpæle) – maks. 0,5 time</td><td>1.200</td></tr>
           </tbody>
         </table>
       </div>
-      <p class="price-note">Alle priser er ekskl. moms</p>
-      <p class="legal-meta">Sidste ændring af prislisten: 20. september 2024</p>
+      <p class="legal-meta">Sidste ændring af prislisten: 4. september 2026</p>
     </div>
   </div>
 </section>

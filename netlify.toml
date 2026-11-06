@@ -5,3 +5,22 @@
   from = "/admin/*"
   to = "/admin/index.html"
   status = 200
+
+# Billeder og PDF'er caches en uge i browseren, så gentagne besøg går hurtigt.
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/pdf/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# Grundlæggende sikkerhedsheadere
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"
