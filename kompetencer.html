@@ -428,6 +428,30 @@ details.kc p{margin:0 6px 16px 100px}
 .pmore[hidden]{display:inline-block;visibility:hidden}
 @media (max-width:900px){.ptxt{-webkit-line-clamp:6;line-clamp:6;min-height:calc(1.65em * 6)}}
 
+/* Blodbøg: målingen og ringene må ikke overlappe – ringene placeres til højre for tekstboksen */
+@media (min-width:1001px){
+  .hx{--R:clamp(9rem,17vw,15rem);--sw:min(30rem,34%);--cx:calc(40px + var(--sw) + 40px + var(--R) * 1.45);--tx:calc(var(--cx) - 52%)}
+  .hx .side{width:var(--sw)}
+}
+/* Ti fagområder under kerneområderne */
+.fag{margin-top:36px}
+.fag .k,.deeplinks .k{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--fern)}
+.fag ol{list-style:none;margin:10px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));column-gap:32px}
+.fag a{display:flex;gap:12px;align-items:baseline;padding:8px 2px;border-top:1px solid rgba(76,112,88,.18);text-decoration:none;color:var(--forest);font-size:.95rem;line-height:1.35}
+.fag a:hover{color:var(--clay)}
+.fag .n{font-family:var(--mono);font-size:11px;color:var(--fern);flex:none}
+/* Arboretum-bånd */
+.arbo-band{background:var(--paper);border-top:1px solid rgba(76,112,88,.15);border-bottom:1px solid rgba(76,112,88,.15)}
+.ab{display:grid;grid-template-columns:200px 1fr auto;gap:32px;align-items:center;padding:28px 0;text-decoration:none;color:var(--ink)}
+.ab img{width:100%;height:auto;border:1px solid rgba(138,168,134,.35);background:var(--parchment);padding:6px}
+.ab-t{display:flex;flex-direction:column;gap:6px}
+.ab-h{font-family:var(--serif);font-weight:300;font-size:clamp(1.4rem,2.2vw,1.9rem);color:var(--forest);line-height:1.15}
+.ab-h em{color:var(--clay)}
+.ab-p{font-size:.92rem;color:rgba(44,48,38,.8)}
+.ab-go{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--forest);border:1px solid var(--forest);padding:13px 20px;white-space:nowrap;transition:background .2s,color .2s}
+.ab:hover .ab-go{background:var(--forest);color:var(--paper)}
+@media (max-width:700px){.ab{grid-template-columns:96px 1fr;gap:16px 18px}.ab-go{grid-column:1/-1;justify-self:start}.ab-p{display:none}}
+@media (min-width:700px){.fag ol{grid-template-columns:1fr 1fr;grid-template-rows:repeat(5,auto);grid-auto-flow:column}}
 
 </style>
 </head>
@@ -444,7 +468,7 @@ details.kc p{margin:0 6px 16px 100px}
           <li><a href="/#ydelser">Fem kerneområder</a></li>
           <li><a href="/kompetencer.html" aria-current="page">Kompetencer</a></li>
           <li><a href="/#tilgang">Sådan arbejder vi</a></li>
-          <li><a href="/#arboretum">Arboretum</a></li>
+          <li><a href="/arboretum.html">Arboretum</a></li>
           <li class="sl" aria-hidden="true">Uddybende sider</li>
           <li><a href="/ydelser/risikotraeer.html">Risikotræer</a></li>
           <li><a href="/ydelser/traeer-ved-byggeri.html">Træer ved byggeri og anlæg</a></li>
