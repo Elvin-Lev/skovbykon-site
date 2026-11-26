@@ -20,8 +20,8 @@
 /index.php/video-foto-fra-droneflyvning          /metoder/drone.html                     301
 /index.php/video-er                              /metoder/drone.html                     301
 /index.php/rodder-belaegninger-og-gravearbejder  /metoder/jordkomprimering.html          301
-/index.php/malemetoder                           /#metoder                               301
-/index.php/diagnose-af-traeers-degeneration      /#metoder                               301
+/index.php/malemetoder                           /metoder.html                               301
+/index.php/diagnose-af-traeers-degeneration      /metoder.html                               301
 
 # ── Bøger og shop ────────────────────────────────────────────
 /index.php/salg-af-boger                         /boeger.html                            301
@@ -85,11 +85,11 @@
 /index.php/eu-projekt-ett                        /#kurser                                301
 
 # ── Bibliotek ────────────────────────────────────────────────
-/index.php/artikler                              /#artikler                              301
-/index.php/artikler-og-video-er                  /#artikler                              301
-/index.php/37-skovbykon-div                      /#bibliotek                             301
-/index.php/38-bytraeer                           /#bibliotek                             301
-/index.php/39-skov                               /#bibliotek                             301
+/index.php/artikler                              /bibliotek.html#artikler                              301
+/index.php/artikler-og-video-er                  /bibliotek.html#artikler                              301
+/index.php/37-skovbykon-div                      /bibliotek.html                             301
+/index.php/38-bytraeer                           /bibliotek.html                             301
+/index.php/39-skov                               /bibliotek.html                             301
 
 # ── Gamle PDF-adresser (/images/…) → filerne i /pdf/ ──────────
 # Genereret ud fra FTP-backuppens filnavne matchet mod /pdf/.
@@ -192,8 +192,8 @@
 /images/videos/*                                                                             /metoder/drone.html                                                  301
 
 # Fallback for resten
-/images/stories/PDF_skovbykon/*                  /#bibliotek                             301
-/images/stories/materiale_samling/*              /#bibliotek                             301
+/images/stories/PDF_skovbykon/*                  /bibliotek.html                             301
+/images/stories/materiale_samling/*              /bibliotek.html                             301
 /images/NST_cases/*                              /boeger.html#case-ejendomme             301
 
 # ── Catch-all: alt andet fra det gamle site ──────────────────

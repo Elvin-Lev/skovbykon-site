@@ -246,13 +246,13 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 .hx .concl{margin:20px 0 6px;padding-top:16px;border-top:1px solid rgba(232,220,193,.3);font-size:14px;line-height:1.7}
 .hx .card{background:var(--paper);max-height:30rem;overflow:hidden;transition:max-height .7s ease,opacity .35s ease}
 .hx .card-in{padding:28px 32px 30px}
-.hx:has(.stage:hover,.data:hover) .full,.hx.open .full{clip-path:circle(var(--R) at 52% 49%);transform:translateX(var(--tx));opacity:0}
-.hx:has(.stage:hover,.data:hover) .disc,.hx.open .disc{opacity:1}
-.hx:has(.stage:hover,.data:hover) .disc img,.hx.open .disc img{transform:scale(1.3)}
-.hx:has(.stage:hover,.data:hover) .rings,.hx.open .rings{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(0deg)}
-.hx:has(.stage:hover,.data:hover) .hint,.hx.open .hint{opacity:0}
-.hx:has(.stage:hover,.data:hover) .data,.hx.open .data{max-height:40rem;opacity:1;transform:none}
-.hx:has(.stage:hover,.data:hover) .card,.hx.open .card{max-height:0;opacity:0}
+.hx:has(.hz:hover,.hint:hover,.data:hover) .full,.hx.open .full{clip-path:circle(var(--R) at 52% 49%);transform:translateX(var(--tx));opacity:0}
+.hx:has(.hz:hover,.hint:hover,.data:hover) .disc,.hx.open .disc{opacity:1}
+.hx:has(.hz:hover,.hint:hover,.data:hover) .disc img,.hx.open .disc img{transform:scale(1.3)}
+.hx:has(.hz:hover,.hint:hover,.data:hover) .rings,.hx.open .rings{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(0deg)}
+.hx:has(.hz:hover,.hint:hover,.data:hover) .hint,.hx.open .hint{opacity:0}
+.hx:has(.hz:hover,.hint:hover,.data:hover) .data,.hx.open .data{max-height:40rem;opacity:1;transform:none}
+.hx:has(.hz:hover,.hint:hover,.data:hover) .card,.hx.open .card{max-height:0;opacity:0}
 .t-touch{display:none}
 @media (hover:none){.t-desk{display:none}.t-touch{display:inline}}
 
@@ -432,7 +432,7 @@ details.kc p{margin:0 6px 22px 112px;font-size:.92rem;color:var(--sand)}
   .hx .stage{height:clamp(26rem,82vw,38rem)}
   .hx .side{position:static;width:auto;padding:0;display:block}
   .hx .data{padding:0 24px}
-  .hx .card,.hx:has(.stage:hover,.data:hover) .card,.hx.open .card{max-height:none;opacity:1}
+  .hx .card,.hx:has(.hz:hover,.hint:hover,.data:hover) .card,.hx.open .card{max-height:none;opacity:1}
   .hx .card-in{padding:26px 24px 30px}
 }
 @media (max-width:900px){
@@ -539,7 +539,7 @@ details.kc p{margin:0 6px 16px 100px}
   .hx{--R:clamp(9rem,17vw,15rem);--sw:min(30rem,34%);--cx:calc(40px + var(--sw) + 40px + var(--R) * 1.45);--tx:calc(var(--cx) - 52%)}
   .hx .side{width:var(--sw)}
 }
-/* Fagområder under kerneområderne */
+/* Liste under kerneområderne (ikke i brug) */
 .fag{margin-top:36px}
 .fag .k,.deeplinks .k{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--fern)}
 .fag ol{list-style:none;margin:10px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));column-gap:32px}
@@ -559,6 +559,137 @@ details.kc p{margin:0 6px 16px 100px}
 @media (max-width:700px){.ab{grid-template-columns:96px 1fr;gap:16px 18px}.ab-go{grid-column:1/-1;justify-self:start}.ab-p{display:none}}
 @media (min-width:700px){.fag ol{grid-template-columns:1fr 1fr;grid-template-rows:repeat(5,auto);grid-auto-flow:column}}
 
+/* ===== Runde 26-11 ===== */
+/* CO₂ med sænket 2 */
+sub{font-size:.62em;line-height:0;vertical-align:-.28em;font-weight:inherit}
+/* Header: undertitel ved logoet */
+.brand-txt{display:flex;flex-direction:column;line-height:1.05}
+.brand-tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--fern);margin-top:4px}
+/* Menu: diskret skygge på teksten */
+@media (min-width:901px) and (max-width:1060px){.brand-tag{display:none}}
+/* Kerneområder: overskrifter på linje, tekst ved hover, hele kortet klikbart */
+.core{min-height:300px;cursor:pointer}
+.core h3{margin:18px 0 0;min-height:2.3em}
+.core-a{color:inherit;text-decoration:none}
+.core-a::after{content:'';position:absolute;inset:0;z-index:3}
+.core p{transition:color .45s}
+.core-go{position:relative;margin-top:auto;padding-top:16px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--fern);transition:color .45s}
+.core:hover p,.core:focus-within p{opacity:1;transform:none}
+.core:hover .core-go,.core:focus-within .core-go{opacity:1;color:var(--clay-soft)}
+.core:focus-within .ph{opacity:1;transform:none}.core:focus-within .veil{opacity:1}
+.core:focus-within h3{color:var(--paper)}.core:focus-within p{color:var(--parchment)}
+@media (hover:none){.core p,.core-go{opacity:1;transform:none}.core-go{color:var(--clay-soft)}}
+/* Grønt bånd: tal uden prik i nullerne */
+.belt .n{font-family:var(--serif);font-weight:400;letter-spacing:-.01em}
+/* Blodbøg: kun midterste tredjedel starter effekten */
+.hx .hz{position:absolute;left:33.33%;width:33.34%;top:12%;height:76%;z-index:2}
+.hx:has(.hz:hover,.hint:hover,.data:hover) .hz,.hx.open .hz{left:0;width:100%;top:0;height:100%}
+.hx .hint{z-index:3}
+@media (hover:none){.hx .hz{display:none}}
+/* Sådan arbejder vi: fire trin på en linje */
+.steps{list-style:none;margin:56px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;position:relative}
+.steps::before{content:'';position:absolute;left:12.5%;right:12.5%;top:27px;height:1px;background:var(--fern);opacity:.5}
+.steps li{position:relative;text-align:center;padding:0 18px}
+.steps .dot{position:relative;z-index:1;display:inline-flex;align-items:center;justify-content:center;width:54px;height:54px;border-radius:50%;background:var(--paper);border:1.5px solid var(--forest);font-family:var(--serif);font-size:17px;color:var(--forest)}
+.steps li:nth-child(2) .dot{background:#dfe8da}.steps li:nth-child(3) .dot{background:#c9d8c3}.steps li:nth-child(4) .dot{background:var(--forest);color:var(--paper)}
+.steps h3{font-family:var(--serif);font-size:20px;font-weight:300;color:var(--forest);margin:16px 0 8px;line-height:1.25}
+.steps p{font-size:.9rem;color:rgba(44,48,38,.8);margin:0}
+@media (max-width:900px){
+  .steps{grid-template-columns:1fr;gap:26px}
+  .steps::before{left:27px;right:auto;top:10px;bottom:10px;width:1px;height:auto}
+  .steps li{text-align:left;padding:0 0 0 76px;min-height:54px}
+  .steps .dot{position:absolute;left:0;top:0}
+  .steps h3{margin-top:4px}
+}
+/* Cases: kunder som klikbare mærker */
+.clients{display:flex;flex-wrap:wrap;gap:8px}
+.clients a,.clients span{font-size:.9rem;padding:6px 12px;border:1px solid rgba(76,112,88,.3);background:var(--paper);color:var(--forest);text-decoration:none;line-height:1.3}
+.clients a:hover{border-color:var(--clay);color:var(--clay)}
+.clients span{color:rgba(44,48,38,.6);border-style:dashed}
+.pslide{scroll-margin-top:calc(var(--hh,67px) + 120px)}
+/* Om os */
+.team-intro{max-width:44rem;font-size:1.02rem;margin:16px 0 40px;color:rgba(44,48,38,.85)}
+/* Kontakt: større og mere læsbar */
+.area .ct{font-family:var(--body);font-size:1.08rem;line-height:1.75;color:var(--parchment)}
+.area .ct a{color:var(--parchment);text-decoration:underline;text-decoration-color:rgba(232,220,193,.4);text-underline-offset:4px}
+/* Footer */
+.site-footer .wrap span a{color:var(--sand)}
+/* Fagbibliotek som egen side */
+.lib-page{min-height:70vh}
+/* Kompetencesiden */
+.kats{display:flex;flex-direction:column;gap:14px}
+details.kat{border:1px solid rgba(76,112,88,.22);background:var(--paper);scroll-margin-top:calc(var(--hh,67px) + 16px)}
+details.kat summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:120px 1fr auto;gap:24px;align-items:center;padding:16px 22px 16px 16px}
+details.kat summary::-webkit-details-marker{display:none}
+details.kat summary img{width:120px;height:120px;object-fit:cover}
+details.kat .kt{display:flex;flex-direction:column;gap:4px}
+details.kat .cn{font-family:var(--mono);font-size:12px;color:var(--fern)}
+details.kat .kh{font-family:var(--serif);font-weight:300;font-size:clamp(1.4rem,2.4vw,1.9rem);color:var(--forest);line-height:1.15}
+details.kat .kd{font-size:.92rem;color:rgba(44,48,38,.78)}
+details.kat .plus{font-family:var(--mono);font-size:22px;color:var(--fern);transition:transform .25s}
+details.kat[open] .plus{transform:rotate(45deg)}
+details.kat summary:hover .kh{color:var(--clay)}
+.kat-body{padding:6px 28px 28px 160px}
+.klist{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:0 40px}
+.klist li{border-top:1px solid rgba(76,112,88,.18);padding:20px 0 22px;scroll-margin-top:calc(var(--hh,67px) + 16px)}
+.klist h3{font-family:var(--serif);font-weight:300;font-size:1.3rem;color:var(--forest);margin:0 0 8px;line-height:1.2}
+.klist p{font-size:.94rem;color:rgba(44,48,38,.85);margin:0 0 12px}
+.klist .more{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:12px}
+.kcases{margin-top:14px;padding-top:18px;border-top:1px solid rgba(76,112,88,.18);display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.kcases .k{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--fern);margin-right:8px}
+.kcases a{display:flex;flex-direction:column;padding:10px 14px;border:1px solid rgba(76,112,88,.3);text-decoration:none;background:var(--parchment)}
+.kcases a:hover{border-color:var(--clay)}
+.kcases .ck{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--fern)}
+.kcases .ct{font-family:var(--serif);font-size:1rem;color:var(--forest)}
+@media (max-width:700px){
+  details.kat summary{grid-template-columns:64px 1fr auto;gap:14px;padding:12px}
+  details.kat summary img{width:64px;height:64px}
+  details.kat .kd{display:none}
+  .kat-body{padding:0 16px 20px}
+}
+/* Større trykflader på mobil */
+@media (hover:none),(max-width:900px){
+  .pmore{padding:10px 0 6px}
+  details.more>summary{padding:10px 0}
+  .klist .more a{display:inline-block;padding:8px 0}
+  #ydelser a.mono{display:inline-block;padding:10px 0}
+}
+/* Små telefoner: header på én linje */
+@media (max-width:420px){.brand-name{font-size:19px}.brand-tag{font-size:8px;letter-spacing:.1em}.topnav{gap:12px}.brand svg{width:32px;height:31px}}
+.core:hover .core-go,.core:focus-within .core-go{color:var(--sand)}
+@media (hover:none){.core-go{color:var(--sand)}}
+.member .ct{font-family:var(--body);font-size:1rem;line-height:1.6}
+.clients span{color:rgba(44,48,38,.75)}
+.pmore{color:var(--clay-deep);border-color:var(--clay-deep)}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media (max-width:900px){
+  .navlinks{align-items:stretch;gap:0}
+  .navlinks>li{width:100%}
+  .dd{display:flex;flex-wrap:wrap;align-items:stretch}
+  .dd>a{flex:1}
+  .dd .ddt{margin-left:0;padding:12px 16px;font-size:16px}
+}
+@media (max-width:600px){.hero-btns{display:flex;flex-wrap:wrap;gap:10px}.hero-btns .btn{flex:1 1 40%;text-align:center;margin:0}}
+
+.core-a:hover,.core-a:focus{color:inherit}
+.core h3{min-height:0}
+/* Footer: tydelige links med tynd skygge */
+.site-footer .fl{margin-left:auto;display:flex;flex-wrap:wrap;gap:6px 10px}
+@media (max-width:600px){.site-footer .fl{margin-left:0}}
+/* Metodesiden */
+.mpage .mlist .mrow{padding:16px 4px}
+.mpage .mrow .my{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--sage);margin-top:4px}
+.mpage img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;margin-top:28px}
+.mpage .mlist{grid-template-columns:1fr}.mpage .mlist li:nth-last-child(2) .mrow{border-bottom:none}
+.site-footer .fl a,.site-footer .wrap span a{padding:3px 8px;border-radius:3px;box-shadow:0 0 0 1px rgba(232,220,193,.22),0 1px 3px rgba(0,0,0,.35);transition:box-shadow .2s,color .2s}
+.site-footer .fl a:hover,.site-footer .wrap span a:hover{box-shadow:0 0 0 1px rgba(212,134,106,.6),0 1px 3px rgba(0,0,0,.35)}
+/* Sådan arbejder vi: tekst og foto i samme højde */
+#tilgang .approach{align-items:stretch}
+#tilgang .appr-p{font-size:1rem;margin:18px 0 0;color:rgba(44,48,38,.85)}
+#tilgang .appr-img{width:100%;height:0;min-height:100%;object-fit:cover}
+@media (max-width:760px){#tilgang .appr-img{height:auto;aspect-ratio:16/9;min-height:0}}
+#tilgang .appr-img{object-position:50% 65%}
+
 </style>
 </head>
 <body>
@@ -575,6 +706,7 @@ details.kc p{margin:0 6px 16px 100px}
           <li><a href="/kompetencer.html">Kompetencer</a></li>
           <li><a href="#tilgang">Sådan arbejder vi</a></li>
           <li><a href="/arboretum.html">Arboretum</a></li>
+          <li><a href="/betingelser.html#priser">Prisliste</a></li>
           <li class="sl" aria-hidden="true">Uddybende sider</li>
           <li><a href="/ydelser/risikotraeer.html">Risikotræer</a></li>
           <li><a href="/ydelser/traeer-ved-byggeri.html">Træer ved byggeri og anlæg</a></li>
@@ -583,12 +715,13 @@ details.kc p{margin:0 6px 16px 100px}
           <li><a href="/ydelser/nye-bytraeer.html">Nye bytræer</a></li>
         </ul></li>
       <li><a href="#projekter">Projekter</a></li>
-      <li class="dd"><a href="#bibliotek">Bibliotek</a><button type="button" class="ddt" aria-expanded="false" aria-controls="sub-bib" aria-label="Vis undermenu for Bibliotek"><span aria-hidden="true">▾</span></button>
+      <li class="dd"><a href="/bibliotek.html">Bibliotek</a><button type="button" class="ddt" aria-expanded="false" aria-controls="sub-bib" aria-label="Vis undermenu for Bibliotek"><span aria-hidden="true">▾</span></button>
         <ul class="sub" id="sub-bib">
-          <li><a href="#metoder">Metoder</a></li>
-          <li><a href="#artikler">Artikler</a></li>
-          <li><a href="#boeger">Bøger</a></li>
-          <li><a href="#standarder">Standarder &amp; retningslinjer</a></li>
+          <li><a href="/metoder.html">Non-destruktive metoder</a></li>
+          <li><a href="/bibliotek.html#artikler">Artikler</a></li>
+          <li><a href="/bibliotek.html#boeger">Bøger</a></li>
+          <li><a href="/bibliotek.html#lib-metoder">Metodebeskrivelser</a></li>
+          <li><a href="/bibliotek.html#standarder">Standarder &amp; retningslinjer</a></li>
         </ul></li>
       <li><a href="#kurser">Kurser</a></li>
       <li><a href="#team">Om os</a></li>
@@ -601,12 +734,10 @@ details.kc p{margin:0 6px 16px 100px}
 
 <!-- 1 · FORSIDE -->
 <section id="top" class="hero">
-  <svg class="hero-rings" viewBox="0 0 600 600" aria-hidden="true"><g fill="none" stroke="#4c7058" stroke-opacity=".22"><ellipse cx="306" cy="306" rx="292" ry="286" stroke-width="1.4"/><ellipse cx="300" cy="300" rx="262" ry="254" stroke-width=".9"/><ellipse cx="292" cy="292" rx="236" ry="230" stroke-width=".8"/><ellipse cx="286" cy="286" rx="214" ry="210" stroke-width=".7"/><ellipse cx="270" cy="268" rx="150" ry="146" stroke-width=".6"/></g></svg>
   <div class="hero-text"><div>
-    <div class="lbl">Trærådgivning · Skov · Natur</div>
     <h1>Rådgivning om træer, skov og natur – <em>med data og jord under neglene</em></h1>
-    <p class="hero-sub">Til kommuner, bygherrer, entreprenører og rådgivere – om risikotræer, bytræer, skov, biodiversitet og CO₂.</p>
-    <div class="hero-btns"><a class="btn btn-primary" href="#ydelser">Vores rådgivning</a><a class="btn btn-ghost" href="#kontakt">Kontakt os</a></div>
+    <p class="hero-sub">Til kommuner, bygherrer, entreprenører og rådgivere – om risikotræer, bytræer, skov, biodiversitet og CO<sub>2</sub>.</p>
+    <div class="hero-btns"><a class="btn btn-primary" href="#ydelser">Rådgivning</a><a class="btn btn-ghost" href="/bibliotek.html">Fagbibliotek</a><a class="btn btn-ghost" href="#kontakt">Kontakt os</a></div>
   </div></div>
   <figure class="hero-photo">
     <img src="/img/fotos/forside-piletrae-900.webp" srcset="/img/fotos/forside-piletrae-500.webp 500w, /img/fotos/forside-piletrae-900.webp 900w, /img/fotos/forside-piletrae-1200.webp 1200w" sizes="(max-width: 900px) 100vw, 50vw" alt="Anders Tærø Nielsen graver ved piletræet i Rødovre Rådhuspark" width="1355" height="1800" fetchpriority="high">
@@ -622,30 +753,22 @@ details.kc p{margin:0 6px 16px 100px}
   </div>
 </section>
 
-<!-- 3 · FEM KERNEOMRÅDER -->
+<!-- 3 · KERNEOMRÅDER -->
 <section id="ydelser" class="section bg-parch">
   <div class="wrap">
     <div style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:24px;margin-bottom:40px">
-      <div><div class="lbl">Rådgivning</div><h2 class="h2">Vores <em>kerneområder</em></h2></div>
-      <a href="/kompetencer.html" class="mono" style="margin-left:auto;font-size:12px;letter-spacing:.14em;text-transform:uppercase">Alle fagområder →</a>
+      <div><h2 class="h2">Vores <em>kerneområder</em></h2></div>
+      <a href="/kompetencer.html" class="mono" style="margin-left:auto;font-size:12px;letter-spacing:.14em;text-transform:uppercase">Alle kompetencer →</a>
     </div>
-    <div class="cores"><article class="core" id="klima"><img class="ph" src="/img/fotos/skov-klima.webp" alt="" loading="lazy"><span class="veil"></span><svg class="wm" viewBox="0 0 200 150" aria-hidden="true"><g fill="none" stroke="#faf6ea" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4 V140 H196" stroke-width="1.6"/><g stroke-width=".7" stroke-dasharray="2 4"><line x1="10" y1="34" x2="196" y2="34"/><line x1="10" y1="68" x2="196" y2="68"/><line x1="10" y1="102" x2="196" y2="102"/></g><path d="M10 124 C40 120 52 112 70 104 S104 78 124 66 S160 34 190 20" stroke-width="2.4"/><path d="M178 16 L191 19 L186 31" stroke-width="2"/></g><g fill="#faf6ea" fill-opacity=".55"><rect x="26" y="122" width="12" height="18"/><rect x="58" y="110" width="12" height="30"/><rect x="90" y="94" width="12" height="46"/><rect x="122" y="74" width="12" height="66"/><rect x="154" y="52" width="12" height="88"/></g></svg><svg class="rings" viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke="#8aa886" stroke-width=".8"><circle cx="100" cy="100" r="96"/><circle cx="96" cy="96" r="76"/><circle cx="92" cy="92" r="56"/><circle cx="88" cy="88" r="36"/></g></svg><span class="cn">01</span><h3>Klima &amp; CO₂</h3><p>Vi gør skoves og træers klimaeffekt målbar og dokumenterbar – et solidt grundlag for klimaregnskab og bæredygtighedsrapportering.</p></article><article class="core" id="biodiversitet"><img class="ph" src="/img/fotos/doedt-ved-biodiversitet.webp" alt="" loading="lazy"><span class="veil"></span><svg class="rings" viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke="#8aa886" stroke-width=".8"><circle cx="100" cy="100" r="96"/><circle cx="96" cy="96" r="76"/><circle cx="92" cy="92" r="56"/><circle cx="88" cy="88" r="36"/></g></svg><span class="cn">02</span><h3>Biodiversitet</h3><p>Vi styrker den biologiske mangfoldighed med tiltag der virker i felten – fra bytræer og parker til lysåben natur, skove og naturlig hydrologi.</p></article><article class="core" id="traeforvaltning"><img class="ph" src="/img/fotos/risikotrae-stefansgade.webp" alt="" loading="lazy"><span class="veil"></span><svg class="rings" viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke="#8aa886" stroke-width=".8"><circle cx="100" cy="100" r="96"/><circle cx="96" cy="96" r="76"/><circle cx="92" cy="92" r="56"/><circle cx="88" cy="88" r="36"/></g></svg><span class="cn">03</span><h3>Bytræ&shy;forvaltning</h3><p>Vi holder jeres træer sunde, sikre og langtidsholdbare gennem grundig diagnostik og løbende opfølgning.</p></article><article class="core" id="skovrejsning"><img class="ph" src="/img/fotos/skovforvaltning-skov-drone-1000.webp" alt="" loading="lazy"><span class="veil"></span><svg class="rings" viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke="#8aa886" stroke-width=".8"><circle cx="100" cy="100" r="96"/><circle cx="96" cy="96" r="76"/><circle cx="92" cy="92" r="56"/><circle cx="88" cy="88" r="36"/></g></svg><span class="cn">04</span><h3>Skov&shy;forvaltning</h3><p>Vi designer nye skove der holder i generationer – med blandinger der giver natur, herlighedsværdi og robusthed på én gang.</p></article><article class="core" id="bng"><img class="ph" src="/img/grafik/habitatkort.svg" alt="" loading="lazy"><span class="veil"></span><svg class="rings" viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke="#8aa886" stroke-width=".8"><circle cx="100" cy="100" r="96"/><circle cx="96" cy="96" r="76"/><circle cx="92" cy="92" r="56"/><circle cx="88" cy="88" r="36"/></g></svg><span class="cn">05</span><h3>BNG kortlægning &amp; vurdering</h3><p>Vi dokumenterer projekters nettoeffekt på naturen, så biodiversitetskravene er på plads, før spaden sættes i jorden.</p></article></div>
-    <nav class="fag" aria-label="Fagområder"><div class="k">Fagområder</div><ol><li><a href="/kompetencer.html#k01"><span class="n">01</span><span>Risikovurdering og avanceret diagnostik</span></a></li><li><a href="/kompetencer.html#k02"><span class="n">02</span><span>Beskyttelse af træer ved byggeri og events</span></a></li><li><a href="/kompetencer.html#k03"><span class="n">03</span><span>Bytræforvaltning og rådgivning om træpleje</span></a></li><li><a href="/kompetencer.html#k04"><span class="n">04</span><span>Skovforvaltning og landskabsplanlægning</span></a></li><li><a href="/kompetencer.html#k05"><span class="n">05</span><span>Skovnatur og biodiversitet</span></a></li><li><a href="/kompetencer.html#k06"><span class="n">06</span><span>CO₂-balancer og klimadokumentation</span></a></li><li><a href="/kompetencer.html#k07"><span class="n">07</span><span>Værdisætning og syns- og skønsrapporter</span></a></li><li><a href="/kompetencer.html#k08"><span class="n">08</span><span>Droneundersøgelser</span></a></li><li><a href="/kompetencer.html#k09"><span class="n">09</span><span>BNG kortlægning og vurdering</span></a></li><li><a href="/kompetencer.html#k10"><span class="n">10</span><span>Livscyklusvurdering og bæredygtigt brug af træ</span></a></li></ol></nav>
-    <nav class="deeplinks" aria-label="Uddybende sider">
-      <span class="k">Uddybende sider</span>
-      <a href="/ydelser/risikotraeer.html">Risikotræer: tilsyn og ansvar</a>
-      <a href="/ydelser/traeer-ved-byggeri.html">Beskyttelse af træer ved byggeri og anlæg</a>
-      <a href="/ydelser/bevaringsvaerdige-traeer.html">Bevaringsværdige træer</a>
-      <a href="/ydelser/revitalisering.html">Revitalisering af svækkede træer</a>
-      <a href="/ydelser/nye-bytraeer.html">Projektering af nye bytræer</a>
-    </nav>
+    <div class="cores"><article class="core" id="klima"><img class="ph" src="/img/fotos/skov-klima.webp" alt="" loading="lazy"><span class="veil"></span><svg class="rings" viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke="#8aa886" stroke-width=".8"><circle cx="100" cy="100" r="96"/><circle cx="96" cy="96" r="76"/><circle cx="92" cy="92" r="56"/><circle cx="88" cy="88" r="36"/></g></svg><span class="cn">01</span><h3><a class="core-a" href="/kompetencer.html#klima">Klima &amp; CO<sub>2</sub></a></h3><p>Skoves og træers klimaeffekt dokumenteret – et solidt grundlag for klimaregnskab og bæredygtighedsrapportering.</p><span class="core-go" aria-hidden="true">Se kompetencer →</span></article><article class="core" id="biodiversitet"><img class="ph" src="/img/fotos/doedt-ved-biodiversitet.webp" alt="" loading="lazy"><span class="veil"></span><svg class="rings" viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke="#8aa886" stroke-width=".8"><circle cx="100" cy="100" r="96"/><circle cx="96" cy="96" r="76"/><circle cx="92" cy="92" r="56"/><circle cx="88" cy="88" r="36"/></g></svg><span class="cn">02</span><h3><a class="core-a" href="/kompetencer.html#biodiversitet">Biodiversitet</a></h3><p>Tiltag, der styrker den biologiske mangfoldighed i felten – fra bytræer og parker til lysåben natur, skove og naturlig hydrologi.</p><span class="core-go" aria-hidden="true">Se kompetencer →</span></article><article class="core" id="traeforvaltning"><img class="ph" src="/img/fotos/risikotrae-stefansgade.webp" alt="" loading="lazy"><span class="veil"></span><svg class="rings" viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke="#8aa886" stroke-width=".8"><circle cx="100" cy="100" r="96"/><circle cx="96" cy="96" r="76"/><circle cx="92" cy="92" r="56"/><circle cx="88" cy="88" r="36"/></g></svg><span class="cn">03</span><h3><a class="core-a" href="/kompetencer.html#traeforvaltning">Bytræ&shy;forvaltning</a></h3><p>Sunde, sikre og langtidsholdbare træer gennem grundig diagnostik og løbende opfølgning.</p><span class="core-go" aria-hidden="true">Se kompetencer →</span></article><article class="core" id="skovrejsning"><img class="ph" src="/img/fotos/skovforvaltning-skov-drone-1000.webp" alt="" loading="lazy"><span class="veil"></span><svg class="rings" viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke="#8aa886" stroke-width=".8"><circle cx="100" cy="100" r="96"/><circle cx="96" cy="96" r="76"/><circle cx="92" cy="92" r="56"/><circle cx="88" cy="88" r="36"/></g></svg><span class="cn">04</span><h3><a class="core-a" href="/kompetencer.html#skovrejsning">Skov&shy;forvaltning</a></h3><p>Skove, der holder i generationer – med blandinger, der giver natur, herlighedsværdi og robusthed på én gang.</p><span class="core-go" aria-hidden="true">Se kompetencer →</span></article><article class="core" id="bng"><img class="ph" src="/img/grafik/habitatkort.svg" alt="" loading="lazy"><span class="veil"></span><svg class="rings" viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke="#8aa886" stroke-width=".8"><circle cx="100" cy="100" r="96"/><circle cx="96" cy="96" r="76"/><circle cx="92" cy="92" r="56"/><circle cx="88" cy="88" r="36"/></g></svg><span class="cn">05</span><h3><a class="core-a" href="/kompetencer.html#bng">BNG kortlægning &amp; vurdering</a></h3><p>Projekters nettoeffekt på naturen gjort op, så biodiversitetskravene er på plads, før spaden sættes i jorden.</p><span class="core-go" aria-hidden="true">Se kompetencer →</span></article></div>
   </div>
 </section>
 
 <!-- 2 · BLODBØGEN -->
 <section class="hx" aria-label="Blodbøg i Odense – målt af SkovByKon">
   <div class="stage">
-    <div class="full"><img src="/img/fotos/blodboeg-odense-drone-800.webp" srcset="/img/fotos/blodboeg-odense-drone-800.webp 800w, /img/fotos/blodboeg-odense-drone-1600.webp 1600w" sizes="100vw" alt="Blodbøg i Odense set lodret ovenfra med drone" loading="lazy" width="1800" height="1350"></div>
+    <span class="hz" aria-hidden="true"></span>
+    <div class="full"><img src="/img/fotos/blodboeg-odense-drone-800.webp" srcset="/img/fotos/blodboeg-odense-drone-800.webp 800w, /img/fotos/blodboeg-odense-drone-1600.webp 1600w, /img/fotos/blodboeg-odense-drone-2400.webp 2400w" sizes="100vw" alt="Blodbøg i Odense set lodret ovenfra med drone" loading="lazy" width="1800" height="1350"></div>
     <div class="disc"><img src="/img/fotos/blodboeg-odense-krone.webp" alt="" loading="lazy" width="700" height="700"></div>
     <svg class="rings" viewBox="0 0 600 600" aria-hidden="true">
       <g fill="none" stroke="#e8dcc1"><ellipse cx="300" cy="300" rx="226" ry="223" stroke-width=".8" stroke-opacity=".55"/><ellipse cx="296" cy="296" rx="248" ry="244" stroke-width=".8" stroke-opacity=".45"/><ellipse cx="292" cy="294" rx="268" ry="263" stroke-width=".9" stroke-opacity=".5"/><circle cx="300" cy="300" r="292" stroke-width="1.2" stroke-opacity=".7"/></g>
@@ -662,7 +785,6 @@ details.kc p{margin:0 6px 16px 100px}
   </div>
   <div class="side">
     <div class="data" id="maaling">
-      <div class="lbl light">Fig. 01 · Måling</div>
       <div style="font-family:var(--serif);font-weight:300;font-size:30px;line-height:1.1;margin-top:12px">Blodbøg</div>
       <div style="font-family:var(--serif);font-style:italic;font-weight:300;font-size:17px;color:var(--sand)">Fagus sylvatica f. purpurea</div>
       <dl>
@@ -677,10 +799,9 @@ details.kc p{margin:0 6px 16px 100px}
         <div class="row"><span class="k">Relativt sikkerhedsniveau</span><span class="v">91 %</span></div>
         <div class="bar"><span style="width:91%;background:#a9c0a3"></span></div>
       </div>
-      <p class="concl">Kronen er vital, men en svamp nedbryder veddet nederst i stammen. Ved at læse målingerne sammen kan vi vise, hvor meget af træets styrke der er tilbage – og give et solidt grundlag for den beslutning, der skal træffes.</p>
+      <p class="concl">Ved at læse målingerne sammen kan vi vise, hvor meget af træets styrke der er tilbage – og give et solidt grundlag for den beslutning, der skal træffes.</p>
     </div>
     <div class="card"><div class="card-in">
-      <div class="lbl">Fra felten · Fig. 01</div>
       <h2 class="h2" style="font-size:clamp(1.8rem,2.8vw,2.4rem)">Blodbøg, <em>Odense</em></h2>
       <p style="font-size:.95rem;color:rgba(44,48,38,.8);margin:10px 0 0">Kronen set lodret fra drone.</p>
     </div></div>
@@ -692,84 +813,39 @@ details.kc p{margin:0 6px 16px 100px}
   <div class="wrap">
     <div class="approach">
       <div>
-        <div class="lbl">Tilgang</div>
         <h2 class="h2">Sådan arbejder <em>vi</em></h2>
-        <p class="lead-it">Hver opgave starter i mødet med kunden, og vi bevæger os hurtigst muligt i felten.</p>
-        <details class="more">
-          <summary>Læs mere <span class="chev" aria-hidden="true">▾</span></summary>
-          <p style="font-size:.95rem;margin:14px 0 10px">SkovByKon arbejder ud fra ét princip: rådgivning skal være forankret i den konkrete virkelighed. Vi kommer ud til jer. Vi ser på træerne, jorden, vandet og landskabet – og først derfra former vi vores anbefalinger. Vi leverer tilpasset rådgivning baseret på de faktiske forhold.</p>
-          <p style="font-size:.95rem;margin:0">Vores team rummer konsulenter med Ph.D., doktorgrad og årtiers felterfaring. Vi samarbejder internationalt og har derigennem fået en unik indsigt i, hvor dansk træpleje kan løftes. Forskningsgrundlaget er solidt, men det er i felten vi skaber værdi.</p>
-        </details>
+        <p class="appr-p">Hver opgave starter i mødet med kunden, og vi bevæger os hurtigst muligt i felten. Rådgivningen skal være forankret i den konkrete virkelighed, så vi ser på træerne, jorden og landskabet og former vores anbefalinger ud fra de faktiske forhold.</p>
+        <p class="appr-p">Vores team rummer konsulenter med Ph.D., doktorgrad og årtiers felterfaring. Gennem internationalt samarbejde har vi fået indsigt i, hvor dansk træpleje kan løftes.</p>
       </div>
-      <img src="/img/fotos/saadan-arbejder-vi.webp" alt="Feltarbejde: registrering af træer i skovbryn" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover;height:auto">
+      <img class="appr-img" src="/img/fotos/saadan-arbejder-vi.webp" alt="Feltarbejde: registrering af træer i skovbryn" loading="lazy" width="1600" height="900">
     </div>
-    <div class="pillars">
-      <div class="pillar"><div class="n">01</div><h3>Feltforankret</h3><p>Vi starter altid med at se og måle – rådgivningen bygger på det vi finder i felten.</p></div>
-      <div class="pillar"><div class="n">02</div><h3>Evidensbaseret</h3><p>Vi deltager i forskningsprojekter og er med til at udvikle feltet.</p></div>
-      <div class="pillar"><div class="n">03</div><h3>Konkret og handlingsorienteret</h3><p>Vi leverer anbefalinger der kan bruges direkte.</p></div>
-      <div class="pillar pillar-wide"><div class="n">04</div><h3>Netværksbaserede specialister</h3><p>Vi har et solidt netværk og samarbejde med landets førende GIS-, drone- og dataspecialister, idérige tænkere og konceptmagere, specialiserede feltbiologer, finanseksperter og universiteter – nørdede og engagerede mennesker, der kan kobles på den enkelte opgave.</p></div>
+    <ol class="steps">
+      <li><span class="dot">01</span><h3>Vi måler i felten</h3><p>Rådgivningen bygger på det, vi ser og måler på stedet.</p></li>
+      <li><span class="dot">02</span><h3>Vi bygger på evidens</h3><p>Vi deltager i forskningsprojekter og er med til at udvikle faget.</p></li>
+      <li><span class="dot">03</span><h3>I får konkrete anbefalinger</h3><p>Anbefalinger, der er til at handle på og kan bruges direkte.</p></li>
+      <li><span class="dot">04</span><h3>Vi samarbejder med specialister</h3><p>GIS-, drone- og dataspecialister, feltbiologer, finanseksperter og universiteter kobles på, når opgaven kræver det.</p></li>
+    </ol>
     </div>
   </div>
 </section>
 
-<section class="belt" aria-label="Fagområder og metoder">
-  <div class="wrap">
-    <a href="/kompetencer.html" class="belt-link"><div class="n">10</div><div class="t">Fagområder →</div></a>
-    <div><div class="n">8</div><div class="t">Non-destruktive metoder</div></div>
-    <div><div class="n">4</div><div class="t">Rådgivere</div></div>
-    <div><div class="n">5</div><div class="t">Kerneområder</div></div>
-  </div>
-</section>
 
 
-<figure class="band"><img src="/img/fotos/skov-graesland-fugleperspektiv-1000.webp" srcset="/img/fotos/skov-graesland-fugleperspektiv-1000.webp 1000w, /img/fotos/skov-graesland-fugleperspektiv-1920.webp 1920w" sizes="100vw" width="1920" height="960" alt="Skov og græsland set lodret fra drone" loading="lazy" style="object-position:center 45%"></figure>
+<figure class="band"><img src="/img/fotos/skov-graesland-fugleperspektiv-1000.webp" srcset="/img/fotos/skov-graesland-fugleperspektiv-1000.webp 1000w, /img/fotos/skov-graesland-fugleperspektiv-1920.webp 1920w, /img/fotos/skov-graesland-fugleperspektiv-2560.webp 2560w" sizes="100vw" width="1920" height="960" alt="Skov og græsland set lodret fra drone" loading="lazy" style="object-position:center 45%"></figure>
 
 <!-- 6 · UDVALGTE PROJEKTER -->
 <section id="projekter" class="section bg-parch">
   <div class="wrap">
-    <div class="lbl">Cases</div>
     <h2 class="h2">Udvalgte <em>projekter</em></h2>
     <div class="pc-head">
-      <p>Eksempler på samarbejder: Odense Kommune · Energistyrelsen · Klimarådet · Rødovre Kommune · Ballerup Kommune</p>
+      <nav class="clients" aria-label="Kunder"><a href="#case-1">Odense Kommune</a><a href="#case-5">Energistyrelsen</a><span>Klimarådet</span><a href="#case-4">Rødovre Kommune</a><span>Ballerup Kommune</span><a href="#case-2">Københavns Kommune</a><a href="#case-6">Vejle Kommune</a></nav>
       <div class="pc-ctrl">
         <span class="pc-count" aria-live="polite">01 / 06</span>
         <button type="button" class="parr" data-dir="-1" aria-label="Forrige case">‹</button>
         <button type="button" class="parr" data-dir="1" aria-label="Næste case">›</button>
       </div>
     </div>
-    <ul class="ptrack" aria-label="Cases"><li class="pslide" id="case-1" aria-label="Case 1 af 6"><img class="pimg" src="/img/fotos/blodboeg-resistograf.webp" alt="Anders Tærø Nielsen måler med resistograf på blodbøgen i Kongens Have" loading="lazy" width="170" height="227"><div style="min-width:0"><div class="meta">Fig. 01 · Risikotræer · Odense Kommune</div><h3>Blodbøgen i Kongens Have, Odense</h3><p class="ptxt" id="ptxt-1">Odense Kommune bad os om en uafhængig vurdering af rådudbredelse, sundhed og stabilitet af den gamle blodbøg i Kongens Have – et af parkens mest markante træer. Vi kombinerede visuel vurdering af krone og stamme, dronefoto, nedstikssonde, resistografmålinger, impulstomografi og en biomekanisk stabilitetsberegning. Når et træ er angrebet af svamp, kan ingen enkelt måling stå alene. Resultaterne skal læses sammen, metode for metode, før de kan bruges som beslutningsgrundlag – en opgave, der krævede et højt fagligt detaljeniveau.</p><button type="button" class="pmore" aria-expanded="false" aria-controls="ptxt-1" hidden>Læs mere</button></div></li><li class="pslide" id="case-2" aria-label="Case 2 af 6"><img class="pimg" src="/img/fotos/risikotrae-stefansgade.webp" alt="Risikotræ i gadeprofil på Stefansgade, Nørrebro" loading="lazy" width="170" height="227"><div style="min-width:0"><div class="meta">Fig. 02 · Risikotræer · Københavns Kommune</div><h3>Risikotræer i byrum og parker</h3><p class="ptxt" id="ptxt-2">Risikovurdering og beskyttelsesplaner for kommuner og bygherrer i byrum, parker og haver. Vi kombinerer visuel inspektion med rådscanning og resistografmåling, så beslutninger om fældning, beskæring eller bevaring hviler på et solidt fagligt grundlag frem for en forsigtighedsprincip-vurdering. For Københavns Kommune har opgaven omfattet gennemgang af udsatte bestande langs veje og i parkanlæg, med prioriterede handlingsplaner der balancerer sikkerhed, økonomi og bevaring af værdifulde, ældre træer. Rapporterne bruges direkte i kommunens drifts- og vedligeholdelsesplanlægning.</p><button type="button" class="pmore" aria-expanded="false" aria-controls="ptxt-2" hidden>Læs mere</button></div></li><li class="pslide" id="case-3" aria-label="Case 3 af 6"><img class="pimg" src="/img/fotos/skovforvaltning-skotland.webp" alt="Ung blandingskultur med skotske højdedrag i baggrunden" loading="lazy" width="170" height="227"><div style="min-width:0"><div class="meta">Fig. 03 · Skovforvaltning · Klima · Biodiversitet</div><h3>Skovforvaltning i Skotland</h3><p class="ptxt" id="ptxt-3">Design af skovforvaltningsprojekter med fokus på blandingsmønstre, herlighedsværdier og langsigtet naturudvikling. Arbejdet i Skotland har taget udgangspunkt i lokale jordbunds- og klimaforhold og er udmøntet i kulturmodeller, der kombinerer produktionstræer med lysåbne partier og naturlig foryngelse. Målet er skove der både er driftsøkonomisk robuste og rige på biologisk mangfoldighed – med opmærksomhed på stormstabilitet, vildtpleje og rekreativ værdi gennem hele omdriften.</p><button type="button" class="pmore" aria-expanded="false" aria-controls="ptxt-3" hidden>Læs mere</button></div></li><li class="pslide" id="case-4" aria-label="Case 4 af 6"><img class="pimg" src="/img/fotos/piletrae-case.webp" alt="Piletræet i Rødovre Rådhuspark under undersøgelse" loading="lazy" width="170" height="227"><div style="min-width:0"><div class="meta">Fig. 04 · Forvaltning og parkdrift · Rødovre Kommune</div><h3>Bevaring af karakterfuldt piletræ i Rødovre Rådhuspark</h3><p class="ptxt" id="ptxt-4">Rådgivning til kommunale forvaltninger om træpleje, risikohåndtering og planlægning af grønne arealer. Et centralt eksempel er træerne foran Rådhusets park i Rødovre, tegnet af Arne Jacobsen – et anlæg hvor arkitektonisk værdi og træernes sundhedstilstand skal forvaltes side om side. Rådgivningen omfatter både den enkelte plejeindsats og de langsigtede driftsplaner, der sikrer at parkens karakter bevares for kommende generationer.</p><button type="button" class="pmore" aria-expanded="false" aria-controls="ptxt-4" hidden>Læs mere</button></div></li><li class="pslide" id="case-5" aria-label="Case 5 af 6"><div class="pimg chart"><img src="/img/grafik/emissionskoefficienter-biomasse.png" alt="Søjlediagram over emissionskoefficienter for biomasse over tid, sammenholdt med kul og naturgas" loading="lazy"></div><div style="min-width:0"><div class="meta">Fig. 05 · Klima &amp; CO₂ · Biomasse</div><h3>Global afrapportering for Energistyrelsen</h3><p class="ptxt" id="ptxt-5">SkovByKon har beregnet CO₂-udledningerne fra træbiomasse til fjernvarme, el og private husholdninger for Energistyrelsen i årrækken 2021–2025. Rapporterne indgår i Energistyrelsens Globale Afrapportering. Analysen viser dynamikkerne i CO₂-udledningerne fra et års forbrug af biomasse til energi 100 år frem. Metoden regner både direkte udledninger fra værker, udledninger fra hele forsyningskæden og de indirekte effekter (iLUC og iWUC) med. I 2023 brugte forsyningssektoren 75,5 PJ biomasse, og husholdningerne brugte 25,2 PJ. Efter 60–82 år er kun 1 % af de biogene udledninger tilbage i atmosfæren. Det afgørende for, at rapportens CO₂-udledninger er gældende, er, om biomassen reelt er et restprodukt. Københavns Universitet har kvalitetssikret rapporterne, og resultaterne har efter 4 genberegninger vist sig robuste.</p><button type="button" class="pmore" aria-expanded="false" aria-controls="ptxt-5" hidden>Læs mere</button></div></li><li class="pslide" id="case-6" aria-label="Case 6 af 6"><img class="pimg" src="/img/fotos/cykelsti-traeraekke.webp" alt="Trærække af østrigsk fyr langs en cykelsti med revner i asfalten og et gravehul i rabatten" loading="lazy" width="170" height="227"><div style="min-width:0"><div class="meta">Fig. 06 · Træer ved anlæg · Rodzone</div><h3>Bevaring af træer ved omlægning af cykelsti</h3><p class="ptxt" id="ptxt-6">Rødderne fra en trærække af østrigsk fyr havde revnet en cykelsti, og kommunen ville vide, om træerne kunne bevares, når stien skulle lægges om. Vi gravede jordprofiler langs stien for at se, hvor dybt og hvor bredt rødderne går, vurderede jordens struktur og iltforhold og registrerede mykorrhizasvampe som tegn på rodnettets udbredelse. På den baggrund skitserede vi en rodvenlig opbygning af stien, så belægningen kan fornyes uden at grave i træernes rodzone.</p><button type="button" class="pmore" aria-expanded="false" aria-controls="ptxt-6" hidden>Læs mere</button></div></li></ul>
-  </div>
-</section>
-
-<!-- 7 · METODER -->
-<section id="metoder" class="section methods">
-  <div class="wrap grid">
-    <div>
-      <div class="lbl light">Målemetoder &amp; teknologi</div>
-      <h2 class="h2 light">Non-destruktive <em>metoder</em></h2>
-      <p style="margin:16px 0 22px">SkovByKon er den eneste rådgiver i Danmark der kan udføre både impulstomografi (rådscanning) og resistografmåling. Alle metoder er evidensbaserede og forankret i international praksis.</p>
-      <a class="btn btn-light" href="#lib-metoder">Metoder i biblioteket →</a>
-    </div>
-    <ul class="mlist"><li><a class="mrow" href="/metoder/arbotom-impulstomografi.html"><span class="mn">01</span><span class="mt">Arbotom impulstomografi (ITS)</span></a></li><li><a class="mrow" href="/metoder/resistograf.html"><span class="mn">02</span><span class="mt">Resistograf boremåling (RESI)</span></a></li><li><a class="mrow" href="/metoder/rodkortlaegning.html#magnetisk-resonans-rodsoegning-mrr"><span class="mn">03</span><span class="mt">Magnet Resonans Rodsøgning (MRR)</span></a></li><li><a class="mrow" href="/metoder/rodkortlaegning.html#impuls-tomografisk-rodsoegning-itr"><span class="mn">04</span><span class="mt">Impulstomografisk rodkortlægning (ITR)</span></a></li><li><a class="mrow" href="/metoder/monitering.html"><span class="mn">05</span><span class="mt">Monitering af stamme- og rodvækst</span></a></li><li><a class="mrow" href="/metoder/aarringe-vitalitet.html"><span class="mn">06</span><span class="mt">Årringeanalyse og vitalitetsvurdering</span></a></li><li><a class="mrow" href="/metoder/jordkomprimering.html"><span class="mn">07</span><span class="mt">Jordkomprimeringsmåling</span></a></li><li><a class="mrow" href="/metoder/drone.html"><span class="mn">08</span><span class="mt">Droneflyvning – video og fotoanalyse</span></a></li></ul>
-  </div>
-</section>
-
-<!-- 8 · BIBLIOTEK -->
-<section id="bibliotek" class="section bg-parch">
-  <div class="wrap">
-    <div class="lbl">Bibliotek</div>
-    <h2 class="h2">Viden og <em>formidling</em></h2>
-    <p class="lib-intro">7 fagbøger, 60+ fagartikler og videnskabelige publikationer. Frit tilgængeligt materiale fra vores forskning og feltarbejde – klik på en kategori for at se indholdet.</p>
-    <div class="tabs" role="tablist" aria-label="Bibliotekets afdelinger">
-      <button type="button" class="tabbtn" role="tab" id="tab-artikler" aria-controls="artikler" aria-selected="true">Artikler · 68</button>
-      <button type="button" class="tabbtn" role="tab" id="tab-boeger" aria-controls="boeger" aria-selected="false" tabindex="-1">Bøger · 7</button>
-      <button type="button" class="tabbtn" role="tab" id="tab-metoder" aria-controls="lib-metoder" aria-selected="false" tabindex="-1">Metoder · 11</button>
-      <button type="button" class="tabbtn" role="tab" id="tab-standarder" aria-controls="standarder" aria-selected="false" tabindex="-1">Standarder &amp; retningslinjer · 13</button>
-    </div>
-    <div id="artikler" role="tabpanel" aria-labelledby="tab-artikler"><div class="cols2"><div class="colstack"><details class="cat"><summary><h3>Risikotræer &amp; biodiversitet</h3><span class="cnt">7</span><span class="tg" aria-hidden="true">+</span></summary><a class="li" href="/pdf/Undersoegelsesmetoder_Skovbykon.pdf" target="_blank" rel="noopener"><span>Metoder til undersøgelse af stamme og rødder</span><span class="ty">PDF</span></a><a class="li" href="/pdf/Undersoegelse_af_gl_bevaringsvaerdigt_trae.pdf" target="_blank" rel="noopener"><span>Eksempel: undersøgelse af bevaringsværdigt men potentielt farligt træ</span><span class="ty">PDF</span></a><a class="li" href="/pdf/Traers_ontogenetiske_aeldelse.pdf" target="_blank" rel="noopener"><span>Generelle ontogenetiske ældelsesmekanismer</span><span class="ty">PDF</span></a><a class="li" href="/pdf/Revitalisering_af_bytraeer_ved_daarlig_vaekstjord.pdf" target="_blank" rel="noopener"><span>Revitalisering af bytræer via jorden</span><span class="ty">PDF</span></a><a class="li" href="/pdf/Biodiversitet_versus_risikotrae_vurdering.pdf" target="_blank" rel="noopener"><span>Veterantræer – dødt ved og biodiversitet i bytræer</span><span class="ty">PDF</span></a><a class="li" href="/pdf/GM_gamle_traer_veterantraeer24.pdf" target="_blank" rel="noopener"><span>Hvorfor har gamle træer en værdi som er større end 10.000 nyplantede?</span><span class="ty">PDF</span></a><a class="li" href="/pdf/Ivenach_ege.pdf" target="_blank" rel="noopener"><span>Verdens største stilkeg – Ivenach-egene: hvordan bevares gamle træer?</span><span class="ty">PDF</span></a></details><details class="cat"><summary><h3>Bytræforvaltning – inspiration</h3><span class="cnt">8</span><span class="tg" aria-hidden="true">+</span></summary><a class="li" href="/pdf/Betydningen_af_bytraeer_og_fagligheden_Amsterdam_Kina.pdf" target="_blank" rel="noopener"><span>Holdninger til bytræer og certificering – Amsterdam og Kina</span><span class="ty">PDF</span></a><a class="li" href="/pdf/Gront_Miljo_Berlin.pdf" target="_blank" rel="noopener"><span>Inspiration til god bytræforvaltning fra Berlin</span><span class="ty">PDF</span></a><a class="li" href="/pdf/GM_Stockholm_makadam.pdf" target="_blank" rel="noopener"><span>Inspiration til god bytræforvaltning fra Stockholm</span><span class="ty">PDF</span></a><a class="li" href="/pdf/GM_Nyt_fra_Augsburger_Baumpflegetage.pdf" target="_blank" rel="noopener"><span>Nyt fra Augsburger Baumpflegetage 2014</span><span class="ty">PDF</span></a><a class="li" href="/pdf/rodartikel8_hvordanbedrebytraer.pdf" target="_blank" rel="noopener"><span>Hvordan kan vi blive bedre til at forvalte træerne og deres rødder?</span><span class="ty">PDF</span></a><a class="li" href="/pdf/GM_holland.pdf" target="_blank" rel="noopener"><span>Træpleje, LAR, grønne tage – erfaringer fra Holland 2014</span><span class="ty">PDF</span></a><a class="li" href="/pdf/EAC_DFT_artikel2017.pdf" target="_blank" rel="noopener"><span>Arbejdet i EAC og Dansk Træplejeforening</span><span class="ty">PDF</span></a><a class="li" href="/pdf/GMmoskva2.pdf" target="_blank" rel="noopener"><span>By- og parktræer i Moskva – en rejseberetning</span><span class="ty">PDF</span></a></details><details class="cat" open><summary><h3>Beskæring, bark-, rod- og grensår</h3><span class="cnt">8</span><span class="ny" style="margin-left:0">2 nye</span><span class="tg" aria-hidden="true">+</span></summary><a class="li" href="/pdf/Problemgrene_og_barkspor_2026.pdf" target="_blank" rel="noopener"><span>Problemgrenene skal fjernes med det samme – barkspor og koblingsstyrke<span class="ny">Ny</span></span><span class="ty">PDF</span></a><a class="li" href="/pdf/Det_optimale_beskaeringstidspunkt.pdf" target="_blank" rel="noopener"><span>Optimalt tidspunkt på året for beskæring af tykke grene<span class="ny">Ny</span></span><span class="ty">PDF</span></a><a class="li" href="/pdf/2_trins_beskaering_biologi.pdf" target="_blank" rel="noopener"><span>Beskæringens biologi ved tykke grene</span><span class="ty">PDF</span></a><a class="li" href="/pdf/2_trins_beskaering_tykke_grene_metoder.pdf" target="_blank" rel="noopener"><span>Beskæring af tykke grene – 2-trins beskæringer</span><span class="ty">PDF</span></a><a class="li" href="/pdf/saaring1.pdf" target="_blank" rel="noopener"><span>Shigos indkapslingsteori og dens begrænsninger</span><span class="ty">PDF</span></a><a class="li" href="/pdf/saaring2.pdf" target="_blank" rel="noopener"><span>Beskæring af grene er en &quot;såring&quot;</span><span class="ty">PDF</span></a><a class="li" href="/pdf/saaring3.pdf" target="_blank" rel="noopener"><span>Betydningen af kallusdannelse omkring sårene</span><span class="ty">PDF</span></a><a class="li" href="/pdf/GMplaster.pdf" target="_blank" rel="noopener"><span>Barksår på stammer og fladekallus</span><span class="ty">PDF</span></a></details><details class="cat"><summary><h3>Bytræers rødder</h3><span class="cnt">14</span><span class="tg" aria-hidden="true">+</span></summary><a class="li" href="/pdf/Roedder_og_renovering_af_fortove_og_belaegninger.pdf" target="_blank" rel="noopener"><span>Gravning omkring træer og renovering af belægninger</span><span class="ty">PDF</span></a><a class="li" href="/pdf/Roedder_og_asfalt_og_belaegning.pdf" target="_blank" rel="noopener"><span>Hvorfor løfter rødder asfalten og hvad kan vi gøre?</span><span class="ty">PDF</span></a><a class="li" href="/pdf/poplers_roedder_2020.pdf" target="_blank" rel="noopener"><span>Poplers rodsystemer – store forskelle mellem slægtsgrupper</span><span class="ty">PDF</span></a><a class="li" href="/pdf/rodartikel1.pdf" target="_blank" rel="noopener"><span>Hvorfor er viden om træers rødder vigtig i bytræforvaltningen?</span><span class="ty">PDF</span></a><a class="li" href="/pdf/rodartikel2.pdf" target="_blank" rel="noopener"><span>Røddernes funktioner og træets forankring</span><span class="ty">PDF</span></a><a class="li" href="/pdf/rodartikel3.pdf" target="_blank" rel="noopener"><span>Genetik og miljø: Hjerterod, Pælerod og Skiverod</span><span class="ty">PDF</span></a><a class="li" href="/pdf/bytrae_substrater.pdf" target="_blank" rel="noopener"><span>Bytræers nødvendige rodrum og bytræ-substrater</span><span class="ty">PDF</span></a><a class="li" href="/pdf/rodartikel4_froefelt.pdf" target="_blank" rel="noopener"><span>Træernes skjulte halvdel IV: Rodens udvikling fra frø til felt 1</span><span class="ty">PDF</span></a><a class="li" href="/pdf/rodartikel5_froefelt.pdf" target="_blank" rel="noopener"><span>Træernes skjulte halvdel V: Rodens udvikling fra frø til felt 2</span><span class="ty">PDF</span></a><a class="li" href="/pdf/rodartikel6_langsigtede_udvikling1.pdf" target="_blank" rel="noopener"><span>Træernes skjulte halvdel VI: Rodens langsigtede udvikling 1</span><span class="ty">PDF</span></a><a class="li" href="/pdf/rodartikel7_langsigtede_udvikling2.pdf" target="_blank" rel="noopener"><span>Træernes skjulte halvdel VII: Rodens langsigtede udvikling 2</span><span class="ty">PDF</span></a><a class="li" href="/pdf/rod_poppel_asp.pdf" target="_blank" rel="noopener"><span>Roden hos poppel og asp</span><span class="ty">PDF</span></a><a class="li" href="/pdf/Raadbarrierer_i_saaret_rod.pdf" target="_blank" rel="noopener"><span>Overfladiske rodsår er ret harmløse</span><span class="ty">PDF</span></a><a class="li" href="/pdf/Landscape_Below_Ground_CNN_paper.pdf" target="_blank" rel="noopener"><span>A Comparison of Sinker Root Development in Urban and Forest Trees (engelsk)</span><span class="ty">PDF</span></a></details><details class="cat"><summary><h3>Stormstabilitet og ældelse</h3><span class="cnt">10</span><span class="tg" aria-hidden="true">+</span></summary><a class="li" href="/pdf/Traers_stormstabilitet_urbant_miljoe.pdf" target="_blank" rel="noopener"><span>Træers stormstabilitet i byens plantegruber</span><span class="ty">PDF</span></a><a class="li" href="/pdf/Maaling_af_Rodkageloesning_Skoven_3-11.pdf" target="_blank" rel="noopener"><span>Hvordan måles om træers forankring er løsnet?</span><span class="ty">PDF</span></a><a class="li" href="/pdf/Forankringen_er_loes_Skoven_3-11.pdf" target="_blank" rel="noopener"><span>Skovtræers forankring før og efter en storm</span><span class="ty">PDF</span></a><a class="li" href="/pdf/Laer_at_laese_stormstabilitet.pdf" target="_blank" rel="noopener"><span>Lær at læse bevoksningens stormstabilitet</span><span class="ty">PDF</span></a><a class="li" href="/pdf/Maale_rodsystem_skader_traekmetoden.pdf" target="_blank" rel="noopener"><span>Træk i træet og se hvad det duer til – trækmålinger af stabilitet</span><span class="ty">PDF</span></a><a class="li" href="/pdf/traekmetode_maaling_af_roedder_notat_SkovByKon.pdf" target="_blank" rel="noopener"><span>Trækmåling på træer: kan rådne eller ødelagte rødder måles?</span><span class="ty">PDF</span></a><a class="li" href="/pdf/rodkageloesning_groent_miljoe.pdf" target="_blank" rel="noopener"><span>Den løse rodkage</span><span class="ty">PDF</span></a><a class="li" href="/pdf/vejtraer_stormstabilitet_doedsfald_i_Tyskland.pdf" target="_blank" rel="noopener"><span>Bred og dyb plantegrube forebygger farlige træfald</span><span class="ty">PDF</span></a><a class="li" href="/pdf/Reddet_platan_Vejle_kunstig_forankring.pdf" target="_blank" rel="noopener"><span>Platanen på Kirkepladsen i Vejle blev reddet med kunstig forankring</span><span class="ty">PDF</span></a><a class="li" href="/pdf/Traeer_og_vind_-_Christian_Noergård_Nielsen_-_Skovbykon.pdf" target="_blank" rel="noopener"><span>Træer og vind: mønstre i stormene 2013 i park- og bymiljø</span><span class="ty">PDF</span></a></details></div><div class="colstack"><details class="cat"><summary><h3>Skovrejsning og skovplanter</h3><span class="cnt">3</span><span class="tg" aria-hidden="true">+</span></summary><a class="li" href="/pdf/Fejl_i_skovrejsning_Skoven_8-12.pdf" target="_blank" rel="noopener"><span>Hyppig fejl i skovrejsningskulturer: alt for intime blandinger</span><span class="ty">PDF</span></a><a class="li" href="/pdf/Effektiv_skovrejsning_Skoven_8-12.pdf" target="_blank" rel="noopener"><span>Effektive og plejelette skovrejsningskulturer</span><span class="ty">PDF</span></a><a class="li" href="/pdf/Kultur_etablering_proveniens_plantestoerrelse_plantekvalitet_plantetid.pdf" target="_blank" rel="noopener"><span>Etablering af skovkulturer: plantetid, plantekvalitet, plantestørrelse, proveniens</span><span class="ty">PDF</span></a></details><details class="cat"><summary><h3>Træers ældelse og degeneration</h3><span class="cnt">4</span><span class="tg" aria-hidden="true">+</span></summary><a class="li" href="/pdf/Notat_1_Forstaaelsen_for_traeers_naturlige_aeldelse_og_degeneration_med_udgangspunkt_i_skovmiljoeet.pdf" target="_blank" rel="noopener"><span>Notat 1: Forståelsen for træers naturlige ældelse og degeneration</span><span class="ty">PDF</span></a><a class="li" href="/pdf/Notat_2_Degenerationsmodellen_generel.pdf" target="_blank" rel="noopener"><span>Notat 2: Træers generelle ældelses- og degenerationsmekanismer</span><span class="ty">PDF</span></a><a class="li" href="/pdf/Notat_3_Traeers_Aeldelse_forskellige_miljoeer_og_modvirkning.pdf" target="_blank" rel="noopener"><span>Notat 3: Degenerationsmekanismer i forskellige miljøer – og hvordan vi modvirker dem</span><span class="ty">PDF</span></a><a class="li" href="/pdf/Baumdegeneration.pdf" target="_blank" rel="noopener"><span>Alterungs- und Degenerationsmechanismen bei Wald- und Landschaftsbäumen (tysk)</span><span class="ty">PDF</span></a></details><details class="cat"><summary><h3>Revitalisering af træer</h3><span class="cnt">3</span><span class="tg" aria-hidden="true">+</span></summary><a class="li" href="/pdf/chapter2_revitalisation3_dansk3.pdf" target="_blank" rel="noopener"><span>Proces ved revitalisering af træer</span><span class="ty">PDF</span></a><a class="li" href="/pdf/Revitalisaion_of_trees_theory_SkovByKon.pdf" target="_blank" rel="noopener"><span>Tree revitalization – theory (engelsk)</span><span class="ty">PDF</span></a><a class="li" href="/pdf/Tree_Site_Improvement_techniques_SkovByKon.pdf" target="_blank" rel="noopener"><span>Tree site improvement and remedial measures (engelsk)</span><span class="ty">PDF</span></a></details><details class="cat"><summary><h3>Vand, tørke og klima</h3><span class="cnt">4</span><span class="tg" aria-hidden="true">+</span></summary><a class="li" href="/pdf/Bytraeer_og_Vand_Skovbykon_CNN.pdf" target="_blank" rel="noopener"><span>“Stormwater” og træers rødder</span><span class="ty">PDF</span></a><a class="li" href="/pdf/GMvandet.pdf" target="_blank" rel="noopener"><span>Vandets veje op gennem træet</span><span class="ty">PDF</span></a><a class="li" href="/pdf/Toerke_Blomstring_Bytraeer.pdf" target="_blank" rel="noopener"><span>Det vilde udspring: tørke og voldsom blomstring</span><span class="ty">PDF</span></a><a class="li" href="/pdf/Blomstring_foraar2019_Skoven_5-19.pdf" target="_blank" rel="noopener"><span>Voldsom blomstring efter 2018-tørken</span><span class="ty">PDF</span></a></details><details class="cat"><summary><h3>Plantning, anlæg og vækstmedier</h3><span class="cnt">7</span><span class="ny" style="margin-left:0">1 ny</span><span class="tg" aria-hidden="true">+</span></summary><a class="li" href="/pdf/Plantning_af_containertraer.pdf" target="_blank" rel="noopener"><span>Pottens klump snittes og klippes – plantning af containertræer</span><span class="ty">PDF</span></a><a class="li" href="/pdf/plantning_af_containertraeer2.pdf" target="_blank" rel="noopener"><span>Ud med rodknæ og rodsnøre</span><span class="ty">PDF</span></a><a class="li" href="/pdf/Opbygningsbeskaering_26.pdf" target="_blank" rel="noopener"><span>Den permanente og temporære krone – opbygningsbeskæring<span class="ny">Ny</span></span><span class="ty">PDF</span></a><a class="li" href="/pdf/KgsNytorv_rapport_makadam.pdf" target="_blank" rel="noopener"><span>Evaluering af træplantningen på Kongens Nytorv, Københavns Kommune</span><span class="ty">PDF</span></a><a class="li" href="/pdf/Makadam_i_Danmark.pdf" target="_blank" rel="noopener"><span>Wurzelwachstum in der Tragschicht: overbyggelige bytræsubstrater i Danmark (tysk/engelsk)</span><span class="ty">PDF</span></a><a class="li" href="/pdf/kirkegaarde_traepleje_SkovByKon.pdf" target="_blank" rel="noopener"><span>Træer og deres rødder på kirkegårde</span><span class="ty">PDF</span></a><a class="li" href="/pdf/SkovByKon_koncept_traebeskyttelse_byggearbejder2.pdf" target="_blank" rel="noopener"><span>Træbeskyttelsesplan ved anlægs-, bygge- og nedrivningsarbejder</span><span class="ty">PDF</span></a></details></div></div></div>
-    <div id="boeger" role="tabpanel" aria-labelledby="tab-boeger" hidden><div class="books"><a class="book" href="/boeger.html#haandbog-skovrejsning"><img src="/img/boeger/haandbog-skovrejsning.jpg" alt="Omslag: Håndbog i Skovrejsning" loading="lazy" height="170"><div class="tg2">Skovrejsning · 2012</div><h3>Håndbog i Skovrejsning</h3><p>Resultat af 2 års arbejde med feltstudier af 62 bevoksninger. Kulturmetodikker, blandingsmønstre: enkelttrævis, rækkevis, kulissevis, parcelvis og holmevis blanding.</p><span class="go">Se bogen →</span></a><a class="book" href="/boeger.html#landskabets-skjulte-muligheder"><img src="/img/boeger/landskabets-skjulte-muligheder.jpg" alt="Omslag: Landskabets skjulte muligheder" loading="lazy" height="170"><div class="tg2">Landskab · 2016</div><h3>Landskabets skjulte muligheder</h3><p>Håndbog og opslagsværk om landskabs- og naturplanlægning i skov og skovrejsninger. Naturpleje, lysåbne naturtyper, vildtpleje, skovbryn, vandmiljøer, bækløb, søer og damme.</p><span class="go">Se bogen →</span></a><a class="book" href="/boeger.html#case-ejendomme"><img src="/img/boeger/case-ejendomme.jpg" alt="Omslag: 15 Case-ejendomme – Herlighedsværdier" loading="lazy" height="170"><div class="tg2">Cases · 2016</div><h3>15 Case-ejendomme – Herlighedsværdier</h3><p>Herlighedsværdi-analyser fra 15 case-ejendomme. Supplement til &quot;Landskabets skjulte muligheder&quot;.</p><span class="go">Se bogen →</span></a><a class="book" href="/boeger.html#traeer-i-byen"><img src="/img/boeger/traeer-i-byen.jpg" alt="Omslag: Træer i byen – god forvaltning" loading="lazy" height="170"><div class="tg2">Bytræer · 2. udgave</div><h3>Træer i byen – god forvaltning</h3><p>Checkliste og guide til god forvaltning af bytræer. Kraftigt udvidet 2. udgave.</p><span class="go">Se bogen →</span></a><a class="book" href="/boeger.html#naturnaer-skovdrift"><img src="/img/boeger/naturnaer-skovdrift.jpg" alt="Omslag: Bæredygtig Skovdrift / Naturnær skovdrift" loading="lazy" height="170"><div class="tg2">Skovforvaltning · 2009</div><h3>Bæredygtig Skovdrift / Naturnær skovdrift</h3><p>Debatbog med kapitler om skovforvaltning og driftsformer. Indeholder flere grundlæggende faglige gennemgange.</p><span class="go">Se bogen →</span></a><a class="book" href="/boeger.html#stormskader"><img src="/img/boeger/stormskader.jpg" alt="Omslag: Forebyggelse af stormskader" loading="lazy" height="170"><div class="tg2">Storm</div><h3>Forebyggelse af stormskader</h3><p>Vejledning i hvordan stormskader forebygges i skove. Herunder artiklen &quot;Lær at læse bevoksningens stormstabilitet&quot;.</p><span class="go">Se bogen →</span></a><a class="book" href="/boeger.html#doktorafhandling"><img src="/img/boeger/doktorafhandling.jpg" alt="Omslag: Doktorafhandling om stormstabilitet" loading="lazy" height="170"><div class="tg2">Doktorafhandling</div><h3>Doktorafhandling om stormstabilitet</h3><p>Christian Nørgård Nielsens doktorafhandling om skovtræers stormstabilitet. Det videnskabelige fundament bag en stor del af vores rådgivning.</p><span class="go">Se bogen →</span></a></div></div>
-    <div id="lib-metoder" role="tabpanel" aria-labelledby="tab-metoder" hidden><div style="max-width:860px" class="colstack"><details class="cat" open><summary><h3>Metoder til undersøgelse af stammen</h3><span class="cnt">5</span><span class="tg" aria-hidden="true">+</span></summary><a class="li" href="/metoder/arbotom-impulstomografi.html"><span>Impulstomografi af stammens indre (ITS) – rådscanning</span><span class="ty">Læs mere →</span></a><a class="li" href="/metoder/resistograf.html"><span>Resistograf måling – stamme og rødder (RESI)</span><span class="ty">Læs mere →</span></a><a class="li" href="/metoder/hule-stammer.html"><span>Hule stammer – vurdering og håndtering</span><span class="ty">Læs mere →</span></a><a class="li" href="/metoder/aarringe-vitalitet.html"><span>Måling af årringe og træets vitalitet</span><span class="ty">Læs mere →</span></a><a class="li" href="/metoder/monitering.html"><span>Monitering af stamme- og rodvækst</span><span class="ty">Læs mere →</span></a></details><details class="cat"><summary><h3>Non-destruktiv rodkortlægning</h3><span class="cnt">3</span><span class="tg" aria-hidden="true">+</span></summary><a class="li" href="/metoder/rodkortlaegning.html#magnetisk-resonans-rodsoegning-mrr"><span>Magnet Resonans Rodsøgning (MRR)</span><span class="ty">Læs mere →</span></a><a class="li" href="/metoder/rodkortlaegning.html#impuls-tomografisk-rodsoegning-itr"><span>Impulstomografisk rodkortlægning (ITR)</span><span class="ty">Læs mere →</span></a><a class="li" href="/metoder/artsbestemmelse-roedder.html"><span>Mikroskopisk / Makroskopisk artsbestemmelse af rødder (MMAR)</span><span class="ty">Læs mere →</span></a></details><details class="cat"><summary><h3>Øvrige metoder</h3><span class="cnt">3</span><span class="tg" aria-hidden="true">+</span></summary><a class="li" href="/metoder/jordkomprimering.html"><span>Jordkomprimering – måling i rodzonen</span><span class="ty">Læs mere →</span></a><a class="li" href="/metoder/drone.html"><span>Video/foto fra droneflyvning</span><span class="ty">Læs mere →</span></a><a class="li" href="/metoder/acceptabel-risiko.html"><span>Hvor stor risiko skal vi acceptere?</span><span class="ty">Læs mere →</span></a></details></div></div>
-    <div id="standarder" role="tabpanel" aria-labelledby="tab-standarder" hidden><div class="cols2"><div class="colstack"><details class="cat"><summary><h3>Internationale retningslinjer for træbeskyttelse ved byggeri</h3><span class="cnt">3</span><span class="tg" aria-hidden="true">+</span></summary><a class="li" href="/pdf/Standard-for-skyddande-av-traed-2018-02-07.pdf" target="_blank" rel="noopener"><span>Sverige – Standard for skyddande av träd</span><span class="ty">PDF</span></a><a class="li" href="/pdf/polsk_standard_ID_Ochrona_drzew_wpi_EN.pdf" target="_blank" rel="noopener"><span>Polen – Ochrona drzew (EN)</span><span class="ty">PDF</span></a><a class="li" href="/pdf/Holland_bog_Beschermen_van_bomen_Voorschrifte.pdf" target="_blank" rel="noopener"><span>Holland – Beschermen van bomen</span><span class="ty">PDF</span></a></details><details class="cat"><summary><h3>Brochurer og CV</h3><span class="cnt">4</span><span class="tg" aria-hidden="true">+</span></summary><a class="li" href="/pdf/Farlige_traeer_flyer.pdf" target="_blank" rel="noopener"><span>Brochure: Undersøgelse af risikotræer og bevaringsværdige træer</span><span class="ty">PDF</span></a><a class="li" href="/pdf/CNN_CV_dk9.pdf" target="_blank" rel="noopener"><span>Kort CV om SkovByKon og CNN</span><span class="ty">PDF</span></a><a class="li" href="/pdf/Certificering_ETT_GM_6_21.pdf" target="_blank" rel="noopener"><span>Certificering som European Tree Technician (ETT)</span><span class="ty">PDF</span></a><a class="li" href="/metoder/eac-standarder.html"><span>EAC standarder til træpleje</span><span class="ty">Læs mere →</span></a></details></div><div class="colstack"><details class="cat"><summary><h3>Videnskabelige publikationer</h3><span class="cnt">3</span><span class="tg" aria-hidden="true">+</span></summary><a class="li" href="/pdf/Scientific_CV_CNN.pdf" target="_blank" rel="noopener"><span>Videnskabeligt CV – Christian Nørgård Nielsen</span><span class="ty">PDF</span></a><a class="li" href="/pdf/publikationsliste2012.pdf" target="_blank" rel="noopener"><span>Komplet publikationsliste</span><span class="ty">PDF</span></a><a class="li" href="/pdf/Fungi_summary2.pdf" target="_blank" rel="noopener"><span>Farlige svampe – oversigt</span><span class="ty">PDF</span></a></details><details class="cat"><summary><h3>Udgivelser – Jens Elvin Lindgaard</h3><span class="cnt">3</span><span class="tg" aria-hidden="true">+</span></summary><p class="cat-note">Jens Elvin Lindgaard er medforfatter på de tre udgivelser herunder. Alle tre er udarbejdet forud for hans indtræden i SkovByKon: de to publikationer i hans tid hos Habitats ApS, hvor referencen tilhører Habitats, og artiklen i det videnskabelige tidsskrift People and Nature. SkovByKon har en bred kreds af samarbejdspartnere, der kan aktiveres i den enkelte opgave – Habitats er en af dem.</p><a class="li" href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1002/pan3.10450" target="_blank" rel="noopener"><span>Gardening for wildlife: A mixed-methods exploration of the factors underlying engagement in wildlife-friendly gardening – People and Nature, 5(2), 808–825 (2023)</span><span class="ty">Artikel</span></a><a class="li" href="https://pub.norden.org/temanord2022-543/" target="_blank" rel="noopener"><span>Multifunctional Ecosystem Restoration in the Nordic countries – Nordisk Ministerråd, TemaNord 2022:543</span><span class="ty">Rapport</span></a><a class="li" href="https://www.habitats.dk/publikation_biodiversitet-og-byudvikling-2" target="_blank" rel="noopener"><span>Biodiversitet i byggeri og byudvikling – Habitats ApS og ConTech Lab, støttet af Realdania</span><span class="ty">Publikation</span></a></details></div></div></div>
+    <ul class="ptrack" aria-label="Cases"><li class="pslide" id="case-1" aria-label="Case 1 af 6"><img class="pimg" src="/img/fotos/blodboeg-resistograf.webp" alt="Anders Tærø Nielsen måler med resistograf på blodbøgen i Kongens Have" loading="lazy" width="170" height="227"><div style="min-width:0"><div class="meta">Risikotræer · Odense Kommune</div><h3>Blodbøgen i Kongens Have</h3><p class="ptxt" id="ptxt-1">Odense Kommune bad os om en uafhængig vurdering af rådudbredelse, sundhed og stabilitet af den gamle blodbøg i Kongens Have – et af parkens mest markante træer. Vi kombinerede visuel vurdering af krone og stamme, dronefoto, nedstikssonde, resistografmålinger, impulstomografi og en biomekanisk stabilitetsberegning. Når et træ er angrebet af svamp, kan ingen enkelt måling stå alene. Resultaterne skal læses sammen, metode for metode, før de kan bruges som beslutningsgrundlag – en opgave, der krævede et højt fagligt detaljeniveau.</p><button type="button" class="pmore" aria-expanded="false" aria-controls="ptxt-1" hidden>Læs mere</button></div></li><li class="pslide" id="case-2" aria-label="Case 2 af 6"><img class="pimg" src="/img/fotos/risikotrae-stefansgade.webp" alt="Risikotræ i gadeprofil på Stefansgade, Nørrebro" loading="lazy" width="170" height="227"><div style="min-width:0"><div class="meta">Risikotræer · Københavns Kommune</div><h3>Risikotræer i byrum og parker</h3><p class="ptxt" id="ptxt-2">Risikovurdering og beskyttelsesplaner for kommuner og bygherrer i byrum, parker og haver. Vi kombinerer visuel inspektion med rådscanning og resistografmåling, så beslutninger om fældning, beskæring eller bevaring hviler på et solidt fagligt grundlag frem for en forsigtighedsprincip-vurdering. For Københavns Kommune har opgaven omfattet gennemgang af udsatte bestande langs veje og i parkanlæg, med prioriterede handlingsplaner der balancerer sikkerhed, økonomi og bevaring af værdifulde, ældre træer. Rapporterne bruges direkte i kommunens drifts- og vedligeholdelsesplanlægning.</p><button type="button" class="pmore" aria-expanded="false" aria-controls="ptxt-2" hidden>Læs mere</button></div></li><li class="pslide" id="case-3" aria-label="Case 3 af 6"><img class="pimg" src="/img/fotos/skovforvaltning-skotland.webp" alt="Ung blandingskultur med skotske højdedrag i baggrunden" loading="lazy" width="170" height="227"><div style="min-width:0"><div class="meta">Skovforvaltning · Privat skovejer</div><h3>Blandingsskov i skotske højdedrag</h3><p class="ptxt" id="ptxt-3">Design af skovforvaltningsprojekter med fokus på blandingsmønstre, herlighedsværdier og langsigtet naturudvikling. Arbejdet i Skotland har taget udgangspunkt i lokale jordbunds- og klimaforhold og er udmøntet i kulturmodeller, der kombinerer produktionstræer med lysåbne partier og naturlig foryngelse. Målet er skove der både er driftsøkonomisk robuste og rige på biologisk mangfoldighed – med opmærksomhed på stormstabilitet, vildtpleje og rekreativ værdi gennem hele omdriften.</p><button type="button" class="pmore" aria-expanded="false" aria-controls="ptxt-3" hidden>Læs mere</button></div></li><li class="pslide" id="case-4" aria-label="Case 4 af 6"><img class="pimg" src="/img/fotos/piletrae-case.webp" alt="Piletræet i Rødovre Rådhuspark under undersøgelse" loading="lazy" width="170" height="227"><div style="min-width:0"><div class="meta">Bytræforvaltning · Rødovre Kommune</div><h3>Bevaring af piletræet i Rådhusparken</h3><p class="ptxt" id="ptxt-4">Rådgivning til kommunale forvaltninger om træpleje, risikohåndtering og planlægning af grønne arealer. Et centralt eksempel er træerne foran Rådhusets park i Rødovre, tegnet af Arne Jacobsen – et anlæg hvor arkitektonisk værdi og træernes sundhedstilstand skal forvaltes side om side. Rådgivningen omfatter både den enkelte plejeindsats og de langsigtede driftsplaner, der sikrer at parkens karakter bevares for kommende generationer.</p><button type="button" class="pmore" aria-expanded="false" aria-controls="ptxt-4" hidden>Læs mere</button></div></li><li class="pslide" id="case-5" aria-label="Case 5 af 6"><div class="pimg chart"><img src="/img/grafik/emissionskoefficienter-biomasse.png" alt="Søjlediagram over emissionskoefficienter for biomasse over tid, sammenholdt med kul og naturgas" loading="lazy"></div><div style="min-width:0"><div class="meta">Klima og CO<sub>2</sub> · Energistyrelsen</div><h3>Global afrapportering af CO<sub>2</sub> fra biomasse</h3><p class="ptxt" id="ptxt-5">SkovByKon har beregnet CO<sub>2</sub>-udledningerne fra træbiomasse til fjernvarme, el og private husholdninger for Energistyrelsen i årrækken 2021–2025. Rapporterne indgår i Energistyrelsens Globale Afrapportering. Analysen viser dynamikkerne i CO<sub>2</sub>-udledningerne fra et års forbrug af biomasse til energi 100 år frem. Metoden regner både direkte udledninger fra værker, udledninger fra hele forsyningskæden og de indirekte effekter (iLUC og iWUC) med. I 2023 brugte forsyningssektoren 75,5 PJ biomasse, og husholdningerne brugte 25,2 PJ. Efter 60–82 år er kun 1 % af de biogene udledninger tilbage i atmosfæren. Det afgørende for, at rapportens CO<sub>2</sub>-udledninger er gældende, er, om biomassen reelt er et restprodukt. Københavns Universitet har kvalitetssikret rapporterne, og resultaterne har efter 4 genberegninger vist sig robuste.</p><button type="button" class="pmore" aria-expanded="false" aria-controls="ptxt-5" hidden>Læs mere</button></div></li><li class="pslide" id="case-6" aria-label="Case 6 af 6"><img class="pimg" src="/img/fotos/cykelsti-traeraekke.webp" alt="Trærække af østrigsk fyr langs en cykelsti med revner i asfalten og et gravehul i rabatten" loading="lazy" width="170" height="227"><div style="min-width:0"><div class="meta">Træer ved anlæg · Vejle Kommune</div><h3>Bevaring af træer ved omlægning af cykelsti</h3><p class="ptxt" id="ptxt-6">Rødderne fra en trærække af østrigsk fyr havde revnet en cykelsti, og kommunen ville vide, om træerne kunne bevares, når stien skulle lægges om. Vi gravede jordprofiler langs stien for at se, hvor dybt og hvor bredt rødderne går, vurderede jordens struktur og iltforhold og registrerede mykorrhizasvampe som tegn på rodnettets udbredelse. På den baggrund skitserede vi en rodvenlig opbygning af stien, så belægningen kan fornyes uden at grave i træernes rodzone.</p><button type="button" class="pmore" aria-expanded="false" aria-controls="ptxt-6" hidden>Læs mere</button></div></li></ul>
   </div>
 </section>
 
@@ -778,7 +854,7 @@ details.kc p{margin:0 6px 16px 100px}
   <div class="wrap">
     <a class="ab" href="/arboretum.html">
       <img src="/img/arboretum/arboretum-status.png" alt="" loading="lazy" width="652" height="428">
-      <span class="ab-t"><span class="lbl">Digitalt værktøj · Arboretum</span><span class="ab-h">App-baseret <em>arealforvaltning</em></span><span class="ab-p">Udviklet af Anders Tærø Nielsen og Peter Skourup. Fra dataindsamling til beslutningsstøtte.</span></span>
+      <span class="ab-t"><span class="ab-h">App-baseret <em>arealforvaltning</em></span><span class="ab-p">Arboretum samler bevoksningsdata, økonomi og rumlig planlægning, så du kan vurdere bevoksninger, optimere driftsøkonomi og rapportere med stor detaljegrad.</span></span>
       <span class="ab-go">Se Arboretum →</span>
     </a>
   </div>
@@ -788,7 +864,6 @@ details.kc p{margin:0 6px 16px 100px}
 <section id="kurser" class="section courses">
   <div class="wrap grid">
     <div>
-      <div class="lbl light">Efteruddannelse</div>
       <h2 class="h2 light">Kurser og <em>workshops</em></h2>
       <p class="intro">Kurserne tilrettelægges efter jeres opgaver og faglige niveau. Skriv, hvad I har brug for.</p>
       <a class="btn btn-light" href="#kontakt">Forespørg på et kursus</a>
@@ -804,9 +879,9 @@ details.kc p{margin:0 6px 16px 100px}
 <!-- 9 · OM OS -->
 <section id="team" class="section bg-parch">
   <div class="wrap">
-    <div class="lbl">Teamet</div>
-    <h2 class="h2" style="margin-bottom:40px">Hvem vi <em>er</em></h2>
-    <div class="team"><article class="member"><img src="/img/team/atn.webp" alt="Anders Tærø Nielsen" loading="lazy" width="400" height="400"><div class="role">Direktør</div><h3>Anders Tærø Nielsen</h3><p>Cand. silv., Ph.D. Tegnende direktør og partner i SkovByKon fra 2024. Leder den daglige rådgivning og feltarbejde.</p><div class="ct">↳ <a href="mailto:atn@skovbykon.dk">atn@skovbykon.dk</a> · <a href="tel:+4561796263">61 79 62 63</a></div></article><article class="member"><img src="/img/team/jel.webp" alt="Jens Elvin Lindgaard" loading="lazy" width="400" height="400"><div class="role">Partner</div><h3>Jens Elvin Lindgaard</h3><p>Partner i SkovByKon. Arbejder med biodiversitetsrådgivning, naturdata og strategisk kommunikation.</p><div class="ct">↳ <a href="mailto:jel@skovbykon.dk">jel@skovbykon.dk</a> · <a href="tel:+4523954210">23 95 42 10</a></div></article><article class="member"><img src="/img/team/cmh.webp" alt="Christian Mørk Hansen" loading="lazy" width="400" height="400"><div class="role">Partner</div><h3>Christian Mørk Hansen</h3><p>Partner i SkovByKon fra 2024. Bidrager til den stærke ekspansion i opgaver og det igangværende generationsskifte.</p><div class="ct">↳ <a href="mailto:cmh@skovbykon.dk">cmh@skovbykon.dk</a></div></article><article class="member"><img src="/img/team/cnn.webp" alt="Christian Nørgård Nielsen" loading="lazy" width="400" height="400"><div class="role">Seniorrådgiver emeritus</div><h3>Christian Nørgård Nielsen</h3><p>Stifter af SkovByKon. Doktorgrad og årtiers erfaring fra Københavns Universitet. Primært fokus på forskning og formidling.</p><div class="ct">↳ 10+ års undervisning i Arboriculture på KU</div></article></div>
+    <h2 class="h2">Hvem er <em>vi</em></h2>
+    <p class="team-intro">SkovByKon er en specialiseret rådgivningsvirksomhed, som blev etableret af Christian Nørgård Nielsen. I dag drives virksomheden af nye kræfter: Anders Tærø Nielsen, Jens Elvin Lindgaard og Christian Mørk Hansen.</p>
+    <div class="team"><article class="member"><img src="/img/team/atn.webp" alt="Anders Tærø Nielsen" loading="lazy" width="400" height="400"><div class="role">Direktør</div><h3>Anders Tærø Nielsen</h3><p>Cand. silv., Ph.D. Tegnende direktør og partner i SkovByKon fra 2024. Leder den daglige rådgivning og feltarbejde.</p><div class="ct">↳ <a href="mailto:atn@skovbykon.dk">atn@skovbykon.dk</a> · <a href="tel:+4561796263">61 79 62 63</a></div></article><article class="member"><img src="/img/team/jel.webp" alt="Jens Elvin Lindgaard" loading="lazy" width="400" height="400"><div class="role">Partner</div><h3>Jens Elvin Lindgaard</h3><p>Partner i SkovByKon. Arbejder med biodiversitetsrådgivning, naturdata og strategisk kommunikation.</p><div class="ct">↳ <a href="mailto:jel@skovbykon.dk">jel@skovbykon.dk</a> · <a href="tel:+4523954210">23 95 42 10</a></div></article><article class="member"><img src="/img/team/cmh.webp" alt="Christian Mørk Hansen" loading="lazy" width="400" height="400"><div class="role">Partner</div><h3>Christian Mørk Hansen</h3><p>Partner i SkovByKon fra 2024. Specialist i skovforvaltning og drift.</p><div class="ct">↳ <a href="mailto:cmh@skovbykon.dk">cmh@skovbykon.dk</a></div></article><article class="member"><img src="/img/team/cnn.webp" alt="Christian Nørgård Nielsen" loading="lazy" width="400" height="400"><div class="role">Seniorrådgiver emeritus</div><h3>Christian Nørgård Nielsen</h3><p>Stifter af SkovByKon. Gået på pension som doktor emeritus. Vi henter hans store erfaring ind i særlige tilfælde.</p><div class="ct">↳ 10+ års undervisning i Arboriculture på KU</div></article></div>
   </div>
 </section>
 
@@ -827,7 +902,7 @@ details.kc p{margin:0 6px 16px 100px}
       <img src="/img/grafik/danmark-omraader.svg" alt="Danmarkskort: Anders Tærø Nielsen dækker Sjælland og øerne, Jens Elvin Lindgaard dækker Jylland og Fyn" loading="lazy" width="550" height="656">
       <span class="pin" style="left:14%;top:42%">JEL · Jylland og Fyn</span>
       <span class="pin" style="left:60%;top:80%">ATN · Sjælland</span>
-      <figcaption>Bornholm<br>(indsat)</figcaption>
+      <figcaption>Bornholm</figcaption>
     </figure>
   </div>
 </section>
@@ -836,8 +911,7 @@ details.kc p{margin:0 6px 16px 100px}
 
 <footer class="site-footer">
   <div class="wrap">
-    <span>SkovByKon ApS · CVR 44742918</span>
-    <a href="tel:+4561796263">61 79 62 63</a>
+    <span>SkovByKon ApS · CVR 44742918 · TLF <a href="tel:+4561796263">61 79 62 63</a></span>
     <span class="fl"><a href="/betingelser.html#etik">Etisk kodeks</a><a href="/betingelser.html#priser">Prisliste</a><a href="/betingelser.html#forretningsbetingelser">Forretningsbetingelser</a></span>
   </div>
 </footer>
@@ -855,6 +929,7 @@ details.kc p{margin:0 6px 16px 100px}
     [700,1400,2400].forEach(function(ms){setTimeout(function(){var t=document.getElementById(id);if(!t||t.hidden)return;var d=off(t);if(Math.abs(d)>3&&Math.abs(d)<600)window.scrollBy({top:d,behavior:'smooth'});},ms);});
   });
   if(location.hash==='#opgaver')location.replace('/kompetencer.html');
+  var lh=location.hash.slice(1);if(lh==='metoder'&&!document.getElementById('metoder'))location.replace('/metoder.html');if(['bibliotek','artikler','boeger','lib-metoder','standarder'].indexOf(lh)>-1&&!document.getElementById(lh))location.replace('/bibliotek.html'+(lh==='bibliotek'?'':'#'+lh));
   // Undermenuer
   var dds=[].slice.call(document.querySelectorAll('.dd'));
   function closeDD(x){dds.forEach(function(d){if(d!==x){d.classList.remove('open');d.querySelector('.ddt').setAttribute('aria-expanded','false');}});}
@@ -862,6 +937,11 @@ details.kc p{margin:0 6px 16px 100px}
     d.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDD(null);t.focus();}});
     [].forEach.call(d.querySelectorAll('.sub a'),function(a){a.addEventListener('click',function(){closeDD(null);setTimeout(function(){a.blur();},0);});});});
   document.addEventListener('click',function(e){if(!e.target.closest('.dd'))closeDD(null);});
+  // Hele kerneområdekortet er klikbart
+  [].forEach.call(document.querySelectorAll('.core'),function(c){var a=c.querySelector('.core-a');if(a)c.addEventListener('click',function(e){if(!e.target.closest('a'))location.href=a.href;});});
+  // Kompetencesiden: fold det kerneområde ud, som linket peger på
+  function openKat(){var h=decodeURIComponent(location.hash.slice(1));if(!h)return;var el=document.getElementById(h);if(!el)return;var d=el.closest&&el.closest('details.kat');if(d){d.open=true;setTimeout(function(){el.scrollIntoView();},40);}}
+  openKat();window.addEventListener('hashchange',openKat);
   // Mobilmenu
   var b=document.querySelector('.burger'),m=document.getElementById('hovedmenu');
   if(b&&m){
